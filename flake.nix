@@ -20,6 +20,9 @@
           # Editor
           nvim
 
+          # Utils
+          hexedit
+
           # Building MOTIS
           cmake
           gcc13
