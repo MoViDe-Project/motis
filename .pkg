@@ -1,13 +1,7 @@
 [nigiri]
-<<<<<<< Updated upstream
-  url=git@github.com:motis-project/nigiri.git
-  branch=dump_round_times
-  commit=c4a75bdd63ebd20bfc8c643d1c8d97bc8f7ccb98
-=======
   url=git@github.com:mority/nigiri.git
   branch=dump_round_times
   commit=c7762cc0aa3d98c514118ca41792ee6888880ca8
->>>>>>> Stashed changes
 [cista]
   url=git@github.com:felixguendling/cista.git
   branch=master
