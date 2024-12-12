@@ -3,7 +3,8 @@
 /.direnv
 /.pkg.mutex
 /.clang-tidy
-/.idea
+.idea/
+.vscode/
 /deps
 *.zip
 *.bin
@@ -20,6 +21,8 @@ fasta.json
 config.yaml
 config.yml
 config
-*/.vscode
-/motis-dep/
-/visual-debugger/package-lock.json
+
+/motis-deploy/
+
+### macOS ###
+.DS_Store
