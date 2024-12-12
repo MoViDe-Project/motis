@@ -19,5 +19,7 @@
 fasta.json
 config.yaml
 config.yml
-config.ini
-
+config
+*/.vscode
+/motis-dep/
+/visual-debugger/package-lock.json
