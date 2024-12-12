@@ -1,0 +1,10 @@
+{
+  "queries": [
+    {
+      "index":1,
+      "from":"Aachen HBF",
+      "to": "Aachen West",
+      "class": "Regional"
+    }
+  ]
+}
