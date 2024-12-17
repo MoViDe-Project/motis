@@ -2,6 +2,7 @@
     import Button from '$lib/components/ui/Button.svelte';
     import FileUpload from '$lib/components/ui/FileUpload.svelte';
     import QueryBatchOverview from '$lib/components/ui/QueryBatchOverview.svelte';
+    import QueryBatchShow from "$lib/components/ui/QueryBatchShow.svelte";
 </script>
 
 <img src="/logo.svg" alt="MoViDe logo" style="width: 100px; height: 100px;">
@@ -10,3 +11,4 @@
 <FileUpload />
 <Button title="Upload bestätigen"/>
 <QueryBatchOverview />
+<QueryBatchShow />
