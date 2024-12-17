@@ -1,14 +1,25 @@
 <script lang="ts">
-    
+    import {query_file_storage} from "../../../sveltestore";
+
     let { title } = $props();
+
+    let query_file_content = ""
 
     function handleClick() {
         console.log('Waiting for Instructions');
     }
 
+    const query_batch_printing = () => {
+        query_file_storage.subscribe(file_data => {
+            query_file_content = file_data;
+        })
+
+        console.log(query_file_content)
+    }
+
 </script>
 
-<button>{title}</button>
+<button on:click={query_batch_printing}>{title}</button>
 
 <style>
     button {
