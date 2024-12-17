@@ -28,3 +28,4 @@ config.ini
 
 # Exclusions of Movide visual-debugger
 /motis-deploy/
+package-lock.json
