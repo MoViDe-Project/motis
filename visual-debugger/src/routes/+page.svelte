@@ -4,6 +4,10 @@
     import QueryBatchOverview from '$lib/components/ui/QueryBatchOverview.svelte';
 </script>
 
+<svelte:head>
+    <title>MoViDe</title>
+</svelte:head>
+
 <!-- Logo -->
 <img src="/logo.svg" alt="MoViDe logo" class="w-24 h-24 mx-auto my-4">
 
