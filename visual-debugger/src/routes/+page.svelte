@@ -4,31 +4,22 @@
     import QueryBatchOverview from '$lib/components/ui/QueryBatchOverview.svelte';
 </script>
 
-<style>
-    .center {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    .horizontal-container {
-        display: flex;
-        align-items: center;
-        gap: 1rem; /* space between elements */
-    }
-</style>
+<!-- Logo -->
+<img src="/logo.svg" alt="MoViDe logo" class="w-24 h-24 mx-auto my-4">
 
-<img src="/logo.svg" alt="MoViDe logo" style="width: 100px; height: 100px;" class="center">
-
-<div class="horizontal-container">
-    <h1>Welcome to MoViDe (MOTIS Visual Debugger)</h1>
+<!-- Heading -->
+<div class="flex items-center justify-center gap-4 my-4">
+    <h1 class="text-2xl font-bold">Welcome to MoViDe (MOTIS Visual Debugger)</h1>
 </div>
 
-<div class="horizontal-container">    
+<!-- File Upload -->
+<div class="flex items-center justify-center gap-4 my-4">    
     <FileUpload />
-    <Button title="Confirm Upload"/>
+    <Button title="Confirm Upload" />
 </div>
 
-<div class="horizontal-container">
+<!-- Query Batch, journey details -->
+<div class="flex items-center justify-center gap-4 my-4">
     <QueryBatchOverview />
-    <!-- TODO journey Details to the right of the query batch overview -->
+    <!-- TODO journey details to the right of the query batch overview -->
 </div>
