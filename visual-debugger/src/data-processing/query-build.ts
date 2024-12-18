@@ -1,10 +1,16 @@
 import axios from "axios";
 import * as fs from 'fs';
+import {query_json_string_store, query_store} from "../sveltestore";
 
 /**
  * Base URL of the MOTIS API
  */
 const motis_api_url_base = 'http://localhost:8080/api/v1/'
+
+/**
+ * Attribute used for storing the content of the query file
+ */
+let query_file_content: string
 
 /**
  * location type used for storing stop information
@@ -35,7 +41,7 @@ export interface area {
 /**
  * Query type used for storing information about a single query
  */
-interface query {
+export interface query {
     index: number;
     from:string;
     fromStopID:string;
@@ -59,8 +65,7 @@ interface batch {
 export async function build_query_dataset(query_batch:string) {
 
     // parse query batch file into readable queries
-    console.log(query_batch)
-    let batch: batch = JSON.parse(fs.readFileSync(query_batch, 'utf-8'))
+    let batch: batch = JSON.parse(query_batch)
     let queries = batch.queries
 
     // call MOTIS API to search for the nearest stations to the start and end point of the query
@@ -69,9 +74,8 @@ export async function build_query_dataset(query_batch:string) {
         query_trip.toStopID = await get_location_id(query_trip.to)
     }
 
-
-    write_query_set_to_file(queries,"input-set.json")
-    return queries
+    // update store with the new queries
+    query_store.set(queries);
 }
 
 /**
@@ -90,15 +94,18 @@ async function get_location_id (location_name:string){
 }
 
 /**
- * Takes the interpolated query batch and writes it into the specified json file for further processing
- * @param query_batch The query batch with stop id's
- * @param input_set_path The path to the input set JSON file
+ * Interaction method for printing queries to page
  */
-function write_query_set_to_file(query_batch:query[],input_set_path: string){
-    let batch_string: string = JSON.stringify(query_batch)
-    fs.writeFile(input_set_path, batch_string, function (err) {
-        if (err) throw err;
-    });
-}
+export function get_query_attributes(){
 
-//build_query_dataset("./Query-Batch.json")
+    //get read file content from storage
+    query_json_string_store.subscribe(file_data => {
+        query_file_content = file_data;
+    })
+
+    // if store is empty abort data processing
+    if(query_file_content.length==0){return}
+
+    //interpolate data
+    build_query_dataset(query_file_content)
+}

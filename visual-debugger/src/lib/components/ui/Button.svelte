@@ -1,25 +1,17 @@
 <script lang="ts">
-    import {query_file_storage} from "../../../sveltestore";
+    // import function to call the bridge integration of queries to QueryBatchOverview
+    import {get_query_attributes} from "../../../data-processing/query-build";
 
     let { title } = $props();
 
-    let query_file_content = ""
-
-    function handleClick() {
-        console.log('Waiting for Instructions');
-    }
-
-    const query_batch_printing = () => {
-        query_file_storage.subscribe(file_data => {
-            query_file_content = file_data;
-        })
-
-        console.log(query_file_content)
+    //call bridge to import the queries to QueryBatchOverview
+    const import_queries = () => {
+        get_query_attributes()
     }
 
 </script>
 
-<button on:click={query_batch_printing}>{title}</button>
+<button onclick={import_queries}>{title}</button>
 
 <style>
     button {

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import {query_file_storage} from "../../../sveltestore";
+  import {query_json_string_store} from "../../../sveltestore";
     let file: File | null = null; // Use TypeScript's File type
   
     const handleFileChange = (event: Event): void => {
@@ -7,8 +7,9 @@
       file = input.files ? input.files[0] : null;
       console.log(file?.name); // Logs the file name
 
-      file?.text().then((data) => {
-          query_file_storage.set(data);
+      // put content of read file as string into storage
+      file?.text().then((file_content_string) => {
+          query_json_string_store.set(file_content_string);
         }
       )
 
