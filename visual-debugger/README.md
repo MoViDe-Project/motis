@@ -4,6 +4,9 @@
 
 **MoViDe** (**MO**TIS **Vi**sual **De**bugger) is a tool for visually comparing outputs from multiple public transit routing algorithms. It aids the debugging process by enriching the visual display with debug information about these algorithms.
 
+> [!CAUTION]
+> To use MoViDe, ensure that the MOTIS instance is up and running.
+
 ## Developing
 
 Once you've installed dependencies with `npm install`, start a development server:
