@@ -1,5 +1,5 @@
 {
-  description = "A specialized devshell for C++ projects";
+  description = "A specialized devshell for Svelte + TailwindCSS";
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-24.11";
@@ -24,8 +24,8 @@
           # Editor
           nvim
           svelte-language-server
-          typescript-language-server
           tailwindcss-language-server
+          typescript-language-server
 
           # Utils
           hexedit
