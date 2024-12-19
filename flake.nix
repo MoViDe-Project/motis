@@ -2,8 +2,12 @@
   description = "A specialized devshell for C++ projects";
 
   inputs = {
-    nixpkgs.url = "nixpkgs";
-    nixNeovim.url = "github:D3vZro/NixNeovim";
+    nixpkgs.url = "nixpkgs/nixos-24.11";
+
+    nixNeovim =  {
+      url = "github:D3vZro/NixNeovim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, nixNeovim,... }:
@@ -20,8 +24,8 @@
           # Editor
           nvim
           svelte-language-server
-          tailwindcss-language-server
           typescript-language-server
+          tailwindcss-language-server
 
           # Utils
           hexedit
