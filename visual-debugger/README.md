@@ -1,22 +1,15 @@
-# sv
+<p align="center"><img src="./static/logo.svg" width="196" height="196"></p>
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+> Built with [sv](https://github.com/sveltejs/cli) and [SvelteKit](https://svelte.dev/docs/kit/introduction).
 
-## Creating a project
+**MoViDe** (**MO**TIS **Vi**sual **De**bugger) is a tool for visually comparing outputs from multiple public transit routing algorithms. It aids the debugging process by enriching the visual display with debug information about these algorithms.
 
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npx sv create
-
-# create a new project in my-app
-npx sv create my-app
-```
+> [!CAUTION]
+> To use MoViDe, ensure that the MOTIS instance is up and running.
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've installed dependencies with `npm install`, start a development server:
 
 ```bash
 npm run dev
@@ -27,7 +20,7 @@ npm run dev -- --open
 
 ## Building
 
-To create a production version of your app:
+To deploy MoViDe:
 
 ```bash
 npm run build
@@ -35,4 +28,4 @@ npm run build
 
 You can preview the production build with `npm run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+> To deploy MoViDe, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
