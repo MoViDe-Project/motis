@@ -1,9 +1,13 @@
 {
-  description = "A specialized devshell for C++ projects";
+  description = "A specialized devshell for Svelte + TailwindCSS";
 
   inputs = {
-    nixpkgs.url = "nixpkgs";
-    nixNeovim.url = "github:D3vZro/NixNeovim";
+    nixpkgs.url = "nixpkgs/nixos-24.11";
+
+    nixNeovim =  {
+      url = "github:D3vZro/NixNeovim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, nixNeovim,... }:
