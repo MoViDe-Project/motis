@@ -1,11 +1,21 @@
-<script>
-    import QueryBatchEntry from "./QueryBatchEntry.svelte";
+<script lang="ts">
+    import QueryBatchEntry from "./QueryBatchEntry.svelte"
+    import type {Query} from "../../../data-processing/query-build";
+    import {interpolatedQueryStore} from "../../../sveltestore.ts";
+
+    let queries: Query[]
+
+    // let queries be up-to-date with the store
+    interpolatedQueryStore.subscribe((data) =>
+        queries = data
+    )
 </script>
 
 <h2>Query Batches</h2>
 <div class="rounded-border">
-    <QueryBatchEntry from="Darmstadt" to="Bamberg" />
-    <QueryBatchEntry from="Bamberg" to="Darmstadt" />
+    {#each queries as query}
+        <QueryBatchEntry from="{query.from}" to="{query.to}" fromId="{query.fromStopID}" toId="{query.toStopID}" />
+    {/each}
 </div>
 
 

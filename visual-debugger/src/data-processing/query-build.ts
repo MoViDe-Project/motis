@@ -1,15 +1,20 @@
 import axios from "axios";
-import * as fs from 'fs';
+import {queryJsonStringStore, interpolatedQueryStore} from "../sveltestore";
 
 /**
  * Base URL of the MOTIS API
  */
-const motis_api_url_base = 'http://localhost:8080/api/v1/'
+const motisApiUrlBase = 'http://localhost:8080/api/v1/'
+
+/**
+ * Attribute used for storing the content of the query file
+ */
+let queryFileContent: string
 
 /**
  * location type used for storing stop information
  */
-export interface location {
+export interface Location {
     type: string;
     tokens: number[][];
     name: string;
@@ -18,14 +23,14 @@ export interface location {
     lon: number;
     level: number;
     zip: string;
-    areas: area[];
+    areas: Area[];
     score: number;
 }
 
 /**
  * area type used for storing information about the area of a stop
  */
-export interface area {
+export interface Area {
     name: string;
     adminLevel: number;
     matched: boolean;
@@ -35,7 +40,7 @@ export interface area {
 /**
  * Query type used for storing information about a single query
  */
-interface query {
+export interface Query {
     index: number;
     from:string;
     fromStopID:string;
@@ -45,10 +50,10 @@ interface query {
 }
 
 /**
- * Type used for storing all queries in a batch
+ * Type used for storing all queries in a Batch
  */
-interface batch {
-    queries: query[];
+interface Batch {
+    queries: Query[];
 }
 
 /**
@@ -56,49 +61,50 @@ interface batch {
  * @param query_batch path to the query batch JSON file
  * @return the query batch dataset with stop id's
  */
-export async function build_query_dataset(query_batch:string) {
+export async function buildQueryDataset(query_batch:string) {
 
     // parse query batch file into readable queries
-    console.log(query_batch)
-    let batch: batch = JSON.parse(fs.readFileSync(query_batch, 'utf-8'))
+    let batch: Batch = JSON.parse(query_batch)
     let queries = batch.queries
 
     // call MOTIS API to search for the nearest stations to the start and end point of the query
-    for (const query_trip of queries) {
-        query_trip.fromStopID = await get_location_id(query_trip.from)
-        query_trip.toStopID = await get_location_id(query_trip.to)
+    for (const queryTrip of queries) {
+        queryTrip.fromStopID = await getLocationId(queryTrip.from)
+        queryTrip.toStopID = await getLocationId(queryTrip.to)
     }
 
-
-    write_query_set_to_file(queries,"input-set.json")
-    return queries
+    // update store with the new queries
+    interpolatedQueryStore.set(queries);
 }
 
 /**
  * Calls the MOTIS API to find the most similar stop to the input and returns the id of it
- * @param location_name location the most similar stop id is needed of
+ * @param locationName location the most similar stop id is needed of
  * @return the id of the most similar location to the input string
  */
-async function get_location_id (location_name:string){
+async function getLocationId (locationName:string){
     const response = await axios
         .get(
             //configuration for api call parameters
-            `${motis_api_url_base}geocode/?text=${location_name}`
+            `${motisApiUrlBase}geocode/?text=${locationName}`
         )
-    let possible_stops_and_locations: location[] = response.data
+    let possible_stops_and_locations: Location[] = response.data
     return possible_stops_and_locations[0].id
 }
 
 /**
- * Takes the interpolated query batch and writes it into the specified json file for further processing
- * @param query_batch The query batch with stop id's
- * @param input_set_path The path to the input set JSON file
+ * Interaction method for printing queries to page
  */
-function write_query_set_to_file(query_batch:query[],input_set_path: string){
-    let batch_string: string = JSON.stringify(query_batch)
-    fs.writeFile(input_set_path, batch_string, function (err) {
-        if (err) throw err;
-    });
-}
+export function getQueryAttributes(){
 
-//build_query_dataset("./Query-Batch.json")
+    //get read file content from storage
+    queryJsonStringStore.subscribe(file_data => {
+        queryFileContent = file_data;
+    })
+
+    // if store is empty abort data processing
+    if(queryFileContent.length==0){return}
+
+    //interpolate data
+    buildQueryDataset(queryFileContent)
+}

@@ -1,14 +1,16 @@
 <script lang="ts">
-    
+    import {getQueryAttributes} from "../../../data-processing/query-build";
+
     let { title } = $props();
 
-    function handleClick() {
-        console.log('Waiting for Instructions');
+    // call bridge to import the queries to QueryBatchOverview
+    const importQueries = () => {
+        getQueryAttributes()
     }
 
 </script>
 
-<button>{title}</button>
+<button onclick={importQueries}>{title}</button>
 
 <style>
     button {
