@@ -1,17 +1,16 @@
 <script lang="ts">
-    // import function to call the bridge integration of queries to QueryBatchOverview
-    import {get_query_attributes} from "../../../data-processing/query-build";
+    import {getQueryAttributes} from "../../../data-processing/query-build";
 
     let { title } = $props();
 
-    //call bridge to import the queries to QueryBatchOverview
-    const import_queries = () => {
-        get_query_attributes()
+    // call bridge to import the queries to QueryBatchOverview
+    const importQueries = () => {
+        getQueryAttributes()
     }
 
 </script>
 
-<button onclick={import_queries}>{title}</button>
+<button onclick={importQueries}>{title}</button>
 
 <style>
     button {
