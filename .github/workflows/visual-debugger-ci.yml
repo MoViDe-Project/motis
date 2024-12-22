@@ -28,7 +28,6 @@ jobs:
         run: "npm install -f"
 
       - name: Run svelte-check
-        continue-on-error: true
         run: "npm run check"
 
   vdb-unit:
@@ -45,7 +44,6 @@ jobs:
         run: "npm install -f"
 
       - name: Run unit tests
-        continue-on-error: true
         run: "npm run test:unit"
 
   # vdb-integration:
