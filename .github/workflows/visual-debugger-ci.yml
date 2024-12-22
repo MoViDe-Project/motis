@@ -24,7 +24,7 @@ jobs:
           node-version: 20
 
       - name: Install dependencies
-        run: "npm clean-install"
+        run: "npm install -f"
 
       - name: Run svelte-check
         run: "npm run check"
