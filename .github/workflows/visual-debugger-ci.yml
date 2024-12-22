@@ -14,7 +14,7 @@ defaults:
     working-directory: ./visual-debugger
 
 jobs:
-  vdb-testing:
+  vdb-check:
     runs-on: ubuntu-latest
 
     steps:
@@ -31,9 +31,32 @@ jobs:
         continue-on-error: true
         run: "npm run check"
 
+  vdb-unit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: "npm install -f"
+
       - name: Run unit tests
         continue-on-error: true
         run: "npm run test:unit"
+
+  # vdb-integration:
+      # - uses: actions/checkout@v4
+
+      # - uses: actions/setup-node@v4
+      #   with:
+      #     node-version: 20
+
+      # - name: Install dependencies
+      #   run: "npm install -f"
 
       # - name: Run integration tests
       #   continue-on-error: true
