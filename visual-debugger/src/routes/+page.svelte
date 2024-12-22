@@ -4,9 +4,26 @@
     import QueryBatchOverview from '$lib/components/ui/QueryBatchOverview.svelte';
 </script>
 
-<img src="/logo.svg" alt="MoViDe logo" style="width: 100px; height: 100px;">
-<h1>Welcome to MoViDe (MOTIS Visual Debugger)</h1>
+<svelte:head>
+    <title>MoViDe</title>
+</svelte:head>
 
-<FileUpload />
-<Button title="Upload bestätigen"/>
-<QueryBatchOverview />
+<!-- Logo -->
+<img src="/logo.svg" alt="MoViDe logo" class="w-24 h-24 mx-auto my-4">
+
+<!-- Heading -->
+<div class="flex items-center justify-center gap-4 my-4">
+    <h1 class="text-2xl font-bold">Welcome to MoViDe (MOTIS Visual Debugger)</h1>
+</div>
+
+<!-- File Upload -->
+<div class="flex items-center justify-center gap-4 my-4">    
+    <FileUpload />
+    <Button title="Confirm Upload" />
+</div>
+
+<!-- Query Batch, journey details -->
+<div class="flex items-center justify-center gap-4 my-4">
+    <QueryBatchOverview />
+    <!-- TODO journey details to the right of the query batch overview -->
+</div>
