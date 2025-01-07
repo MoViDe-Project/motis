@@ -1,7 +1,17 @@
 <script>
-    import Button from '$lib/components/ui/Button.svelte';
+    // import Button from '$lib/components/ui/Button.svelte';
     import FileUpload from '$lib/components/ui/FileUpload.svelte';
     import QueryBatchOverview from '$lib/components/ui/QueryBatchOverview.svelte';
+    import { Button } from "$lib/components/ui/button";
+    import {getQueryAttributes} from "../data-processing/query-build";
+
+   
+
+    // call bridge to import the queries to QueryBatchOverview
+    const importQueries = () => {
+        getQueryAttributes()
+    }
+
 </script>
 
 <svelte:head>
@@ -19,8 +29,10 @@
 <!-- File Upload -->
 <div class="flex items-center justify-center gap-4 my-4">    
     <FileUpload />
-    <Button title="Confirm Upload" />
+    <Button on:click={importQueries}>"Confirm Upload"</Button>
 </div>
+
+<Button>Hello Motherfucker</Button>
 
 <!-- Query Batch, journey details -->
 <div class="flex items-center justify-center gap-4 my-4">
