@@ -9,6 +9,7 @@
 
     // call bridge to import the queries to QueryBatchOverview
     const importQueries = () => {
+        console.log("importing queries")
         getQueryAttributes()
     }
 
@@ -29,10 +30,10 @@
 <!-- File Upload -->
 <div class="flex items-center justify-center gap-4 my-4">    
     <FileUpload />
-    <Button on:click={importQueries}>"Confirm Upload"</Button>
+    <Button on:click={importQueries}>Confirm Upload</Button>
 </div>
 
-<Button>Hello Motherfucker</Button>
+
 
 <!-- Query Batch, journey details -->
 <div class="flex items-center justify-center gap-4 my-4">
