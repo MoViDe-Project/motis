@@ -5,7 +5,7 @@
     import { Button } from "$lib/components/ui/button";
     import {getQueryAttributes} from "../data-processing/query-build";
 
-   
+
 
     // call bridge to import the queries to QueryBatchOverview
     const importQueries = () => {
@@ -13,6 +13,7 @@
         getQueryAttributes()
     }
 
+    import PlanOverview from "$lib/components/ui/PlanOverview.svelte";
 </script>
 
 <svelte:head>
@@ -33,10 +34,9 @@
     <Button on:click={importQueries}>Confirm Upload</Button>
 </div>
 
-
-
 <!-- Query Batch, journey details -->
 <div class="flex items-center justify-center gap-4 my-4">
     <QueryBatchOverview />
+    <PlanOverview />
     <!-- TODO journey details to the right of the query batch overview -->
 </div>

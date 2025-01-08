@@ -1,6 +1,6 @@
 <script lang="ts">
     import QueryBatchEntry from "./QueryBatchEntry.svelte"
-    import type {Query} from "../../../data-processing/query-build";
+    import type {Query} from "../../../data-processing/parsing-types/queryInterpolationTypes.ts";
     import {interpolatedQueryStore} from "../../../sveltestore.ts";
 
     let queries: Query[]
