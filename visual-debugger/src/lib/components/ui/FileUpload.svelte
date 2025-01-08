@@ -1,6 +1,6 @@
 <script lang="ts">
   import {queryJsonStringStore} from "../../../sveltestore";
-    let file: File | null = null; // Use TypeScript's File type
+    let file: File | null = null;
   
     const handleFileChange = (event: Event): void => {
       const input = event.target as HTMLInputElement;

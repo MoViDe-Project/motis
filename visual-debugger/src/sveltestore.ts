@@ -16,4 +16,9 @@ export const interpolatedQueryStore = writable<Query[]>()
 /**
  * Storage for computed plan data
  */
-export const planStore = writable<Plan[]>()
+export const computedPlanStore = writable<Plan[]>()
+
+/**
+ * Storage for current displayed plan
+ */
+export const currentPlanStore = writable<Plan>()

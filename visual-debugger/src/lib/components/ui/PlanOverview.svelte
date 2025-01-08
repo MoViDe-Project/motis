@@ -1,20 +1,27 @@
 <script lang="ts">
-    import Itinerary from "$lib/components/ui/subcomponents/Itinerary.svelte";
-    import {planStore} from "../../../sveltestore.ts";
-    import type {Plan} from "../../../data-processing/parsing-types/planParsingTypes.ts";
+    import {currentPlanStore} from "../../../sveltestore.ts";
+    import type {Itinerary, Plan} from "../../../data-processing/parsing-types/planParsingTypes.ts";
+    import PlanEntry from "$lib/components/ui/subcomponents/PlanEntry.svelte";
 
-    let plans: Plan[]
+    let itineraries: Itinerary[]
 
     // let queries be up-to-date with the store
-    planStore.subscribe((data) =>
-        plans = data
+    currentPlanStore.subscribe((data) => {
+            let plan: Plan = data
+            if (data == undefined) {
+                itineraries = []
+            }else{
+                itineraries = data.itineraries;
+            }
+        }
     )
 </script>
 
 <h2>Plan of Query(Routing results)</h2>
 <div class="rounded-border">
-    {#each plans as plan}
-        <Itinerary startTime="{plan.itineraries[0].startTime}"></Itinerary>
+    {#each itineraries as itinerary}
+        <PlanEntry startTime="{itinerary.startTime}" endTime="{itinerary.endTime}"
+                   duration="{itinerary.duration.toString()}" transfers="{itinerary.transfers.toString()}"/>
     {/each}
 </div>
 

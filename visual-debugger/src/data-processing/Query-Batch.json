@@ -5,6 +5,12 @@
       "from":"Aachen HBF",
       "to": "Aachen West",
       "class": "Regional"
+    },
+    {
+      "index":2,
+      "from":"Aachen West",
+      "to": "Aachen HBF",
+      "class": "Regional"
     }
   ]
 }

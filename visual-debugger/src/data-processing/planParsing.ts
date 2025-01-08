@@ -1,4 +1,4 @@
-import {interpolatedQueryStore, planStore} from "../sveltestore.ts";
+import {interpolatedQueryStore, computedPlanStore, currentPlanStore} from "../sveltestore.ts";
 import type {Query} from "./parsing-types/queryInterpolationTypes.ts";
 import type {Plan} from "./parsing-types/planParsingTypes.ts"
 import axios from "axios";
@@ -38,9 +38,11 @@ export async function getPlan(){
     for(const query of queries){
         plans[index] = await getPlanForQuery(query)
         index++;
+        console.log(index)
     }
 
-    planStore.set(plans)
+    computedPlanStore.set(plans)
+    currentPlanStore.set(plans[0])
 }
 
 /**

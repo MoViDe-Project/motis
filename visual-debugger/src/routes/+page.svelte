@@ -32,6 +32,7 @@
 <div class="flex items-center justify-center gap-4 my-4">    
     <FileUpload />
     <Button on:click={importQueries}>Confirm Upload</Button>
+
 </div>
 
 <!-- Query Batch, journey details -->
