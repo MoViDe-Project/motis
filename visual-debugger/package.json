@@ -25,5 +25,10 @@
 		"vitest": "^2.0.4",
 		"@types/fs-extra": "^11.0.4",
 		"axios": "^1.7.9"
-	}
+	},
+        "overrides": {
+                "vitest": {
+                        "vite": "^6.0.0"
+                }
+        }
 }
