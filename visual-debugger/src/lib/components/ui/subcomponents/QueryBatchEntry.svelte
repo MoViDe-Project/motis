@@ -1,4 +1,5 @@
 <script lang="ts">
+    export let index: number;
     export let from: String;
     export let to: String;
     export let fromId: String;
@@ -6,5 +7,5 @@
 </script>
 
 <div>
-    <p> {from} ({fromId}) -> {to} ({toId})</p>
+    <p>  {index}: {from} ({fromId}) -> {to} ({toId})</p>
 </div>

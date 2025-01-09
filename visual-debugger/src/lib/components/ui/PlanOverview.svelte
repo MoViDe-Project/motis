@@ -7,7 +7,6 @@
 
     // let queries be up-to-date with the store
     currentPlanStore.subscribe((data) => {
-            let plan: Plan = data
             if (data == undefined) {
                 itineraries = []
             }else{

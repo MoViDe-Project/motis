@@ -1,7 +1,7 @@
 <script lang="ts">
-    import QueryBatchEntry from "./QueryBatchEntry.svelte"
-    import type {Query} from "../../../data-processing/parsing-types/queryInterpolationTypes.ts";
     import {interpolatedQueryStore} from "../../../sveltestore.ts";
+    import QueryBatchEntry from "./subcomponents/QueryBatchEntry.svelte"
+    import type {Query} from "../../../data-processing/parsing-types/queryInterpolationTypes.ts";
 
     let queries: Query[]
 
@@ -14,7 +14,7 @@
 <h2>Query Batches</h2>
 <div class="rounded-border">
     {#each queries as query}
-        <QueryBatchEntry from="{query.from}" to="{query.to}" fromId="{query.fromStopID}" toId="{query.toStopID}" />
+        <QueryBatchEntry index="{query.index}" from="{query.from}" to="{query.to}" fromId="{query.fromStopID}" toId="{query.toStopID}" />
     {/each}
 </div>
 

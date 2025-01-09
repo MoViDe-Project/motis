@@ -9,11 +9,6 @@ import axios from "axios";
 const motisApiUrlBase = 'http://localhost:8080/api/v1/'
 
 /**
- * computed plans for the uploaded queries
- */
-
-
-/**
  * data of the interpolated queries
  */
 let queries: Query[]
@@ -30,17 +25,16 @@ export async function getPlan(){
     // if store is empty abort data processing
     if(queries == undefined){return}
 
-    // compute the plan for each query
+    let plans: Plan[] = [];
     let index =0;
 
-    let plans: Plan[] = [];
-
+    // compute the plan for each query
     for(const query of queries){
         plans[index] = await getPlanForQuery(query)
         index++;
-        console.log(index)
     }
 
+    // put computed plans into storage and set first plan as active
     computedPlanStore.set(plans)
     currentPlanStore.set(plans[0])
 }
@@ -50,14 +44,12 @@ export async function getPlan(){
  * @param query the query to get the plan for
  */
 export async function getPlanForQuery(query:Query){
-
     const response = await axios
         .get(
             //configuration for api call parameters
             `${motisApiUrlBase}plan/?fromPlace=${query.fromStopID}&toPlace=${query.toStopID}`
         )
     let plan: Plan = response.data
-    console.log("plan", plan)
     return plan
 }
 

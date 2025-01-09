@@ -1,38 +1,41 @@
 <script lang="ts">
+    // components
     import FileUpload from '$lib/components/ui/FileUpload.svelte';
-    import QueryBatchOverview from '$lib/components/ui/QueryBatchOverview.svelte';
     import { Button } from "$lib/components/ui/button";
-    import {getQueryAttributes} from "../data-processing/queryBuild.ts";
+    import QueryBatchOverview from '$lib/components/ui/QueryBatchOverview.svelte';
     import PlanOverview from "$lib/components/ui/PlanOverview.svelte";
+    // stores
     import {computedPlanStore, currentPlanStore} from "../sveltestore.js";
+    // data-processing functions
     import {getPlan} from "../data-processing/planParsing.ts";
+    // types
     import type {Plan} from "../data-processing/parsing-types/planParsingTypes.js";
 
-
+    // attributes for switching of current plan
     let queryIndex = 0
-
     let plans: Plan[];
 
+    /**
+     * Changes the currently displayed plan to the next one
+     */
     const nextActivePlan = () => {
+        // get all plan data
         computedPlanStore.subscribe((data) =>
             plans = data
         )
-        if(plans==undefined) return
 
-        (queryIndex==0)?queryIndex=1:queryIndex=0
+        // return if the store is still empty (this means the function was called to early)
+        if(typeof plans == undefined) return
+
+        let maxPlan = plans.length-1;
+
+        // switch to next plan or return to first
+        (queryIndex==maxPlan)?queryIndex=0:queryIndex++
 
         let activePlan: Plan = plans[queryIndex];
 
+        // load new plan into svelte store
         currentPlanStore.set(activePlan)
-        console.log("Index:"+queryIndex)
-    }
-
-
-    // call bridge to import the queries to QueryBatchOverview
-    const importQueries = () => {
-        console.log("importing queries")
-        getQueryAttributes()
-        getPlan()
     }
 
 </script>
@@ -52,7 +55,7 @@
 <!-- File Upload -->
 <div class="flex items-center justify-center gap-4 my-4">
     <FileUpload />
-    <Button on:click={importQueries}>Confirm Upload</Button>
+    <Button on:click={getPlan}>Compute Routes</Button>
     <Button on:click={nextActivePlan}>Next Plan</Button>
 </div>
 
@@ -60,6 +63,5 @@
 <div class="flex items-center justify-center gap-4 my-4">
     <QueryBatchOverview />
     <PlanOverview />
-    <!-- TODO journey details to the right of the query batch overview -->
 </div>
 
