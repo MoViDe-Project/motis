@@ -18,7 +18,6 @@ let queryFileContent: string
  * @return the query batch dataset with stop id's
  */
 export async function buildQueryDataset(query_batch:string) {
-
     // parse query batch file into readable queries
     let batch: Batch = JSON.parse(query_batch)
     let queries = batch.queries

@@ -1,6 +1,9 @@
 <script lang="ts">
   import {queryJsonStringStore} from "../../../sveltestore";
+  import {getQueryAttributes} from "../../../data-processing/queryBuild.ts";
     let file: File | null = null;
+
+  $: if(!($queryJsonStringStore=="DEFAULT")){getQueryAttributes()}
   
     const handleFileChange = (event: Event): void => {
       const input = event.target as HTMLInputElement;

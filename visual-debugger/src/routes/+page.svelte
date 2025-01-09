@@ -1,19 +1,40 @@
-<script>
-    // import Button from '$lib/components/ui/Button.svelte';
+<script lang="ts">
     import FileUpload from '$lib/components/ui/FileUpload.svelte';
     import QueryBatchOverview from '$lib/components/ui/QueryBatchOverview.svelte';
     import { Button } from "$lib/components/ui/button";
-    import {getQueryAttributes} from "../data-processing/query-build";
+    import {getQueryAttributes} from "../data-processing/queryBuild.ts";
+    import PlanOverview from "$lib/components/ui/PlanOverview.svelte";
+    import {computedPlanStore, currentPlanStore} from "../sveltestore.js";
+    import {getPlan} from "../data-processing/planParsing.ts";
+    import type {Plan} from "../data-processing/parsing-types/planParsingTypes.js";
 
+
+    let queryIndex = 0
+
+    let plans: Plan[];
+
+    const nextActivePlan = () => {
+        computedPlanStore.subscribe((data) =>
+            plans = data
+        )
+        if(plans==undefined) return
+
+        (queryIndex==0)?queryIndex=1:queryIndex=0
+
+        let activePlan: Plan = plans[queryIndex];
+
+        currentPlanStore.set(activePlan)
+        console.log("Index:"+queryIndex)
+    }
 
 
     // call bridge to import the queries to QueryBatchOverview
     const importQueries = () => {
         console.log("importing queries")
         getQueryAttributes()
+        getPlan()
     }
 
-    import PlanOverview from "$lib/components/ui/PlanOverview.svelte";
 </script>
 
 <svelte:head>
@@ -29,10 +50,10 @@
 </div>
 
 <!-- File Upload -->
-<div class="flex items-center justify-center gap-4 my-4">    
+<div class="flex items-center justify-center gap-4 my-4">
     <FileUpload />
     <Button on:click={importQueries}>Confirm Upload</Button>
-
+    <Button on:click={nextActivePlan}>Next Plan</Button>
 </div>
 
 <!-- Query Batch, journey details -->
@@ -41,3 +62,4 @@
     <PlanOverview />
     <!-- TODO journey details to the right of the query batch overview -->
 </div>
+
