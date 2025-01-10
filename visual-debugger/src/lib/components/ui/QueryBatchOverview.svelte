@@ -1,6 +1,5 @@
 <script lang="ts">
     import {computedPlanStore, currentPlanStore, interpolatedQueryStore} from "../../../sveltestore.ts";
-    import QueryBatchEntry from "./subcomponents/QueryBatchEntry.svelte"
     import type {Query} from "../../../data-processing/parsing-types/queryInterpolationTypes.ts";
     import {Button} from "@/components/ui/button";
     import type {Plan} from "../../../data-processing/parsing-types/planParsingTypes.ts";
@@ -13,37 +12,37 @@
     )
 
     // attributes for switching of current plan
-    let queryIndex = 0
     let plans: Plan[];
 
     /**
      * Changes the currently displayed plan to the next one
      */
-    const nextActivePlan = () => {
-        // get all plan data
-        computedPlanStore.subscribe((data) =>
-            plans = data
+    function nextPlan(queryIndex: number) {
+        // get current plan data
+        computedPlanStore.subscribe((data) => {
+                plans = data
+
+                //if no plan was previously computed, alert the user of this
+                if (data == undefined) {
+                    alert("No plans found, please compute the queries before trying to switch between their data.")
+                    return
+                }
+            }
         )
 
         // return if the store is still empty (this means the function was called to early)
-        if(typeof plans == undefined) return
+        if (plans == undefined) return;
 
-        let maxPlan = plans.length-1;
-
-        // switch to next plan or return to first
-        (queryIndex==maxPlan)?queryIndex=0:queryIndex++
-
-        let activePlan: Plan = plans[queryIndex];
-
-        // load new plan into svelte store
-        currentPlanStore.set(activePlan)
+        // load plan of the clicked query into svelte store
+        currentPlanStore.set(plans[queryIndex-1])
     }
+
 </script>
 
 <h2>Query Batches</h2>
 <div class="rounded-border">
     {#each queries as query}
-        <Button on:click={nextActivePlan}>{query.index}: {query.from} -> {query.to}</Button>
+        <Button on:click={() => nextPlan(query.index)}> {query.index}: {query.from} -> {query.to}</Button>
     {/each}
 </div>
 

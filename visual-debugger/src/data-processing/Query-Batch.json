@@ -14,8 +14,8 @@
     },
     {
       "index":3,
-      "from":"Aachen West",
-      "to": "Aachen HBF",
+      "from":"Aachen Bushof",
+      "to": "Aachen Schanz",
       "class": "Regional"
     }
   ]
