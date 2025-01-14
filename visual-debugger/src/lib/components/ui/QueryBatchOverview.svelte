@@ -65,11 +65,13 @@
 
 </script>
 
-<h2>Query Batches</h2>
-<div class="rounded-border">
-    {#each queries as query}
-        <Button on:click={() => changePlan(query.index)}> {query.index}: {query.from} -> {query.to}</Button>
-    {/each}
+<div>
+    <h2>Query Batches</h2>
+    <div class="rounded-border flex flex-col">
+        {#each queries as query}
+            <Button on:click={() => changePlan(query.index)}> {query.index}: {query.from} -> {query.to}</Button>
+        {/each}
+    </div>
 </div>
 
 
