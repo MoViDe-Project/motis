@@ -5,6 +5,18 @@
       "from":"Aachen HBF",
       "to": "Aachen West",
       "class": "Regional"
+    },
+    {
+      "index":2,
+      "from":"Aachen West",
+      "to": "Aachen HBF",
+      "class": "Regional"
+    },
+    {
+      "index":3,
+      "from":"Aachen Bushof",
+      "to": "Aachen Schanz",
+      "class": "Regional"
     }
   ]
 }

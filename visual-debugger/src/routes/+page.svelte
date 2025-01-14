@@ -1,17 +1,11 @@
-<script>
-    // import Button from '$lib/components/ui/Button.svelte';
+<script lang="ts">
+    // components
     import FileUpload from '$lib/components/ui/FileUpload.svelte';
-    import QueryBatchOverview from '$lib/components/ui/QueryBatchOverview.svelte';
     import { Button } from "$lib/components/ui/button";
-    import {getQueryAttributes} from "../data-processing/query-build";
-
-   
-
-    // call bridge to import the queries to QueryBatchOverview
-    const importQueries = () => {
-        console.log("importing queries")
-        getQueryAttributes()
-    }
+    import QueryBatchOverview from '$lib/components/ui/QueryBatchOverview.svelte';
+    import PlanOverview from "$lib/components/ui/PlanOverview.svelte";
+    // data-processing functions
+    import {computePlan} from "../data-processing/planParsing.ts";
 
 </script>
 
@@ -28,15 +22,14 @@
 </div>
 
 <!-- File Upload -->
-<div class="flex items-center justify-center gap-4 my-4">    
+<div class="flex items-center justify-center gap-4 my-4">
     <FileUpload />
-    <Button on:click={importQueries}>Confirm Upload</Button>
+    <Button on:click={computePlan}>Compute Routes</Button>
 </div>
-
-
 
 <!-- Query Batch, journey details -->
 <div class="flex items-center justify-center gap-4 my-4">
     <QueryBatchOverview />
-    <!-- TODO journey details to the right of the query batch overview -->
+    <PlanOverview />
 </div>
+
