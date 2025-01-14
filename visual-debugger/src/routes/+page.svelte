@@ -35,8 +35,13 @@
     <div class="w-1/3">
         <QueryBatchOverview />
     </div>
-    <div class="w-2/3">
-        <PlanOverview />
-        <DefaultPlanOverview/>
+    <div class="w-2/3 p-border">
+        <div class="grid grid-cols-2 gap-4">
+            <div class="bg-gray-200 p-4 rounded"><PlanOverview/></div>
+            <div class="bg-gray-200 p-4 rounded"><DefaultPlanOverview/></div>
+            <div class="bg-gray-200 p-4 rounded">Tile 3</div>
+            <div class="bg-gray-200 p-4 rounded">Tile 4</div>
+        </div>
+
     </div>
 </div>

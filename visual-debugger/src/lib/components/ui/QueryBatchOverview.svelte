@@ -8,6 +8,7 @@
     import type {Query} from "../../../data-processing/parsing-types/queryInterpolationTypes.ts";
     import {Button} from "@/components/ui/button";
     import type {Plan} from "../../../data-processing/parsing-types/planParsingTypes.ts";
+    import {Label} from "$lib/components/ui/label";
 
     let queries: Query[]
 
@@ -65,9 +66,10 @@
 
 </script>
 
-<div>
-    <h2>Query Batches</h2>
-    <div class="rounded flex flex-col space-y-1">
+
+<div class ="bg-gray-200 p-4 rounded">
+    <Label class="text-md">Query Batch Overview</Label>
+    <div class="rounded flex flex-col space-y-1 border border-black p-2 ">
         {#each queries as query}
             <Button on:click={() => changePlan(query.index)} class="bg-transparent hover:bg-black text-black font-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded"> {query.index}: {query.from} -> {query.to}</Button>
         {/each}

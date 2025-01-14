@@ -6,6 +6,6 @@
 
 </script>
 
-<div>
+<div class="border border-black p-2">
     <p> StartTime:{startTime}, EndTime:{endTime}, Duration: {duration}, Number of Transfers: {transfers}</p>
 </div>
