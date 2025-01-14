@@ -24,8 +24,8 @@ export async function buildQueryDataset(query_batch:string) {
 
     // call MOTIS API to search for the nearest stations to the start and end point of the query
     for (const queryTrip of queries) {
-        queryTrip.fromStopID = await getLocationId(queryTrip.from)
-        queryTrip.toStopID = await getLocationId(queryTrip.to)
+        queryTrip.fromStopID = await computeLocationId(queryTrip.from)
+        queryTrip.toStopID = await computeLocationId(queryTrip.to)
     }
 
     // update store with the new queries
@@ -37,7 +37,7 @@ export async function buildQueryDataset(query_batch:string) {
  * @param locationName location the most similar stop id is needed of
  * @return the id of the most similar location to the input string
  */
-async function getLocationId (locationName:string){
+async function computeLocationId (locationName:string){
     const response = await axios
         .get(
             //configuration for api call parameters
@@ -50,7 +50,7 @@ async function getLocationId (locationName:string){
 /**
  * Interaction method for printing queries to page
  */
-export function getQueryAttributes(){
+export function computeQueryAttributes(){
 
     //get read file content from storage
     queryJsonStringStore.subscribe(file_data => {

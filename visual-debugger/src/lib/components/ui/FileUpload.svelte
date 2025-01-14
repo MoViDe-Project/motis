@@ -1,10 +1,10 @@
 <script lang="ts">
   import {queryJsonStringStore} from "../../../sveltestore";
-  import {getQueryAttributes} from "../../../data-processing/queryBuild.ts";
+  import {computeQueryAttributes} from "../../../data-processing/queryBuild.ts";
   let file: File | null = null;
 
   // When file was first uploaded, parse and interpolate the queries
-  $: if(!($queryJsonStringStore=="DEFAULT")){getQueryAttributes()}
+  $: if(!($queryJsonStringStore=="DEFAULT")){computeQueryAttributes()}
 
   /**
    * Gets the uploaded file and puts its content into the svelte store

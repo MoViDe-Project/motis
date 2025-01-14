@@ -14,9 +14,9 @@ const motisApiUrlBase = 'http://localhost:8080/api/v1/'
 let queries: Query[]
 
 /**
- * "interface" function that is accessed by the frontend to get the plan for all queries
+ * Interaction function that is accessed by the frontend to get the plan for all queries
  */
-export async function getPlan(){
+export async function computePlan(){
     //get read file content from storage
     interpolatedQueryStore.subscribe(file_data => {
         queries = file_data;
@@ -30,7 +30,7 @@ export async function getPlan(){
 
     // compute the plan for each query
     for(const query of queries){
-        plans[index] = await getPlanForQuery(query)
+        plans[index] = await computePlanForQuery(query)
         index++;
     }
 
@@ -43,7 +43,7 @@ export async function getPlan(){
  * Calls the MOTIS API for a specific query and returns the plan for it
  * @param query the query to get the plan for
  */
-export async function getPlanForQuery(query:Query){
+export async function computePlanForQuery(query:Query){
     const response = await axios
         .get(
             //configuration for api call parameters

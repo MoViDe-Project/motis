@@ -5,7 +5,7 @@
     import QueryBatchOverview from '$lib/components/ui/QueryBatchOverview.svelte';
     import PlanOverview from "$lib/components/ui/PlanOverview.svelte";
     // data-processing functions
-    import {getPlan} from "../data-processing/planParsing.ts";
+    import {computePlan} from "../data-processing/planParsing.ts";
 
 </script>
 
@@ -24,7 +24,7 @@
 <!-- File Upload -->
 <div class="flex items-center justify-center gap-4 my-4">
     <FileUpload />
-    <Button on:click={getPlan}>Compute Routes</Button>
+    <Button on:click={computePlan}>Compute Routes</Button>
 </div>
 
 <!-- Query Batch, journey details -->
