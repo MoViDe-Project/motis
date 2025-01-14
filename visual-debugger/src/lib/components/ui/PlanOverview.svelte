@@ -16,12 +16,14 @@
     )
 </script>
 
-<h2>Plan of Query(Routing results)</h2>
-<div class="rounded-border">
-    {#each itineraries as itinerary}
-        <PlanEntry startTime="{itinerary.startTime}" endTime="{itinerary.endTime}"
-                   duration="{itinerary.duration.toString()}" transfers="{itinerary.transfers.toString()}"/>
-    {/each}
+<div>
+    <h2>Plan of Query(Routing results)</h2>
+    <div class="rounded-border">
+        {#each itineraries as itinerary}
+            <PlanEntry startTime="{itinerary.startTime}" endTime="{itinerary.endTime}"
+                       duration="{itinerary.duration.toString()}" transfers="{itinerary.transfers.toString()}"/>
+        {/each}
+    </div>
 </div>
 
 

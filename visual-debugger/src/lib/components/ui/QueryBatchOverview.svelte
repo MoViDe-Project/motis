@@ -67,18 +67,9 @@
 
 <div>
     <h2>Query Batches</h2>
-    <div class="rounded-border flex flex-col">
+    <div class="rounded flex flex-col space-y-1">
         {#each queries as query}
-            <Button on:click={() => changePlan(query.index)}> {query.index}: {query.from} -> {query.to}</Button>
+            <Button on:click={() => changePlan(query.index)} class="bg-transparent hover:bg-black text-black font-semibold hover:text-white py-2 px-4 border border-black hover:border-transparent rounded"> {query.index}: {query.from} -> {query.to}</Button>
         {/each}
     </div>
 </div>
-
-
-<style>
-    .rounded-border {
-        border: 1px solid black;
-        border-radius: 8px;
-        padding: 10px;
-    }
-</style>
