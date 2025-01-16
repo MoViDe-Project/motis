@@ -1,6 +1,7 @@
 import axios from "axios";
 import {queryJsonStringStore, interpolatedQueryStore} from "../sveltestore";
-import type { Location, Batch } from "./parsing-types/queryInterpolationTypes.ts"
+import type {Location, Batch} from "./parsing-types/queryInterpolationTypes.ts"
+
 
 /**
  * Base URL of the MOTIS API
@@ -17,9 +18,17 @@ let queryFileContent: string
  * @param query_batch path to the query batch JSON file
  * @return the query batch dataset with stop id's
  */
-export async function buildQueryDataset(query_batch:string) {
+export async function buildQueryDataset(query_batch: string) {
     // parse query batch file into readable queries
-    let batch: Batch = JSON.parse(query_batch)
+    let batch: Batch;
+    try {
+        batch = JSON.parse(query_batch)
+    } catch (e) {
+        alert("An error occurred while parsing query data.");
+        throw new Error(`Failed to build query data: ${e}`)
+    }
+
+
     let queries = batch.queries
 
     // call MOTIS API to search for the nearest stations to the start and end point of the query
@@ -37,7 +46,7 @@ export async function buildQueryDataset(query_batch:string) {
  * @param locationName location the most similar stop id is needed of
  * @return the id of the most similar location to the input string
  */
-async function computeLocationId (locationName:string){
+async function computeLocationId(locationName: string) {
     const response = await axios
         .get(
             //configuration for api call parameters
@@ -50,7 +59,7 @@ async function computeLocationId (locationName:string){
 /**
  * Interaction method for printing queries to page
  */
-export function computeQueryAttributes(){
+export function computeQueryAttributes() {
 
     //get read file content from storage
     queryJsonStringStore.subscribe(file_data => {
@@ -58,8 +67,14 @@ export function computeQueryAttributes(){
     })
 
     // if store is empty abort data processing
-    if(queryFileContent.length==0){return}
+    if (queryFileContent.length == 0) {
+        return
+    }
 
-    //interpolate data
-    buildQueryDataset(queryFileContent)
+    try {
+        //interpolate data
+        buildQueryDataset(queryFileContent)
+    } catch (err) {
+        console.log(err)
+    }
 }
