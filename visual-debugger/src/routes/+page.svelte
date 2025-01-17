@@ -1,6 +1,6 @@
 <script lang="ts">
     // components
-    import FileUpload from '$lib/components/ui/FileUpload.svelte';
+    import FileUpload from '@/components/ui/upload/FileUpload.svelte';
     import { Button } from "$lib/components/ui/button";
     import QueryBatchOverview from '$lib/components/ui/QueryBatchOverview.svelte';
     import PlanOverview from "$lib/components/ui/PlanOverview.svelte";

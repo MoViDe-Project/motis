@@ -47,7 +47,7 @@ export async function computePlanForQuery(query:Query){
     const response = await axios
         .get(
             //configuration for api call parameters
-            `${motisApiUrlBase}plan/?fromPlace=${query.fromStopID}&toPlace=${query.toStopID}`
+            `${motisApiUrlBase}plan/?fromPlace=${query.fromStopID}&toPlace=${query.toStopID}&time=${query.time}`
         )
     let plan: Plan = response.data
     return plan

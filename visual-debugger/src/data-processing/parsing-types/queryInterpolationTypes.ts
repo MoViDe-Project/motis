@@ -34,6 +34,7 @@ export interface Query {
     to: string;
     toStopID: string;
     class:string;
+    time:string;
 }
 
 /**

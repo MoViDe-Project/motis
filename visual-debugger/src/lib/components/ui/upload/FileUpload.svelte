@@ -1,6 +1,6 @@
 <script lang="ts">
-  import {queryJsonStringStore} from "../../../sveltestore";
-  import {computeQueryAttributes} from "../../../data-processing/queryBuild.ts";
+  import {queryJsonStringStore} from "../../../../sveltestore.ts";
+  import {computeQueryAttributes} from "../../../../data-processing/queryBuild.ts";
   let file: File | null = null;
 
   // When file was first uploaded, parse and interpolate the queries
