@@ -9,7 +9,7 @@
     currentPlanStore.subscribe((data) => {
             if (data == undefined) {
                 itineraries = []
-            }else{
+            } else {
                 itineraries = data.itineraries;
             }
         }

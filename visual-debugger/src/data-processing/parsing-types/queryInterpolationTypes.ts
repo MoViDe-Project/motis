@@ -29,12 +29,12 @@ export class Area {
  */
 export class Query {
     index: number = 0;
-    from:string = "";
-    fromStopID:string = "";
+    from: string = "";
+    fromStopID: string = "";
     to: string = "";
     toStopID: string = "";
-    class:string = "";
-    time:string = "";
+    class: string = "";
+    time: string = "";
 }
 
 /**

@@ -40,7 +40,7 @@
         if (plans == undefined) return;
 
         // load plan of the clicked query into svelte store
-        currentPlanStore.set(plans[queryIndex-1])
+        currentPlanStore.set(plans[queryIndex - 1])
 
         // Switch default plan
 
@@ -60,7 +60,7 @@
         if (defaultPlans == undefined) return;
 
         // load plan of the clicked query into svelte store
-        currentDefaultPlanStore.set(defaultPlans[queryIndex-1])
+        currentDefaultPlanStore.set(defaultPlans[queryIndex - 1])
     }
 
 </script>

@@ -1,8 +1,8 @@
- <script lang="ts">
-        export let startTime: String;
-        export let endTime: String;
-        export let duration: String;
-        export let transfers: String;
+<script lang="ts">
+    export let startTime: String;
+    export let endTime: String;
+    export let duration: String;
+    export let transfers: String;
 
 </script>
 

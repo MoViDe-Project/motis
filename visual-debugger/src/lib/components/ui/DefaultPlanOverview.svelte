@@ -2,12 +2,13 @@
     import {currentDefaultPlanStore} from "../../../sveltestore.ts";
     import type {Itinerary} from "../../../data-processing/parsing-types/planParsingTypes.ts";
     import PlanEntry from "$lib/components/ui/subcomponents/PlanEntry.svelte";
+
     let itineraries: Itinerary[]
     // let queries be up-to-date with the store
     currentDefaultPlanStore.subscribe((data) => {
             if (data == undefined) {
                 itineraries = []
-            }else{
+            } else {
                 itineraries = data.itineraries;
             }
         }
