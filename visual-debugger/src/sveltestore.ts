@@ -22,3 +22,13 @@ export const computedPlanStore = writable<Plan[]>()
  * Storage for current displayed plan
  */
 export const currentPlanStore = writable<Plan>()
+
+/**
+ * Storage for the current default plan
+ */
+export const currentDefaultPlanStore = writable<Plan>()
+
+/**
+ * Storage for all plans that are part of the default plan set
+ */
+export const defaultPlanStore = writable<Plan[]>()
