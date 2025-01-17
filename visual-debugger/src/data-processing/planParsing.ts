@@ -53,4 +53,21 @@ export async function computePlanForQuery(query:Query){
     return plan
 }
 
+/**
+ * Downloads the currently computed plans as a JSON file
+ */
+export function downloadPlans(): void{
+    //plans
+    let plans: Plan[] | null = null;
+    // put content of read file as string into storage
+    computedPlanStore.subscribe(data=> {plans=data})
+    if (plans==null) {return}
+
+    let fileElement = document.createElement("a");
+    let  file = new Blob([JSON.stringify(plans)], {type: "text/plain"});
+    fileElement.href = URL.createObjectURL(file);
+    fileElement.download = "default-plan.json";
+    fileElement.click();
+}
+
 
