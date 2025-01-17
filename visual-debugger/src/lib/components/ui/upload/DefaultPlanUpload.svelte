@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {currentDefaultPlanStore,defaultPlanStore} from "../../../../sveltestore.ts";
+    import {currentDefaultPlanStore,defaultPlanDatasetStore} from "../../../../sveltestore.ts";
     import type {Plan} from "../../../../data-processing/parsing-types/planParsingTypes.ts";
 
     let file: File | null = null;
@@ -15,7 +15,7 @@
         // put content of read file as string into storage
         file?.text().then((file_content_string) => {
             let plans: Plan[] = JSON.parse(file_content_string)
-            defaultPlanStore.set(plans);
+            defaultPlanDatasetStore.set(plans);
             currentDefaultPlanStore.set(plans[0]);
             }
         )

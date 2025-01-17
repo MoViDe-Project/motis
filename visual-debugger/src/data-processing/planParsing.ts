@@ -1,4 +1,4 @@
-import {interpolatedQueryStore, computedPlanStore, currentPlanStore} from "../sveltestore.ts";
+import {interpolatedQueryStore, planDatasetStore, currentPlanStore} from "../sveltestore.ts";
 import type {Query} from "./parsing-types/queryInterpolationTypes.ts";
 import type {Plan} from "./parsing-types/planParsingTypes.ts"
 import axios from "axios";
@@ -35,7 +35,7 @@ export async function computePlan(){
     }
 
     // put computed plans into storage and set first plan as active
-    computedPlanStore.set(plans)
+    planDatasetStore.set(plans)
     currentPlanStore.set(plans[0])
 }
 
@@ -57,15 +57,18 @@ export async function computePlanForQuery(query:Query){
  * Downloads the currently computed plans as a JSON file
  */
 export function downloadPlans(): void{
-    //plans
+
     let plans: Plan[] | null = null;
     // put content of read file as string into storage
-    computedPlanStore.subscribe(data=> {plans=data})
+    planDatasetStore.subscribe(data=> {plans=data})
     if (plans==null) {return}
 
+    // build HTML Element for file download
     let fileElement = document.createElement("a");
     let  file = new Blob([JSON.stringify(plans)], {type: "text/plain"});
     fileElement.href = URL.createObjectURL(file);
+
+    // set name of file and download it
     fileElement.download = "default-plan.json";
     fileElement.click();
 }

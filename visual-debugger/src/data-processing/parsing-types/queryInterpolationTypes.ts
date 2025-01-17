@@ -1,45 +1,45 @@
 /**
  * location type used for storing stop information
  */
-export interface Location {
-    type: string;
-    tokens: number[][];
-    name: string;
-    id: string;
-    lat: number;
-    lon: number;
-    level: number;
-    zip: string;
-    areas: Area[];
-    score: number;
+export class Location {
+    type: string = "";
+    tokens: number[][] = [[]];
+    name: string = "";
+    id: string = "";
+    lat: number = 0;
+    lon: number = 0;
+    level: number = 0;
+    zip: string = "";
+    areas: Area[] = new Array<Area>();
+    score: number = 0;
 }
 
 /**
  * area type used for storing information about the area of a stop
  */
-export interface Area {
-    name: string;
-    adminLevel: number;
-    matched: boolean;
-    default: boolean;
+export class Area {
+    name: string = "";
+    adminLevel: number = 0;
+    matched: boolean = true;
+    default: boolean = true;
 }
 
 /**
  * Query type used for storing information about a single query
  */
-export interface Query {
-    index: number;
-    from:string;
-    fromStopID:string;
-    to: string;
-    toStopID: string;
-    class:string;
-    time:string;
+export class Query {
+    index: number = 0;
+    from:string = "";
+    fromStopID:string = "";
+    to: string = "";
+    toStopID: string = "";
+    class:string = "";
+    time:string = "";
 }
 
 /**
  * Type used for storing all queries in a Batch
  */
-export interface Batch {
-    queries: Query[];
+export class Batch {
+    queries: Query[] = new Array<Query>();
 }
