@@ -8,9 +8,6 @@
     import {computePlan, downloadPlans} from "../data-processing/planParsing.ts";
 </script>
 
-<svelte:head>
-    <title>MoViDe</title>
-</svelte:head>
 
 <div class="justify-center my-8 mx-8">
     <!-- Logo -->

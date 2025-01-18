@@ -81,7 +81,7 @@
     <div class="basis-1/3 grid grid-rows-12 rounded-md">
       
       <div class="p-2 row-span-1 content-end"> 
-        <h1 class="text-xl">Query Batches</h1>
+        <h1 class="text-xl">Query Batch Overview</h1>
       </div>
       
       <div class="px-2 row-span-11">
