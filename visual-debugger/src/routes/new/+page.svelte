@@ -75,7 +75,7 @@
   </div>
 
   <!-- Main content -->
-  <div class="basis-10/12 h-96 w-full my-4 flex flex-row gap-2 flex">
+  <div class="basis-10/12 h-96 w-full my-4 flex flex-row flex">
     
     <!-- Query Batches: Grid layout scheint die einzige Option zu sein shadcn scroll box zu kontrollieren -->
     <div class="basis-1/3 grid grid-rows-12 rounded-md">
