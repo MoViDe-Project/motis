@@ -1,5 +1,5 @@
 <script lang="ts">
-    import QueryFileUpload from '@/components/ui/upload/FileUpload.svelte';
+    import QueryFileUpload from '@/components/ui/upload/QueryUpload.svelte';
     import QueryBatchOverview from '$lib/components/ui/QueryBatchOverview.svelte';
     import PlanOverview from "$lib/components/ui/PlanOverview.svelte";
     import DefaultPlanOverview from "@/components/ui/DefaultPlanOverview.svelte";

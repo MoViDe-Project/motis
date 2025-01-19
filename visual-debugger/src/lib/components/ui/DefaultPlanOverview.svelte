@@ -2,6 +2,7 @@
     import {currentDefaultPlanStore} from "../../../sveltestore.ts";
     import type {Itinerary} from "../../../data-processing/parsing-types/planParsingTypes.ts";
     import PlanEntry from "$lib/components/ui/subcomponents/PlanEntry.svelte";
+    import {ScrollArea} from "@/components/ui/scroll-area";
 
     let itineraries: Itinerary[]
     // let queries be up-to-date with the store
@@ -14,17 +15,14 @@
         }
     )
 </script>
-<h2>Plan of active default query(Routing results)</h2>
-<div class="rounded-border">
-    {#each itineraries as itinerary}
-        <PlanEntry startTime="{itinerary.startTime}" endTime="{itinerary.endTime}"
-                   duration="{itinerary.duration.toString()}" transfers="{itinerary.transfers.toString()}"/>
-    {/each}
+<div>
+    <ScrollArea orientation="vertical" class="h-96">
+        <div class="p-4 border">
+            {#each itineraries as itinerary}
+                <PlanEntry startTime="{itinerary.startTime}" endTime="{itinerary.endTime}"
+                           duration="{itinerary.duration.toString()}" transfers="{itinerary.transfers.toString()}"/>
+            {/each}
+        </div>
+    </ScrollArea>
 </div>
-<style>
-    .rounded-border {
-        border: 1px solid black;
-        border-radius: 8px;
-        padding: 10px;
-    }
-</style>
+

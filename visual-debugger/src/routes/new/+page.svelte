@@ -1,11 +1,15 @@
 <script lang="ts">
     import { Button } from "$lib/components/ui/button/index.js";
-    import * as Card from "$lib/components/ui/card/index.js";
 
     import { Label } from "$lib/components/ui/label/index.js";
     import { ScrollArea } from "$lib/components/ui/scroll-area/index.js";
-    import { Separator } from "$lib/components/ui/separator/index.js";
     import Switch from "$lib/components/ui/switch/switch.svelte";
+    import {computePlan, downloadPlans} from "../../data-processing/planParsing.ts";
+    import QueryBatchOverview from "@/components/ui/QueryBatchOverview.svelte";
+    import QueryUpload from "@/components/ui/upload/QueryUpload.svelte";
+    import DefaultPlanUpload from "@/components/ui/upload/DefaultPlanUpload.svelte";
+    import PlanOverview from "@/components/ui/PlanOverview.svelte";
+    import DefaultPlanOverview from "@/components/ui/DefaultPlanOverview.svelte";
     
 
     const routes = [
@@ -69,7 +73,10 @@
 
     <!-- File handling -->
     <div class="basis-3/4 text-right content-center">
-      <Button variant="default">Upload now!</Button>
+      <Button variant="default" on:click={downloadPlans}>Download data as default plan now!</Button>
+      <Button on:click={computePlan}>Compute routing data!</Button>
+      <QueryUpload/>
+      <DefaultPlanUpload/>
     </div>
 
   </div>
@@ -85,16 +92,7 @@
       </div>
       
       <div class="px-2 row-span-11">
-        <ScrollArea class="rounded-md border h-full">
-          <div class="p-4">
-            {#each routes as route}
-              <div>
-                <Button variant="link">{route.from} - {route.to}</Button>
-              </div>
-              <Separator class="my-1"/>
-            {/each}
-          </div>
-        </ScrollArea>            
+        <QueryBatchOverview/>
       </div>   
      
     </div>
@@ -105,43 +103,25 @@
       <!-- Itinerary Comparison -->
       <div class="grid grid-rows-6 rounded-md">
         <div class="p-2 row-span-1 content-end text-center"> 
-          <h1 class="text-xl">Itinerary overview</h1>
+          <h1 class="text-xl">Plan overview</h1>
         </div>
         
         <div class="p-2 row-span-5">
           <ScrollArea class="rounded-md border h-full">
-            <div class="p-4 border">
-              {#each routes as route}
-                <div class="text-2xl">
-                  <Button variant="outline" class="w-full my-2 border-green-500 bg-green-200">
-                    <span class="text-left w-full">{route.from} - {route.to}</span>
-                  </Button>
-                </div>
-                
-              {/each}
-            </div>
-          </ScrollArea>            
+            <PlanOverview/>
+          </ScrollArea>
         </div>   
        
       </div>
       
       <div class="grid grid-rows-6 rounded-md">
         <div class="p-2 row-span-1 content-end text-center"> 
-          <h1 class="text-xl">Itinerary overview</h1>
+          <h1 class="text-xl">Default Plan overview</h1>
         </div>
         
         <div class="p-2 row-span-5">
           <ScrollArea class="rounded-md border h-full">
-            <div class="p-4 border">
-              {#each routes as route}
-                <div class="text-2xl">
-                  <Button variant="outline" class="w-full my-2 border-red-500 bg-red-200">
-                    <span class="text-left w-full">{route.from} - {route.to}</span>
-                  </Button>
-                </div>
-                
-              {/each}
-            </div>
+            <DefaultPlanOverview/>
           </ScrollArea>            
         </div>   
        
@@ -173,7 +153,7 @@
       
       <div class="grid grid-rows-6 rounded-md">
         <div class="p-2 row-span-1 content-end text-center"> 
-          <h1 class="text-xl">Itinerary overview</h1>
+          <h1 class="text-xl">Default Itinerary overview</h1>
         </div>
         
         <div class="p-2 row-span-5">
