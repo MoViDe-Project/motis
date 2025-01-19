@@ -21,13 +21,13 @@ let queryFileContent: string
 export async function buildQueryDataset(query_batch: string) {
     // parse query batch file into readable queries
     let batch: Batch;
+
     try {
         batch = JSON.parse(query_batch)
     } catch (e) {
         alert("An error occurred while parsing query data.");
-        throw new Error(`Failed to build query data: ${e}`)
+        throw new Error(`Failed to parse query data: ${e}`)
     }
-
 
     let queries = batch.queries
 
@@ -66,13 +66,8 @@ export function computeQueryAttributes() {
         queryFileContent = file_data;
     })
 
-    // if store is empty abort data processing
-    if (queryFileContent.length == 0) {
-        return
-    }
-
     try {
-        //interpolate data
+        // find next stops for all queries
         buildQueryDataset(queryFileContent)
     } catch (err) {
         console.log(err)

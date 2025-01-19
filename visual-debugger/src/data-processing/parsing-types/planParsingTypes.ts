@@ -1,66 +1,66 @@
 /**
  *  Plan type used for parsing plan responses
  */
-export interface Plan{
-    requestParameters:string;
-    debugOutput: number[];
-    from:Place;
-    to: Place;
-    direct: Itinerary[];
-    itineraries: Itinerary[];
-    previousPageCursor: string;
-    nextPageCursor: string;
+export class Plan {
+    requestParameters: string = "";
+    debugOutput: number[] = [];
+    from: Place = new Place();
+    to: Place = new Place();
+    direct: Itinerary[] = new Array<Itinerary>();
+    itineraries: Itinerary[] = new Array<Itinerary>();
+    previousPageCursor: string = "";
+    nextPageCursor: string = "";
 }
 
 /**
  * Place type used for parsing plan responses
  */
-export interface Place{
-    name:string;
-    stopId:string;
-    lat:number;
-    lon:number;
-    level: number;
-    arrival: string;
-    departure:string;
-    scheduledArrival: string;
-    scheduledDeparture: string;
-    scheduledTrack:string;
-    track:string;
-    vertexType:string;
+export class Place {
+    name: string = "";
+    stopId: string = "";
+    lat: number = 0;
+    lon: number = 0;
+    level: number = 0;
+    arrival: string = "";
+    departure: string = "";
+    scheduledArrival: string = "";
+    scheduledDeparture: string = "";
+    scheduledTrack: string = "";
+    track: string = "";
+    vertexType: string = "";
 }
 
 /**
  * Itinerary type used for parsing plan responses
  */
-export interface Itinerary {
-    duration:number;
-    startTime:string;
-    endTime:string;
-    transfers:number;
-    legs:Leg[];
+export class Itinerary {
+    duration: number = 0;
+    startTime: string = "";
+    endTime: string = "";
+    transfers: number = 0;
+    legs: Leg[] = new Array<Leg>();
 }
 
 /**
  * Leg type used for parsing plan responses
  */
-export interface Leg {
-    mode:string;
-    from:Place;
-    to:Place;
-    duration:number;
-    startTime:string;
-    endTime:string;
-    scheduledStartTime:string;
-    scheduledEndTime:string;
-    realTime:boolean;
-    legGeometry:EncodedPolyline;
+export class Leg {
+    mode: string = "";
+    from: Place = new Place();
+    to: Place = new Place();
+    duration: number = 0;
+    startTime: string = "";
+    endTime: string = "";
+    scheduledStartTime: string = "";
+    scheduledEndTime: string = "";
+    realTime: boolean = true;
+    legGeometry: EncodedPolyline = new EncodedPolyline();
 }
 
 /**
  * EncodedPolyline type used for parsing plan responses
  */
-export interface EncodedPolyline {
-    points:string;
-    length:number;
+export class EncodedPolyline {
+    points: string = "";
+    length: number = 0;
 }

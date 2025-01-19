@@ -1,12 +1,11 @@
 <script lang="ts">
-    // components
-    import FileUpload from '$lib/components/ui/FileUpload.svelte';
-    import { Button } from "$lib/components/ui/button";
+    import QueryFileUpload from '@/components/ui/upload/FileUpload.svelte';
     import QueryBatchOverview from '$lib/components/ui/QueryBatchOverview.svelte';
     import PlanOverview from "$lib/components/ui/PlanOverview.svelte";
-    // data-processing functions
-    import {computePlan} from "../data-processing/planParsing.ts";
-
+    import DefaultPlanOverview from "@/components/ui/DefaultPlanOverview.svelte";
+    import DefaultPlanUpload from "@/components/ui/upload/DefaultPlanUpload.svelte";
+    import {Button} from "$lib/components/ui/button";
+    import {computePlan, downloadPlans} from "../data-processing/planParsing.ts";
 </script>
 
 <svelte:head>
@@ -23,13 +22,16 @@
 
 <!-- File Upload -->
 <div class="flex items-center justify-center gap-4 my-4">
-    <FileUpload />
+    <QueryFileUpload/>
     <Button on:click={computePlan}>Compute Routes</Button>
+    <Button on:click={downloadPlans}>Download this data as default</Button>
+    <DefaultPlanUpload></DefaultPlanUpload>
 </div>
 
 <!-- Query Batch, journey details -->
 <div class="flex items-center justify-center gap-4 my-4">
-    <QueryBatchOverview />
-    <PlanOverview />
+    <QueryBatchOverview/>
+    <PlanOverview/>
+    <DefaultPlanOverview/>
 </div>
 

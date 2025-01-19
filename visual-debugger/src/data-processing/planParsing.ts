@@ -1,4 +1,4 @@
-import {interpolatedQueryStore, computedPlanStore, currentPlanStore} from "../sveltestore.ts";
+import {interpolatedQueryStore, planDatasetStore, currentPlanStore} from "../sveltestore.ts";
 import type {Query} from "./parsing-types/queryInterpolationTypes.ts";
 import type {Plan} from "./parsing-types/planParsingTypes.ts"
 import axios from "axios";
@@ -16,26 +16,28 @@ let queries: Query[]
 /**
  * Interaction function that is accessed by the frontend to get the plan for all queries
  */
-export async function computePlan(){
+export async function computePlan() {
     //get read file content from storage
     interpolatedQueryStore.subscribe(file_data => {
         queries = file_data;
     })
 
     // if store is empty abort data processing
-    if(queries == undefined){return}
+    if (queries == undefined) {
+        return
+    }
 
     let plans: Plan[] = [];
-    let index =0;
+    let index = 0;
 
     // compute the plan for each query
-    for(const query of queries){
+    for (const query of queries) {
         plans[index] = await computePlanForQuery(query)
         index++;
     }
 
     // put computed plans into storage and set first plan as active
-    computedPlanStore.set(plans)
+    planDatasetStore.set(plans)
     currentPlanStore.set(plans[0])
 }
 
@@ -43,14 +45,38 @@ export async function computePlan(){
  * Calls the MOTIS API for a specific query and returns the plan for it
  * @param query the query to get the plan for
  */
-export async function computePlanForQuery(query:Query){
+export async function computePlanForQuery(query: Query) {
     const response = await axios
         .get(
             //configuration for api call parameters
-            `${motisApiUrlBase}plan/?fromPlace=${query.fromStopID}&toPlace=${query.toStopID}`
+            `${motisApiUrlBase}plan/?fromPlace=${query.fromStopID}&toPlace=${query.toStopID}&time=${query.time}`
         )
     let plan: Plan = response.data
     return plan
+}
+
+/**
+ * Downloads the currently computed plans as a JSON file
+ */
+export function downloadPlans(): void {
+
+    let plans: Plan[] | null = null;
+    // put content of read file as string into storage
+    planDatasetStore.subscribe(data => {
+        plans = data
+    })
+    if (plans == null) {
+        return
+    }
+
+    // build HTML Element for file download
+    let fileElement = document.createElement("a");
+    let file = new Blob([JSON.stringify(plans)], {type: "text/plain"});
+    fileElement.href = URL.createObjectURL(file);
+
+    // set name of file and download it
+    fileElement.download = "default-plan.json";
+    fileElement.click();
 }
 
 
