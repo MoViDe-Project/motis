@@ -1,6 +1,7 @@
 <script lang="ts">
     import {queryJsonStringStore} from "../../../../sveltestore.ts";
     import {computeQueryAttributes} from "../../../../data-processing/queryBuild.ts";
+    import { Input } from "$lib/components/ui/input/index.js";
 
     let file: File | null = null;
 
@@ -27,8 +28,9 @@
 </script>
 
 <div>
-    <input type="file" on:change={putFileIntoStorage}/>
+    <Input id="q-upload" type="file" on:change={putFileIntoStorage} />
+    <!-- <input type="file" on:change={putFileIntoStorage}/>
     {#if file}
         <p>Selected file: {file.name}</p>
-    {/if}
+    {/if} -->
 </div>

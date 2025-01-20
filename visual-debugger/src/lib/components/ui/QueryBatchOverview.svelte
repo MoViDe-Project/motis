@@ -8,6 +8,8 @@
     import type {Query} from "../../../data-processing/parsing-types/queryInterpolationTypes.ts";
     import {Button} from "@/components/ui/button";
     import type {Plan} from "../../../data-processing/parsing-types/planParsingTypes.ts";
+    import {Separator} from "@/components/ui/separator";
+    import { ScrollArea } from "$lib/components/ui/scroll-area/index.js";
 
     let queries: Query[]
 
@@ -29,7 +31,7 @@
                 plans = data
 
                 //if no plan was previously computed, alert the user of this
-                if (data == undefined) {
+                if (data === new Array<Plan>) {
                     alert("No plans found, please compute the queries before trying to switch between their data.")
                     return
                 }
@@ -37,7 +39,7 @@
         )
 
         // return if the store is still empty (this means the function was called to early)
-        if (plans == undefined) return;
+        if (plans === new Array<Plan>) return;
 
         // load plan of the clicked query into svelte store
         currentPlanStore.set(plans[queryIndex - 1])
@@ -65,18 +67,14 @@
 
 </script>
 
-<h2>Query Batches</h2>
-<div class="rounded-border">
-    {#each queries as query}
-        <Button on:click={() => changePlan(query.index)}> {query.index}: {query.from} -> {query.to}</Button>
-    {/each}
+
+<div class="h-full">
+    <ScrollArea class="rounded-md border h-full">
+        {#each queries as query}
+            <div>
+                <Button on:click={() => changePlan(query.index)} variant="link">{query.from} - {query.to}</Button>
+            </div>
+            <Separator class="my-1"/>
+        {/each}
+    </ScrollArea>
 </div>
-
-
-<style>
-    .rounded-border {
-        border: 1px solid black;
-        border-radius: 8px;
-        padding: 10px;
-    }
-</style>
