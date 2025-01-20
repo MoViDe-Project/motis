@@ -18,15 +18,13 @@
 </script>
 
 
-<div>
-    <!-- Scroll area for the plan entries. Has to be styled a bit more to look good. -->
-    <ScrollArea orientation="vertical" class="h-96">
-        <div class="p-4 border">
-            {#each itineraries as itinerary}
-                <PlanEntry startTime="{itinerary.startTime}" endTime="{itinerary.endTime}"
-                           duration="{itinerary.duration.toString()}" transfers="{itinerary.transfers.toString()}"/>
-            {/each}
-        </div>
-    </ScrollArea>
 
-</div>
+<!-- Scroll area for the plan entries. Has to be styled a bit more to look good. -->
+<ScrollArea class="rounded-md border h-full">
+    {#each itineraries as itinerary}
+        <PlanEntry startTime="{itinerary.startTime}" endTime="{itinerary.endTime}"
+                duration="{itinerary.duration.toString()}" transfers="{itinerary.transfers.toString()}"/>
+    {/each}
+</ScrollArea>
+
+

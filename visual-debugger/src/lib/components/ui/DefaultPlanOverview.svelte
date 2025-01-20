@@ -15,14 +15,12 @@
         }
     )
 </script>
-<div>
-    <ScrollArea orientation="vertical" class="h-96">
-        <div class="p-4 border">
-            {#each itineraries as itinerary}
-                <PlanEntry startTime="{itinerary.startTime}" endTime="{itinerary.endTime}"
-                           duration="{itinerary.duration.toString()}" transfers="{itinerary.transfers.toString()}"/>
-            {/each}
-        </div>
-    </ScrollArea>
-</div>
+
+<ScrollArea class="rounded-md border h-full">
+    {#each itineraries as itinerary}
+        <PlanEntry startTime="{itinerary.startTime}" endTime="{itinerary.endTime}"
+                    duration="{itinerary.duration.toString()}" transfers="{itinerary.transfers.toString()}"/>
+    {/each}
+</ScrollArea>
+
 

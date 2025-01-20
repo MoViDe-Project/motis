@@ -1,6 +1,7 @@
 <script lang="ts">
     import {currentDefaultPlanStore, defaultPlanDatasetStore} from "../../../../sveltestore.ts";
     import type {Plan} from "../../../../data-processing/parsing-types/planParsingTypes.ts";
+    import { Input } from "$lib/components/ui/input/index.js";
 
     let file: File | null = null;
 
@@ -24,8 +25,11 @@
 </script>
 
 <div>
-    <input type="file" on:change={putFileIntoStorage}/>
+    
+    <Input id="q-upload" type="file" on:change={putFileIntoStorage} />
+    
+    <!-- <input type="file" on:change={putFileIntoStorage} class=""/>
     {#if file}
         <p>Selected file: {file.name}</p>
-    {/if}
+    {/if} -->
 </div>

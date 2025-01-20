@@ -68,15 +68,13 @@
 </script>
 
 
-<div>
+<div class="h-full">
     <ScrollArea class="rounded-md border h-full">
-        <div class="p-4">
-            {#each queries as query}
-                <div>
-                    <Button on:click={() => changePlan(query.index)} variant="link">{query.from} - {query.to}</Button>
-                </div>
-                <Separator class="my-1"/>
-            {/each}
-        </div>
+        {#each queries as query}
+            <div>
+                <Button on:click={() => changePlan(query.index)} variant="link">{query.from} - {query.to}</Button>
+            </div>
+            <Separator class="my-1"/>
+        {/each}
     </ScrollArea>
 </div>

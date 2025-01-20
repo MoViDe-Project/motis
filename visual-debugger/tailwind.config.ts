@@ -14,6 +14,15 @@ const config: Config = {
 			}
 		},
 		extend: {
+			keyframes: {
+				'rotate-fast': {
+				  '0%': { transform: 'rotate(0deg)' },
+				  '100%': { transform: 'rotate(360deg)' },
+				},
+			  },
+			  animation: {
+				'rotate-fast': 'rotate-fast 0.2s linear infinite',
+			  },
 			colors: {
 				border: "hsl(var(--border) / <alpha-value>)",
 				input: "hsl(var(--input) / <alpha-value>)",
