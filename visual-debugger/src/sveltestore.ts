@@ -32,3 +32,8 @@ export const currentDefaultPlanStore = writable<Plan>(new Plan())
  * Storage for all plans that are part of the default plan set
  */
 export const defaultPlanDatasetStore = writable<Plan[]>(new Array<Plan>())
+
+/**
+ * Stores whether the entries of the computed plan are coherent with the default plan
+ */
+export const planEntryValidityStore = writable<string[][]>([[]])

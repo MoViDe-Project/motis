@@ -5,11 +5,12 @@
     export let endTime: String;
     export let duration: String;
     export let transfers: String;
+    export let cssClass: String;
 
 </script>
 
 <div class="text-2xl">
-    <Button variant="outline" class="w-full my-2 border-green-500 bg-green-200">
+    <Button variant="outline" class="{cssClass}">
         <span class="text-left w-full">StartTime:{startTime}, EndTime:{endTime}</span>
     </Button>
 </div>
