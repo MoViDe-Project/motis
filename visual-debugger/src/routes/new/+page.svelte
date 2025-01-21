@@ -7,18 +7,16 @@
     import DefaultPlanUpload from "@/components/ui/upload/DefaultPlanUpload.svelte";
     import PlanOverview from "@/components/ui/PlanOverview.svelte";
     import DefaultPlanOverview from "@/components/ui/DefaultPlanOverview.svelte";
-    import {defaultPlanDatasetStore, planDatasetStore, planEntryValidityStore} from "../../sveltestore.js";
+    import {defaultPlanDatasetStore, planDatasetStore} from "../../sveltestore.js";
+    import {comparePlans} from "../../data-processing/comparePlans.ts";
 
     // Dark Mode imports
     import Sun from "lucide-svelte/icons/sun";
     import Moon from "lucide-svelte/icons/moon";
     import {toggleMode} from "mode-watcher";
-    import {buildValidityArray, comparePlans} from "../../data-processing/comparePlans.ts";
 
     // call the plan compare logic upon both upload of default plan and plan computation
     $: if (!($defaultPlanDatasetStore.length == 0) && !($planDatasetStore.length == 0)) {
-        let defaultPlans = $defaultPlanDatasetStore;
-        planEntryValidityStore.set(buildValidityArray(defaultPlans))
         comparePlans()
     }
 
