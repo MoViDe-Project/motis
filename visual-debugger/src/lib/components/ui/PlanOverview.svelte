@@ -8,22 +8,19 @@
 
     // let queries be up-to-date with the store
     currentPlanStore.subscribe((data) => {
-            if (data == undefined) {
-                itineraries = []
-            } else {
-                itineraries = data.itineraries;
-            }
+            itineraries = data.itineraries;
         }
     )
-</script>
 
+
+</script>
 
 
 <!-- Scroll area for the plan entries. Has to be styled a bit more to look good. -->
 <ScrollArea class="rounded-md border h-full">
     {#each itineraries as itinerary}
-        <PlanEntry startTime="{itinerary.startTime}" endTime="{itinerary.endTime}"
-                duration="{itinerary.duration.toString()}" transfers="{itinerary.transfers.toString()}"/>
+        <PlanEntry cssClass="{itinerary.cssClass}" startTime="{itinerary.startTime}" endTime="{itinerary.endTime}"
+                   duration="{itinerary.duration.toString()}" transfers="{itinerary.transfers.toString()}"/>
     {/each}
 </ScrollArea>
 

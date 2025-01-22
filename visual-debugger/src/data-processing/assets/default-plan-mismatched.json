@@ -40,7 +40,7 @@
     "direct": [],
     "itineraries": [
       {
-        "duration": 300,
+        "duration": 100,
         "startTime": "2025-01-10T10:02:00Z",
         "endTime": "2025-01-10T10:07:00Z",
         "transfers": 0,
@@ -153,7 +153,7 @@
         "cssClass": "w-full my-2 border-white-500 bg-white-200"
       },
       {
-        "duration": 300,
+        "duration": 42,
         "startTime": "2025-01-10T10:21:00Z",
         "endTime": "2025-01-10T10:26:00Z",
         "transfers": 0,

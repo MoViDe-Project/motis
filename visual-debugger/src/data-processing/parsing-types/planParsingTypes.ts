@@ -39,6 +39,7 @@ export class Itinerary {
     endTime: string = "";
     transfers: number = 0;
     legs: Leg[] = new Array<Leg>();
+    cssClass: string = "";
 }
 
 /**

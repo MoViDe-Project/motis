@@ -18,7 +18,7 @@
 
 <ScrollArea class="rounded-md border h-full">
     {#each itineraries as itinerary}
-        <PlanEntry startTime="{itinerary.startTime}" endTime="{itinerary.endTime}"
+        <PlanEntry cssClass="{itinerary.cssClass}" startTime="{itinerary.startTime}" endTime="{itinerary.endTime}"
                     duration="{itinerary.duration.toString()}" transfers="{itinerary.transfers.toString()}"/>
     {/each}
 </ScrollArea>

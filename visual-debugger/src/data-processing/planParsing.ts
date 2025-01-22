@@ -2,6 +2,7 @@ import {interpolatedQueryStore, planDatasetStore, currentPlanStore} from "../sve
 import type {Query} from "./parsing-types/queryInterpolationTypes.ts";
 import type {Plan} from "./parsing-types/planParsingTypes.ts"
 import axios from "axios";
+import {cssClasses} from "./parsing-types/cssClasses.ts";
 
 /**
  * Base URL of the MOTIS API
@@ -34,6 +35,11 @@ export async function computePlan() {
     for (const query of queries) {
         plans[index] = await computePlanForQuery(query)
         index++;
+    }
+
+    // set default (white) css classes for itineraries
+    for (let plan of plans) {
+        resetCssClassesForPlanEntries(plan)
     }
 
     // put computed plans into storage and set first plan as active
@@ -77,6 +83,18 @@ export function downloadPlans(): void {
     // set name of file and download it
     fileElement.download = "default-plan.json";
     fileElement.click();
+}
+
+/**
+ * Sets the cssClass for all itineraries of the plan to the default plan entry class
+ * @param plan the plan to reset the CSS-Classes for
+ */
+export function resetCssClassesForPlanEntries(plan: Plan) {
+    let itineraries = plan.itineraries
+
+    for (let itinerary of itineraries) {
+        itinerary.cssClass = new cssClasses().planEntryDefault
+    }
 }
 
 
