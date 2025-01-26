@@ -1,4 +1,4 @@
-<!-- List of changes as bulletpoints or free form text -->
+<!-- List of changes as bullet points or free form text -->
 
 Closes <!-- ?? -->
 
@@ -17,7 +17,7 @@ Closes <!-- ?? -->
     - [ ] Windows
 - Manual End-To-End testing:
     - [ ] Upload of query batch
-    - [ ] Compuatatiom of routing results
+    - [ ] Computation of routing results
     - [ ] Download plan
     - [ ] Upload plan
     - [ ] Compare functionality
