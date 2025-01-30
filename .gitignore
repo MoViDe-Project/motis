@@ -1,8 +1,10 @@
 /tiles-profiles
 /*build*
+/.direnv
 /.pkg.mutex
 /.clang-tidy
-/.idea
+.idea/
+.vscode/
 /deps
 *.zip
 *.bin
@@ -18,5 +20,12 @@
 fasta.json
 config.yaml
 config.yml
+config
 config.ini
 
+# macOS
+.DS_Store
+
+# Exclusions of Movide visual-debugger
+/motis-deploy/
+package-lock.json
