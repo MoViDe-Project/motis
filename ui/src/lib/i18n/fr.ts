@@ -2,9 +2,13 @@ import type { Translations } from './translation';
 
 const translations: Translations = {
 	journeyDetails: 'Détails du voyage',
-	walk: 'Marche',
+	walk: 'à pied',
 	bike: 'Vélo',
+	cargoBike: 'Vélo Cargo',
+	scooterStanding: 'Trottinette',
+	scooterSeated: 'Trottinette avec siège',
 	car: 'Voiture',
+	moped: 'Mobylette',
 	from: 'De',
 	to: 'À',
 	arrival: 'Arrivée',
@@ -13,9 +17,9 @@ const translations: Translations = {
 	arrivals: 'Arrivées',
 	later: 'plus tard',
 	earlier: 'plus tôt',
-	departures: 'Départ',
-	switchToArrivals: 'Basculer vers les arrivées',
-	switchToDepartures: 'Basculer vers les départs',
+	departures: 'Départs',
+	switchToArrivals: 'Afficher les arrivées',
+	switchToDepartures: 'Afficher les départs',
 	track: 'Voie',
 	arrivalOnTrack: 'Arrivée sur la voie',
 	tripIntermediateStops: (n: number) => {
@@ -29,7 +33,9 @@ const translations: Translations = {
 		}
 	},
 	sharingProvider: 'Fournisseur',
-	transfers: 'Transferts'
+	transfers: 'correspondances',
+	roundtripStationReturnConstraint: 'Le véhicule doit être retourné à la station de départ.',
+	noItinerariesFound: 'Aucun itinéraire trouvé.'
 };
 
 export default translations;

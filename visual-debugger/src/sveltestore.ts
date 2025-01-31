@@ -1,5 +1,6 @@
 import {writable} from "svelte/store";
-import type {Query} from "./data-processing/query-build";
+import {Query} from "./data-processing/parsing-types/queryInterpolationTypes.ts";
+import {Plan} from "./data-processing/parsing-types/planParsingTypes.ts";
 
 
 /**
@@ -10,4 +11,24 @@ export const queryJsonStringStore = writable<string>("DEFAULT")
 /**
  * Storage for interpolated queries
  */
-export const interpolatedQueryStore = writable<Query[]>()
+export const interpolatedQueryStore = writable<Query[]>(new Array<Query>())
+
+/**
+ * Storage for current displayed plan
+ */
+export const currentPlanStore = writable<Plan>(new Plan())
+
+/**
+ * Storage for all currently computed plan data
+ */
+export const planDatasetStore = writable<Plan[]>(new Array<Plan>())
+
+/**
+ * Storage for the current default plan
+ */
+export const currentDefaultPlanStore = writable<Plan>(new Plan())
+
+/**
+ * Storage for all plans that are part of the default plan set
+ */
+export const defaultPlanDatasetStore = writable<Plan[]>(new Array<Plan>())

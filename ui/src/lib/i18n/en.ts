@@ -3,9 +3,13 @@ import type { Translations } from './translation';
 const translations: Translations = {
 	journeyDetails: 'Journey Details',
 	transfers: 'transfers',
-	walk: 'walk',
-	bike: 'bike',
-	car: 'car',
+	walk: 'Walk',
+	bike: 'Bike',
+	cargoBike: 'Cargo bike',
+	scooterStanding: 'Standing kick scooter',
+	scooterSeated: 'Seated kick scooter',
+	car: 'Car',
+	moped: 'Moped',
 	from: 'From',
 	to: 'To',
 	arrival: 'Arrival',
@@ -26,10 +30,12 @@ const translations: Translations = {
 			case 1:
 				return '1 intermediate stop';
 			default:
-				return `${n}  intermediate stops`;
+				return `${n} intermediate stops`;
 		}
 	},
-	sharingProvider: 'Provider'
+	sharingProvider: 'Provider',
+	roundtripStationReturnConstraint: 'The vehicle must be returned to the departure station.',
+	noItinerariesFound: 'No itineraries found.'
 };
 
 export default translations;
