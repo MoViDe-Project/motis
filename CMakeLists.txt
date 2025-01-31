@@ -121,6 +121,8 @@ target_link_libraries(motislib
     pbf_sdf_fonts_res-res
     ssl
     crypto
+    tg
+    lz4_static
 )
 
 
@@ -144,7 +146,6 @@ target_link_libraries(motis
     rtree
     geo
     cista
-    tg
     ianatzdb-res
     pbf_sdf_fonts_res-res
     tiles_server_res-res
@@ -197,3 +198,9 @@ add_custom_target(motis-web-ui
         WORKING_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/ui"
         VERBATIM
 )
+
+foreach(t mimalloc adr osr nigiri gtfsrt
+        geo tiles tiles-import-library
+        motis motis-api motislib)
+    target_compile_options(${t} PUBLIC ${MOTIS_TARGET_FLAGS})
+endforeach()

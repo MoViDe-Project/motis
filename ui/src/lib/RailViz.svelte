@@ -10,11 +10,12 @@
 	import { formatTime } from '$lib/toDateTime';
 	import { lngLatToStr } from '$lib/lngLatToStr';
 	import maplibregl from 'maplibre-gl';
-	import { onDestroy } from 'svelte';
+	import { onDestroy, untrack } from 'svelte';
 	import Control from '$lib/map/Control.svelte';
 	import { Button } from '$lib/components/ui/button';
 	import Palette from 'lucide-svelte/icons/palette';
 	import Rss from 'lucide-svelte/icons/rss';
+	import { browser } from '$app/environment';
 
 	let {
 		map,
@@ -29,6 +30,7 @@
 	} = $props();
 
 	let colorMode = $state<'rt' | 'route'>('route');
+	let railvizError = $state();
 
 	type RGBA = [number, number, number, number];
 
@@ -97,7 +99,7 @@
 				'not found, timestamp=',
 				new Date(timestamp),
 				' #keyframes=',
-				new Date(keyframes.length),
+				keyframes.length,
 				' first=',
 				new Date(keyframes[0].time),
 				', last=',
@@ -203,7 +205,6 @@
 		});
 	};
 
-	let railvizError = $state();
 	let animation: number | null = null;
 	const updateRailvizLayer = async () => {
 		try {
@@ -241,7 +242,10 @@
 	const updateRailviz = async () => {
 		clearTimeout(timer);
 		await updateRailvizLayer();
-		timer = setTimeout(updateRailviz, 60000);
+		timer = setTimeout(() => {
+			console.log('updateRailviz: timer');
+			updateRailviz();
+		}, 60000);
 	};
 
 	$effect(() => {
@@ -268,13 +272,17 @@
 			});
 			map.addControl(overlay);
 
-			updateRailviz();
+			console.log('updateRailviz: init');
+			untrack(() => updateRailviz());
 		}
 	});
 
 	$effect(() => {
 		if (overlay && bounds && zoom && colorMode) {
-			updateRailviz();
+			untrack(() => {
+				console.log(`updateRailviz: effect ${overlay} ${bounds} ${zoom} ${colorMode}`);
+				updateRailviz();
+			});
 		}
 	});
 
@@ -289,7 +297,7 @@
 	});
 </script>
 
-<Control position="top-right">
+<Control position={browser && window.innerWidth < 600 ? 'bottom-left' : 'top-right'} class="pb-2">
 	<Button
 		size="icon"
 		variant={colorMode ? 'default' : 'outline'}

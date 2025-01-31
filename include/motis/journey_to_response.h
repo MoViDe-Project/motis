@@ -35,12 +35,13 @@ api::Itinerary journey_to_response(osr::ways const*,
                                    nigiri::rt_timetable const*,
                                    platform_matches_t const* matches,
                                    nigiri::shapes_storage const*,
-                                   gbfs::gbfs_data const*,
+                                   gbfs::gbfs_routing_data&,
                                    bool const wheelchair,
                                    nigiri::routing::journey const&,
                                    place_t const& start,
                                    place_t const& dest,
                                    street_routing_cache_t&,
-                                   osr::bitvec<osr::node_idx_t>& blocked_mem);
+                                   osr::bitvec<osr::node_idx_t>& blocked_mem,
+                                   bool detailed_transfers);
 
 }  // namespace motis

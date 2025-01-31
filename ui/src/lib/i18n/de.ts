@@ -5,7 +5,11 @@ const translations: Translations = {
 	transfers: 'Umstiege',
 	walk: 'Fußweg',
 	bike: 'Fahrrad',
+	cargoBike: 'Lastenfahrrad',
+	scooterStanding: 'Stehroller',
+	scooterSeated: 'Sitzroller',
 	car: 'Auto',
+	moped: 'Moped',
 	from: 'Von',
 	to: 'Nach',
 	arrival: 'Ankunft',
@@ -29,7 +33,10 @@ const translations: Translations = {
 				return `Fahrt ${n} Stationen`;
 		}
 	},
-	sharingProvider: 'Anbieter'
+	sharingProvider: 'Anbieter',
+	roundtripStationReturnConstraint:
+		'Das Fahrzeug muss wieder an der Abfahrtsstation abgestellt werden.',
+	noItinerariesFound: 'Keine Verbindungen gefunden.'
 };
 
 export default translations;
