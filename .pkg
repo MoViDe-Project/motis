@@ -1,7 +1,7 @@
 [nigiri]
   url=git@github.com:mority/nigiri.git
   branch=dump_round_times
-  commit=c7762cc0aa3d98c514118ca41792ee6888880ca8
+  commit=96d7eb3f0cc0c0588aee6a56239603d867de3577
 [cista]
   url=git@github.com:felixguendling/cista.git
   branch=master
