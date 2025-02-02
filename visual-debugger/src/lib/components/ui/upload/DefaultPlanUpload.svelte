@@ -25,11 +25,5 @@
 </script>
 
 <div>
-    
     <Input id="q-upload" type="file" on:change={putFileIntoStorage} />
-    
-    <!-- <input type="file" on:change={putFileIntoStorage} class=""/>
-    {#if file}
-        <p>Selected file: {file.name}</p>
-    {/if} -->
 </div>
