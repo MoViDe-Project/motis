@@ -22,10 +22,16 @@
     let plans: Plan[];
     let defaultPlans: Plan[];
 
+    // state for selected link
+    let activeIndex: number | null = null;
+
     /**
      * Changes the currently displayed plan to the one given in the index
      */
     function changePlan(queryIndex: number) {
+        // change highlighed link
+        activeIndex = queryIndex;
+        
         // get current plan data
         planDatasetStore.subscribe((data) => {
                 plans = data
@@ -67,14 +73,15 @@
 
 </script>
 
-
+ <!-- variant={activeIndex === query.index ? "ghost_active" : "ghost"} -->
 <div class="h-full">
     <ScrollArea class="rounded-md border h-full">
         {#each queries as query}
-            <div>
-                <Button on:click={() => changePlan(query.index)} variant="link">{query.from} - {query.to}</Button>
+            <div class="my-1">
+                <Button on:click={() => changePlan(query.index)} variant={activeIndex === query.index ? "ghost_active" : "ghost"}>
+                    {query.from} - {query.to}</Button>
             </div>
-            <Separator class="my-1"/>
+            <!-- <Separator class="my-1"/> -->
         {/each}
     </ScrollArea>
 </div>

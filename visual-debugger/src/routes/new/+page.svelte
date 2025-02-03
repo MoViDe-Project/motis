@@ -94,8 +94,8 @@
         <!-- File handling -->
         <div class="basis-3/4 flex flex-row flex-row-reverse gap-2 items-center">
             <div class="flex flex-col gap-2">
-                <Button on:click={computePlan}>Compute routing...</Button>
-                <Button variant="default" on:click={downloadPlans}>Download data as default plan...</Button>
+                <Button on:click={computePlan}>Compute routing</Button>
+                <Button variant="default" on:click={downloadPlans}>Download data as default plan</Button>
             </div>
             <div class="flex flex-col gap-2">
                 <QueryUpload/>
@@ -126,6 +126,18 @@
         <div class="basis-2/3 grid grid-rows-2 grid-cols-2 gap-2">
 
             <!-- Itinerary Comparison -->
+             <div class="grid grid-rows-6 rounded-md">
+                <div class="p-2 row-span-1 text-center">
+                    <h1 class="text-xl">Default Plan overview</h1>
+                </div>
+
+                <div class="p-2 row-span-5">
+                    <DefaultPlanOverview/>
+                </div>
+
+            </div>
+            
+            
             <div class="grid grid-rows-6 rounded-md">
                 <div class="p-2 row-span-1 text-center">
                     <h1 class="text-xl">Plan overview</h1>
@@ -139,16 +151,7 @@
 
             </div>
 
-            <div class="grid grid-rows-6 rounded-md">
-                <div class="p-2 row-span-1 text-center">
-                    <h1 class="text-xl">Default Plan overview</h1>
-                </div>
-
-                <div class="p-2 row-span-5">
-                    <DefaultPlanOverview/>
-                </div>
-
-            </div>
+           
 
 
             <!-- Stops Comparison -->
