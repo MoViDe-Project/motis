@@ -1,14 +1,8 @@
 <script lang="ts">
-    import {queryJsonStringStore} from "../../../../sveltestore.ts";
     import {computeQueryAttributes} from "../../../../data-processing/queryBuild.ts";
-    import { Input } from "$lib/components/ui/input/index.js";
+    import {Input} from "$lib/components/ui/input/index.js";
 
     let file: File | null = null;
-
-    // When file was first uploaded, parse and interpolate the queries
-    $: if (!($queryJsonStringStore == "DEFAULT")) {
-        computeQueryAttributes()
-    }
 
     /**
      * Gets the uploaded file and puts its content into the svelte store
@@ -20,17 +14,12 @@
 
         // put content of read file as string into storage
         file?.text().then((file_content_string) => {
-                queryJsonStringStore.set(file_content_string);
+                computeQueryAttributes(file_content_string);
             }
         )
-
     };
 </script>
 
 <div>
-    <Input id="q-upload" type="file" on:change={putFileIntoStorage} />
-    <!-- <input type="file" on:change={putFileIntoStorage}/>
-    {#if file}
-        <p>Selected file: {file.name}</p>
-    {/if} -->
+    <Input id="q-upload" type="file" on:change={putFileIntoStorage}/>
 </div>

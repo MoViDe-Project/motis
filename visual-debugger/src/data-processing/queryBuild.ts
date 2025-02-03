@@ -1,17 +1,11 @@
 import axios from "axios";
-import {queryJsonStringStore, interpolatedQueryStore} from "../sveltestore";
+import {interpolatedQueryStore} from "../sveltestore";
 import type {Location, Batch} from "./parsing-types/queryInterpolationTypes.ts"
-
 
 /**
  * Base URL of the MOTIS API
  */
 const motisApiUrlBase = 'http://localhost:8080/api/v1/'
-
-/**
- * Attribute used for storing the content of the query file
- */
-let queryFileContent: string
 
 /**
  * Reads the query batch and generates the nearest stops for the read query trips
@@ -59,16 +53,10 @@ async function computeLocationId(locationName: string) {
 /**
  * Interaction method for printing queries to page
  */
-export function computeQueryAttributes() {
-
-    //get read file content from storage
-    queryJsonStringStore.subscribe(file_data => {
-        queryFileContent = file_data;
-    })
-
+export function computeQueryAttributes(queryString:string) {
     try {
         // find next stops for all queries
-        buildQueryDataset(queryFileContent)
+        buildQueryDataset(queryString)
     } catch (err) {
         console.log(err)
     }
