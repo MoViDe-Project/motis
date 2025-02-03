@@ -5,7 +5,7 @@
     import DefaultPlanOverview from "@/components/ui/DefaultPlanOverview.svelte";
     import DefaultPlanUpload from "@/components/ui/upload/DefaultPlanUpload.svelte";
     import {Button} from "$lib/components/ui/button";
-    import {computePlan, downloadPlans} from "../data-processing/planParsing.ts";
+    import {computePlansInterface, downloadPlanInterface} from "@data/componentInterface.ts";
 </script>
 
 
@@ -21,8 +21,8 @@
     <!-- File Upload -->
     <div class="flex items-center justify-center gap-4 my-4">
         <QueryFileUpload />
-        <Button on:click={computePlan}>Compute Routes</Button>
-        <Button on:click={downloadPlans}>Download this data as default</Button>
+        <Button on:click={computePlansInterface}>Compute Routes</Button>
+        <Button on:click={downloadPlanInterface}>Download this data as default</Button>
         <DefaultPlanUpload></DefaultPlanUpload>
     </div>
 </div>

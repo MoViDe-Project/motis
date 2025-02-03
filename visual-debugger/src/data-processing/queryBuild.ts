@@ -1,6 +1,6 @@
 import axios from "axios";
 import {interpolatedQueryStore} from "../sveltestore";
-import type {Location, Batch} from "./parsing-types/queryInterpolationTypes.ts"
+import type {Location, Batch} from "./type-declarations/queryTypes.ts"
 
 /**
  * Base URL of the MOTIS API

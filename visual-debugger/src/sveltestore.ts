@@ -1,6 +1,6 @@
 import {writable} from "svelte/store";
-import {Query} from "./data-processing/parsing-types/queryInterpolationTypes.ts";
-import {Plan} from "./data-processing/parsing-types/planParsingTypes.ts";
+import {Query} from "./data-processing/type-declarations/queryTypes.ts";
+import {Plan} from "./data-processing/type-declarations/planTypes.ts";
 
 /**
  * Storage for interpolated queries

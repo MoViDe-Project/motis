@@ -1,11 +1,11 @@
-import type {Plan} from "./parsing-types/planParsingTypes.ts";
+import type {Plan} from "./type-declarations/planTypes.ts";
 import {
     currentDefaultPlanStore,
     currentPlanStore,
     defaultPlanDatasetStore,
     planDatasetStore
-} from "../sveltestore.ts";
-import {cssClasses} from "./parsing-types/cssClasses.ts";
+} from "sveltestore";
+import {cssClasses} from "./styling/cssClasses.ts";
 import {resetCssClassesForPlanEntries} from "./planParsing.ts";
 
 /**
@@ -30,6 +30,7 @@ export function comparePlans() {
     }
 
     // find if one plan has more entries than the other
+    // TODO: outsource this into it's own method
     if (plans.length != defaultPlans.length) {
         if (plans.length >= defaultPlans.length) {
             alert("Error: There are more queries in the batch than in the default plans.")
@@ -55,13 +56,13 @@ export function comparePlans() {
             // compare strings of itineraries and set colors(CSS-Classes) accordingly
             if (JSON.stringify(currentItinerary) == JSON.stringify(currentDefaultItinerary)) {
                 // itineraries are equal, mark them as such
-                plans[planIndex].itineraries[itineraryIndex].cssClass = new cssClasses().planEntryValid
-                defaultPlans[planIndex].itineraries[itineraryIndex].cssClass = new cssClasses().planEntryValid
+                plans[planIndex].itineraries[itineraryIndex].cssClass = cssClasses.planEntryValid
+                defaultPlans[planIndex].itineraries[itineraryIndex].cssClass = cssClasses.planEntryValid
 
             } else {
                 // itineraries are not equal
-                plans[planIndex].itineraries[itineraryIndex].cssClass = new cssClasses().planEntryInvalid
-                defaultPlans[planIndex].itineraries[itineraryIndex].cssClass = new cssClasses().planEntryInvalid
+                plans[planIndex].itineraries[itineraryIndex].cssClass = cssClasses.planEntryInvalid
+                defaultPlans[planIndex].itineraries[itineraryIndex].cssClass = cssClasses.planEntryInvalid
             }
 
         }

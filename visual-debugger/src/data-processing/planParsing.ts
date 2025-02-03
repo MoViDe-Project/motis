@@ -1,8 +1,8 @@
-import {interpolatedQueryStore, planDatasetStore, currentPlanStore} from "../sveltestore.ts";
-import type {Query} from "./parsing-types/queryInterpolationTypes.ts";
-import type {Plan} from "./parsing-types/planParsingTypes.ts"
+import {interpolatedQueryStore, planDatasetStore, currentPlanStore} from "sveltestore";
+import type {Query} from "./type-declarations/queryTypes.ts";
+import type {Plan} from "./type-declarations/planTypes.ts"
 import axios from "axios";
-import {cssClasses} from "./parsing-types/cssClasses.ts";
+import {cssClasses} from "./styling/cssClasses.ts";
 
 /**
  * Base URL of the MOTIS API
@@ -93,7 +93,7 @@ export function resetCssClassesForPlanEntries(plan: Plan) {
     let itineraries = plan.itineraries
 
     for (let itinerary of itineraries) {
-        itinerary.cssClass = new cssClasses().planEntryDefault
+        itinerary.cssClass = cssClasses.planEntryDefault
     }
 }
 

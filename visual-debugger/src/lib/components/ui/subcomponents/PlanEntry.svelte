@@ -1,16 +1,13 @@
 <script lang="ts">
     import {Button} from "@/components/ui/button";
+    import type {Itinerary} from "@data/type-declarations/planTypes.ts";
 
-    export let startTime: String;
-    export let endTime: String;
-    export let duration: String;
-    export let transfers: String;
-    export let cssClass: String;
+    export let itinerary: Itinerary;
 
 </script>
 
 <div class="text-2xl">
-    <Button variant="outline" class="{cssClass}">
-        <span class="text-left w-full">StartTime:{startTime}, EndTime:{endTime}</span>
+    <Button variant="outline" class="{itinerary.cssClass}">
+        <span class="text-left w-full">StartTime:{itinerary.startTime}, EndTime:{itinerary.endTime}</span>
     </Button>
 </div>
