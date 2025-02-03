@@ -8,6 +8,11 @@
 
     // let queries be up-to-date with the store
     currentPlanStore.subscribe((data) => {
+            if (data === undefined) {
+                alert("No plans found, please compute the queries before trying to switch between their data.")
+                return
+            }
+
             itineraries = data.itineraries;
         }
     )
