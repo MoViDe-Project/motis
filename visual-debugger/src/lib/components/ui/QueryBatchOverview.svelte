@@ -31,15 +31,12 @@
                 plans = data
 
                 //if no plan was previously computed, alert the user of this
-                if (data === new Array<Plan>) {
+                if (data == new Array<Plan>) {
                     alert("No plans found, please compute the queries before trying to switch between their data.")
                     return
                 }
             }
         )
-
-        // return if the store is still empty (this means the function was called to early)
-        if (plans === new Array<Plan>) return;
 
         // load plan of the clicked query into svelte store
         currentPlanStore.set(plans[queryIndex - 1])
@@ -57,10 +54,7 @@
                 }
             }
         )
-
-        // return if the store is still empty (this means the function was called to early)
-        if (defaultPlans == undefined) return;
-
+        
         // load plan of the clicked query into svelte store
         currentDefaultPlanStore.set(defaultPlans[queryIndex - 1])
     }
