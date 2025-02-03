@@ -13,7 +13,7 @@ Closes <!-- ?? -->
 #### Quality assurance:
 - Manual build and unit/component testing:
     - [ ] Linux
-    - [ ] MacOS
+    - [ ] macOS
     - [ ] Windows
 - Manual End-To-End testing:
     - [ ] Upload of query batch
