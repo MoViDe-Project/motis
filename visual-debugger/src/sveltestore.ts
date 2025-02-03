@@ -2,12 +2,6 @@ import {writable} from "svelte/store";
 import {Query} from "./data-processing/parsing-types/queryInterpolationTypes.ts";
 import {Plan} from "./data-processing/parsing-types/planParsingTypes.ts";
 
-
-/**
- * Storage for content of query batch json file
- */
-export const queryJsonStringStore = writable<string>("DEFAULT")
-
 /**
  * Storage for interpolated queries
  */
