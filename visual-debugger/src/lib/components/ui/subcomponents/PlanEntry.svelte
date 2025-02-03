@@ -11,6 +11,6 @@
 
 <div class="text-2xl">
     <Button variant="outline" class="{cssClass}">
-        <span class="text-left w-full">StartTime:{startTime}, EndTime:{endTime}</span>
+        <span class="text-left w-full">StartTime:{startTime}, EndTime:{endTime} Duration:{duration} Transfers:{transfers}</span>
     </Button>
 </div>
