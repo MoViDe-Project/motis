@@ -1,7 +1,6 @@
 <script lang="ts">
     import {interpolatedQueryStore} from "sveltestore";
     import type {Query} from "@data/type-declarations/queryTypes.ts";
-    import {Separator} from "@/components/ui/separator";
     import {ScrollArea} from "$lib/components/ui/scroll-area/index.js";
     import QueryEntry from "@/components/ui/subcomponents/QueryEntry.svelte";
 
@@ -18,7 +17,6 @@
     <ScrollArea class="rounded-md border h-full">
         {#each queries as query}
             <QueryEntry query={query}/>
-            <Separator class="my-1"/>
         {/each}
     </ScrollArea>
 </div>

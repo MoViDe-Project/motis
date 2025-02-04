@@ -26,3 +26,8 @@ export const currentDefaultPlanStore = writable<Plan>(new Plan())
  * Storage for all plans that are part of the default plan set
  */
 export const defaultPlanDatasetStore = writable<Plan[]>(new Array<Plan>())
+
+/**
+ * Storage for the number of the active query
+ */
+export const activeQueryStore = writable<number>(0)

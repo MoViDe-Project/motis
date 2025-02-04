@@ -1,19 +1,19 @@
 <script lang="ts">
     import {Button} from "$lib/components/ui/button/index.js";
     import {ScrollArea} from "$lib/components/ui/scroll-area/index.js";
-    import {computePlan, downloadPlans} from "../../data-processing/planParsing.ts";
     import QueryBatchOverview from "@/components/ui/QueryBatchOverview.svelte";
     import QueryUpload from "@/components/ui/upload/QueryUpload.svelte";
     import DefaultPlanUpload from "@/components/ui/upload/DefaultPlanUpload.svelte";
     import PlanOverview from "@/components/ui/PlanOverview.svelte";
     import DefaultPlanOverview from "@/components/ui/DefaultPlanOverview.svelte";
-    import {defaultPlanDatasetStore, planDatasetStore} from "../../sveltestore.js";
-    import {comparePlans} from "../../data-processing/comparePlans.ts";
+    import {defaultPlanDatasetStore, planDatasetStore} from "sveltestore";
+    import {comparePlans} from "@data/comparePlans.ts";
 
     // Dark Mode imports
     import Sun from "lucide-svelte/icons/sun";
     import Moon from "lucide-svelte/icons/moon";
     import {toggleMode} from "mode-watcher";
+    import {computePlansInterface, downloadPlanInterface} from "@data/componentInterface.ts";
 
     // call the plan compare logic upon both upload of default plan and plan computation
     $: if (!($defaultPlanDatasetStore.length == 0) && !($planDatasetStore.length == 0)) {
@@ -94,8 +94,8 @@
         <!-- File handling -->
         <div class="basis-3/4 flex flex-row flex-row-reverse gap-2 items-center">
             <div class="flex flex-col gap-2">
-                <Button on:click={computePlan}>Compute routing...</Button>
-                <Button variant="default" on:click={downloadPlans}>Download data as default plan...</Button>
+                <Button on:click={computePlansInterface}>Compute routing</Button>
+                <Button variant="default" on:click={downloadPlanInterface}>Download data as default plan</Button>
             </div>
             <div class="flex flex-col gap-2">
                 <QueryUpload/>

@@ -1,4 +1,10 @@
-import {currentDefaultPlanStore, currentPlanStore, defaultPlanDatasetStore, planDatasetStore} from "sveltestore";
+import {
+    activeQueryStore,
+    currentDefaultPlanStore,
+    currentPlanStore,
+    defaultPlanDatasetStore,
+    planDatasetStore
+} from "sveltestore";
 import type {Plan} from "@data/type-declarations/planTypes.ts";
 
 // attributes for switching of current plan
@@ -24,4 +30,7 @@ export function changePlan(queryIndex: number) {
     )
     // load plan of the clicked query into svelte store
     currentDefaultPlanStore.set(defaultPlans[queryIndex - 1])
+
+    // set the number of the new active query
+     activeQueryStore.set(queryIndex)
 }
