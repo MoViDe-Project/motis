@@ -3,11 +3,10 @@
     import type {Itinerary} from "@data/type-declarations/planTypes.ts";
 
     export let itinerary: Itinerary;
-    export let match: boolean=true;
 
 </script>
 
-<div class="border-4 rounded-md p-2 my-2 {match ? 'border-green-500' : 'border-red-500'}">
+<div class="border-4 rounded-md p-2 my-2 {itinerary.match ? 'border-green-600 bg-green-400' : 'border-red-600 bg-red-400'}">
     <div class="grid grid-cols-2 grid-rows-2 gap-1 w-full">
         <div class="">
             StartTime: {itinerary.startTime}, EndTime: {itinerary.endTime}

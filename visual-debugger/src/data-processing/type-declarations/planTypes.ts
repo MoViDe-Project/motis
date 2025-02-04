@@ -40,6 +40,7 @@ export class Itinerary {
     transfers: number = 0;
     legs: Leg[] = new Array<Leg>();
     cssClass: string = "";
+    match: boolean = false;
 }
 
 /**
