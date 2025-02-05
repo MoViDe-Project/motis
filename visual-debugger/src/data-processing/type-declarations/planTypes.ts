@@ -41,7 +41,7 @@ export class Itinerary {
     endTime: string = "";
     transfers: number = 0;
     legs: Leg[] = new Array<Leg>();
-    cssClass: string = "";
+    cssClass: string = cssClasses.planEntryDefault;
     match: boolean = false;
     index: number = 0;
 }

@@ -1,7 +1,8 @@
 <script lang="ts">
     import {Itinerary, Leg} from "@data/type-declarations/planTypes.ts";
     import {currentItineraryStore} from "sveltestore";
-    import {Label} from "@/components/ui/label";
+    import {Separator} from "@/components/ui/separator";
+    import LegEntry from "@/components/ui/subcomponents/LegEntry.svelte";
 
     let itinerary: Itinerary
 
@@ -24,40 +25,14 @@
     {#if itinerary == undefined}
         <label> No itinerary currently selected</label>
     {:else}
-        <div>
-            <Label>Itinerary-Index: {itinerary.index}</Label>
+        <div class="text-xl">
+            <span class="">Itinerary-Index: {itinerary.index}</span>
         </div>
-        <div>
-            {#each legs as leg}
-                <div>
-                    <Label>Mode: {leg.mode}</Label>
-                </div>
-                <div>
-                    <Label>Duration: {leg.duration}</Label>
-                </div>
-                <div>
-                    <Label>Start time: {leg.startTime}</Label>
-                </div>
-                <div>
-                    <Label>End time: {leg.endTime}</Label>
-                </div>
-                <div>
-                    <Label>Scheduled start time: {leg.scheduledStartTime}</Label>
-                </div>
-                <div>
-                    <Label>Scheduled end time: {leg.scheduledEndTime}</Label>
-                </div>
-                <div>
-                    <Label>Realtime: {leg.realTime}</Label>
-                </div>
-                <div>
-                    <Label>Headsign: {leg.headsign}</Label>
-                </div>
-                <div>
-                    <Label>Route short name: {leg.routeShortName}</Label>
-                </div>
-            {/each}
-        </div>
+        <Separator class="my-2"/>
+        {#each legs as leg}
+            <LegEntry leg={leg} />
+            <Separator class="my-2"/>
+        {/each}
     {/if}
 
 </div>
