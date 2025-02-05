@@ -128,6 +128,18 @@
             <!-- Itinerary Comparison -->
             <div class="grid grid-rows-6 rounded-md">
                 <div class="p-2 row-span-1 text-center">
+                    <h1 class="text-xl">Default Plan overview</h1>
+                </div>
+
+                <div class="p-2 row-span-5">
+                    <DefaultPlanOverview/>
+                </div>
+
+
+            </div>
+
+            <div class="grid grid-rows-6 rounded-md">
+                <div class="p-2 row-span-1 text-center">
                     <h1 class="text-xl">Plan overview</h1>
                 </div>
 
@@ -135,17 +147,6 @@
 
                     <PlanOverview/>
 
-                </div>
-
-            </div>
-
-            <div class="grid grid-rows-6 rounded-md">
-                <div class="p-2 row-span-1 text-center">
-                    <h1 class="text-xl">Default Plan overview</h1>
-                </div>
-
-                <div class="p-2 row-span-5">
-                    <DefaultPlanOverview/>
                 </div>
 
             </div>
