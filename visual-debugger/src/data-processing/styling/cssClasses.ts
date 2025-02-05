@@ -2,9 +2,9 @@
  * Enum that holds all css classes for dynamic UI elements
  */
 export enum cssClasses{
-    planEntryValid = "w-full my-2 border-green-500 bg-green-200",
+    planEntryValid = 'border-green-600 bg-green-400',
 
-    planEntryInvalid = "w-full my-2 border-red-500 bg-red-200",
+    planEntryInvalid = 'border-red-600 bg-red-400',
 
-    planEntryDefault = "w-full my-2 border-white-500 bg-white-200"
+    planEntryDefault = "border-black-500 bg-white-200"
 }

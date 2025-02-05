@@ -1,3 +1,5 @@
+import {cssClasses} from "@data/styling/cssClasses.ts";
+
 /**
  *  Plan type used for parsing plan responses
  */

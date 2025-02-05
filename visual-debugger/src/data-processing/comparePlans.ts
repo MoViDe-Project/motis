@@ -56,15 +56,14 @@ export function comparePlans() {
             // compare strings of itineraries and set colors(CSS-Classes) accordingly
             if (JSON.stringify(currentItinerary) == JSON.stringify(currentDefaultItinerary)) {
                 // itineraries are equal, mark them as such
-                // plans[planIndex].itineraries[itineraryIndex].cssClass = cssClasses.planEntryValid
-                // defaultPlans[planIndex].itineraries[itineraryIndex].cssClass = cssClasses.planEntryValid
-                plans[planIndex].itineraries[itineraryIndex].match = true;
-                defaultPlans[planIndex].itineraries[itineraryIndex].match = true;
+                plans[planIndex].itineraries[itineraryIndex].cssClass = cssClasses.planEntryValid
+                defaultPlans[planIndex].itineraries[itineraryIndex].cssClass = cssClasses.planEntryValid
+
 
             } else {
                 // itineraries are not equal
-                plans[planIndex].itineraries[itineraryIndex].match = false;
-                defaultPlans[planIndex].itineraries[itineraryIndex].match = false;
+                plans[planIndex].itineraries[itineraryIndex].cssClass = cssClasses.planEntryInvalid
+                defaultPlans[planIndex].itineraries[itineraryIndex].cssClass = cssClasses.planEntryInvalid
             }
 
         }
