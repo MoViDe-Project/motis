@@ -2,6 +2,8 @@
     import {Button} from "@/components/ui/button";
     import type {Itinerary} from "@data/type-declarations/planTypes.ts";
     import {cssClasses} from "@data/styling/cssClasses.ts";
+    import {changeItinerary} from "@data/changeElements.ts";
+    import {changeItineraryInterface} from "@data/componentInterface.ts";
 
     export let itinerary: Itinerary;
 
@@ -19,7 +21,7 @@
             Transfers: {itinerary.transfers}
         </div>
         <div>
-            <Button variant="outline" class="{itinerary.cssClass}">
+            <Button on:click={() => changeItineraryInterface(itinerary.index)} variant="outline" class="{itinerary.cssClass}">
                 Select
             </Button>
         </div>

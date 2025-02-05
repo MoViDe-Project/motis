@@ -42,6 +42,14 @@ export async function computePlan() {
         resetCssClassesForPlanEntries(plan)
     }
 
+    for (let plan of plans) {
+        let itineraryIndex =0
+        for (let itinerary of plan.itineraries) {
+            itinerary.index = itineraryIndex
+            itineraryIndex++
+        }
+    }
+
     // put computed plans into storage and set first plan as active
     planDatasetStore.set(plans)
     currentPlanStore.set(plans[0])

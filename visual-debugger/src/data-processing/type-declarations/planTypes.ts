@@ -43,6 +43,7 @@ export class Itinerary {
     legs: Leg[] = new Array<Leg>();
     cssClass: string = "";
     match: boolean = false;
+    index: number = 0;
 }
 
 /**
@@ -59,6 +60,8 @@ export class Leg {
     scheduledEndTime: string = "";
     realTime: boolean = true;
     legGeometry: EncodedPolyline = new EncodedPolyline();
+    headsign: string = "";
+    routeShortName: string = "";
 }
 
 /**

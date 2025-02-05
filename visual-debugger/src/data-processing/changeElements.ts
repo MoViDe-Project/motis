@@ -1,11 +1,11 @@
 import {
-    activeQueryStore,
-    currentDefaultPlanStore,
+    activeQueryStore, currentDefaultItineraryStore,
+    currentDefaultPlanStore, currentItineraryStore,
     currentPlanStore,
     defaultPlanDatasetStore,
     planDatasetStore
 } from "sveltestore";
-import type {Plan} from "@data/type-declarations/planTypes.ts";
+import {Itinerary, type Plan} from "@data/type-declarations/planTypes.ts";
 
 // attributes for switching of current plan
 let plans: Plan[];
@@ -33,4 +33,29 @@ export function changePlan(queryIndex: number) {
 
     // set the number of the new active query
      activeQueryStore.set(queryIndex)
+}
+
+let itinerary: Itinerary;
+let defaultItinerary: Itinerary;
+
+/**
+ * Changes the currently displayed plan to the one given in the index
+ */
+export function changeItinerary(itineraryIndex: number) {
+    // get current plan data
+    currentPlanStore.subscribe((data) => {
+            itinerary = data.itineraries[itineraryIndex]
+        }
+    )
+    // load plan of the clicked query into svelte store
+    currentItineraryStore.set(itinerary)
+
+    // get current plan data
+    currentDefaultPlanStore.subscribe((data) => {
+            defaultItinerary = data.itineraries[itineraryIndex]
+        }
+    )
+    // load plan of the clicked query into svelte store
+    currentDefaultItineraryStore.set(defaultItinerary)
+
 }

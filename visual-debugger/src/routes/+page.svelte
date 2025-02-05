@@ -14,55 +14,13 @@
     import Moon from "lucide-svelte/icons/moon";
     import {toggleMode} from "mode-watcher";
     import {computePlansInterface, downloadPlanInterface} from "@data/componentInterface.ts";
+    import ItineraryOverview from "@/components/ui/ItineraryOverview.svelte";
+    import DefaultItineraryOverview from "@/components/ui/DefaultItineraryOverview.svelte";
 
     // call the plan compare logic upon both upload of default plan and plan computation
     $: if (!($defaultPlanDatasetStore.length == 0) && !($planDatasetStore.length == 0)) {
         comparePlans()
     }
-
-    const routes = [
-        {from: "Bamberg", to: "Berlin"},
-        {from: "Bamberg", to: "München"},
-        {from: "Bamberg", to: "Hamburg"},
-        {from: "Bamberg", to: "Frankfurt"},
-        {from: "Bamberg", to: "Köln"},
-        {from: "Bamberg", to: "Stuttgart"},
-        {from: "Bamberg", to: "Düsseldorf"},
-        {from: "Bamberg", to: "Dresden"},
-        {from: "Bamberg", to: "Leipzig"},
-        {from: "Bamberg", to: "Hannover"},
-        {from: "Bamberg", to: "Nürnberg"},
-        {from: "Bamberg", to: "Dortmund"},
-        {from: "Bamberg", to: "Essen"},
-        {from: "Bamberg", to: "Bremen"},
-        {from: "Bamberg", to: "Duisburg"},
-        {from: "Bamberg", to: "Bochum"},
-        {from: "Bamberg", to: "Wuppertal"},
-        {from: "Bamberg", to: "Bielefeld"},
-        {from: "Bamberg", to: "Bonn"},
-        {from: "Bamberg", to: "Münster"},
-        {from: "Bamberg", to: "Berlin"},
-        {from: "Bamberg", to: "München"},
-        {from: "Bamberg", to: "Hamburg"},
-        {from: "Bamberg", to: "Frankfurt"},
-        {from: "Bamberg", to: "Köln"},
-        {from: "Bamberg", to: "Stuttgart"},
-        {from: "Bamberg", to: "Düsseldorf"},
-        {from: "Bamberg", to: "Dresden"},
-        {from: "Bamberg", to: "Leipzig"},
-        {from: "Bamberg", to: "Hannover"},
-        {from: "Bamberg", to: "Nürnberg"},
-        {from: "Bamberg", to: "Dortmund"},
-        {from: "Bamberg", to: "Essen"},
-        {from: "Bamberg", to: "Bremen"},
-        {from: "Bamberg", to: "Duisburg"},
-        {from: "Bamberg", to: "Bochum"},
-        {from: "Bamberg", to: "Wuppertal"},
-        {from: "Bamberg", to: "Bielefeld"},
-        {from: "Bamberg", to: "Bonn"},
-        {from: "Bamberg", to: "Münster"},
-    ]
-
 
 </script>
 <!-- Container and flex logic from https://tailwindcss.com/docs/container -->
@@ -161,14 +119,7 @@
                 <div class="p-2 row-span-5">
                     <ScrollArea class="rounded-md border h-full">
                         <div class="p-4 border">
-                            {#each routes as route}
-                                <div class="text-2xl">
-                                    <Button variant="outline" class="w-full my-2 border-red-500 bg-red-200">
-                                        <span class="text-left w-full">{route.from} - {route.to}</span>
-                                    </Button>
-                                </div>
-
-                            {/each}
+                            <DefaultItineraryOverview/>
                         </div>
                     </ScrollArea>
                 </div>
@@ -183,14 +134,7 @@
                 <div class="p-2 row-span-5">
                     <ScrollArea class="rounded-md border h-full">
                         <div class="p-4 border">
-                            {#each routes as route}
-                                <div class="text-2xl">
-                                    <Button variant="outline" class="w-full my-2 border-green-500 bg-green-200">
-                                        <span class="text-left w-full">{route.from} - {route.to}</span>
-                                    </Button>
-                                </div>
-
-                            {/each}
+                            <ItineraryOverview/>
                         </div>
                     </ScrollArea>
                 </div>

@@ -1,4 +1,4 @@
-import {changePlan} from "@data/changeElements.ts";
+import {changeItinerary, changePlan} from "@data/changeElements.ts";
 import {computePlan, downloadPlans} from "@data/planParsing.ts";
 
 /**
@@ -26,4 +26,11 @@ export function computePlansInterface() {
 export function downloadPlanInterface() {
     downloadPlans()
 
+}
+
+/**
+ * Interface method for getting the routing results for the queries from motis
+ */
+export function changeItineraryInterface(itineraryIndex: number) {
+    changeItinerary(itineraryIndex)
 }
