@@ -1,7 +1,7 @@
 <script lang="ts">
-    import {currentDefaultPlanStore, defaultPlanDatasetStore} from "../../../../sveltestore.ts";
-    import type {Plan} from "../../../../data-processing/parsing-types/planParsingTypes.ts";
-    import { Input } from "$lib/components/ui/input/index.js";
+    import {currentDefaultPlanStore, defaultPlanDatasetStore} from "sveltestore";
+    import type {Plan} from "@data/type-declarations/planTypes.ts";
+    import {Input} from "$lib/components/ui/input/index.js";
 
     let file: File | null = null;
 
@@ -16,14 +16,14 @@
         // put content of read file as string into storage
         file?.text().then((file_content_string) => {
                 let plans: Plan[] = JSON.parse(file_content_string)
-                defaultPlanDatasetStore.set(plans);
-                currentDefaultPlanStore.set(plans[0]);
+
+                $defaultPlanDatasetStore = plans
+                $currentDefaultPlanStore = plans[0]
             }
         )
-
     };
 </script>
 
 <div>
-    <Input id="q-upload" type="file" on:change={putFileIntoStorage} />
+    <Input id="q-upload" type="file" on:change={putFileIntoStorage}/>
 </div>

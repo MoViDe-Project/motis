@@ -1,3 +1,5 @@
+import {cssClasses} from "@data/styling/cssClasses.ts";
+
 /**
  *  Plan type used for parsing plan responses
  */
@@ -39,7 +41,9 @@ export class Itinerary {
     endTime: string = "";
     transfers: number = 0;
     legs: Leg[] = new Array<Leg>();
-    cssClass: string = "";
+    cssClass: string = cssClasses.planEntryDefault;
+    match: boolean = false;
+    index: number = 0;
 }
 
 /**
@@ -56,6 +60,8 @@ export class Leg {
     scheduledEndTime: string = "";
     realTime: boolean = true;
     legGeometry: EncodedPolyline = new EncodedPolyline();
+    headsign: string = "";
+    routeShortName: string = "";
 }
 
 /**

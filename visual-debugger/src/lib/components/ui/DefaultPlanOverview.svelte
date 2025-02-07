@@ -1,6 +1,6 @@
 <script lang="ts">
-    import {currentDefaultPlanStore} from "../../../sveltestore.ts";
-    import type {Itinerary} from "../../../data-processing/parsing-types/planParsingTypes.ts";
+    import {currentDefaultPlanStore} from "sveltestore";
+    import type {Itinerary} from "@data/type-declarations/planTypes.ts";
     import PlanEntry from "$lib/components/ui/subcomponents/PlanEntry.svelte";
     import {ScrollArea} from "@/components/ui/scroll-area";
 
@@ -18,8 +18,7 @@
 
 <ScrollArea class="rounded-md border h-full">
     {#each itineraries as itinerary}
-        <PlanEntry cssClass="{itinerary.cssClass}" startTime="{itinerary.startTime}" endTime="{itinerary.endTime}"
-                    duration="{itinerary.duration.toString()}" transfers="{itinerary.transfers.toString()}"/>
+        <PlanEntry itinerary="{itinerary}"/>
     {/each}
 </ScrollArea>
 
