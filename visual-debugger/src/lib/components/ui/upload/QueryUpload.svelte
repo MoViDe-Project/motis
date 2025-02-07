@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {computeQueryAttributes} from "../../../../data-processing/queryBuild.ts";
+    import {computeQueryAttributes} from "@data/queryBuild.ts";
     import {Input} from "$lib/components/ui/input/index.js";
 
     let file: File | null = null;
