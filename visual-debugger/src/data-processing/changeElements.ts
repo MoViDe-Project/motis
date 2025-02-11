@@ -67,6 +67,7 @@ export function changeItinerary(itineraryIndex: number) {
  * @param itineraryIndex the index of the default itinerary to change to
  */
 export function changeDefaultItinerary(itineraryIndex: number) {
+    // TEST: Input
     // get current plan data
     currentDefaultPlanStore.subscribe((data) => {
             defaultItinerary = data.itineraries[itineraryIndex]
