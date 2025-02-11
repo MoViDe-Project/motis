@@ -1,12 +1,15 @@
 import { test, expect, vi } from "vitest";
-import { computePlan, computePlanForQuery, downloadPlans } from "../planParsing";
-import { writable } from "svelte/store";
-import { Query } from "../parsing-types/queryInterpolationTypes";
+import { computePlan, computePlanForQuery, downloadPlans } from "@data/planParsing";
+import axios from "axios"
+import { planDatasetStore } from "sveltestore";
+
+vi.mock('axios')
 
 test('computePlan: Happy path', () => {
 })
 
-test('computePlan: Empty query')
+test('computePlan: interpolatedQueryStore is empty', () => {
+})
 
 test('computePlanForQuery: Happy path')
 
@@ -15,3 +18,6 @@ test('computePlanForQuery: Empty query')
 test('computePlanForQuery: Invalid query')
 
 test('downloadPlans: Happy path')
+
+test('downloadPlans: planDatasetStore is empty')
+
