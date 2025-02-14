@@ -21,6 +21,8 @@ export function changePlan(queryIndex: number) {
             plans = data
         }
     )
+
+    // TEST: Output
     // load plan of the clicked query into svelte store
     currentPlanStore.set(plans[queryIndex - 1])
 
