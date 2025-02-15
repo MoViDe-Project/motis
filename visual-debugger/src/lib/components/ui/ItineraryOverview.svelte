@@ -3,6 +3,7 @@
     import {currentItineraryStore} from "sveltestore";
     import {Separator} from "@/components/ui/separator";
     import LegEntry from "@/components/ui/subcomponents/LegEntry.svelte";
+    import ConnectionDetail from "@/ConnectionDetail.svelte";
 
     let itinerary: Itinerary
 
@@ -33,6 +34,9 @@
             <LegEntry leg={leg} />
             <Separator class="my-2"/>
         {/each}
+        {#if itinerary.duration != 0}
+            <ConnectionDetail itinerary={itinerary}/>
+        {/if}
     {/if}
 
 </div>
