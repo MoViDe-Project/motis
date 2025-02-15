@@ -43,6 +43,7 @@ export async function computePlan() {
         resetCssClassesForPlanEntries(plan)
     }
 
+    // index all itineraries as they are parsed
     for (let plan of plans) {
         let itineraryIndex =0
         for (let itinerary of plan.itineraries) {
