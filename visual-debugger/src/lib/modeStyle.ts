@@ -17,6 +17,19 @@ export type RentalInfo = {
 
 export type LegLike = Colorable & TripInfo & RentalInfo;
 
+/**
+ * Returns the style for a given mode of transportation.
+ *
+ * @param l - An object representing a leg of a journey, containing the mode of transportation and optional rental information.
+ * @returns A tuple containing:
+ *  - The icon name for the mode of transportation.
+ *  - The primary color for the mode of transportation.
+ *  - The secondary color for the mode of transportation.
+ *
+ * The function handles various modes of transportation including walking, biking, rental vehicles, cars, and various forms of public transit.
+ * For rental vehicles, it further distinguishes between different types such as bicycles, cargo bicycles, cars, mopeds, and scooters.
+ * If the mode of transportation is not recognized, it defaults to returning a train icon with black and white colors.
+ */
 export const getModeStyle = (l: LegLike): [string, string, string] => {
 	switch (l.mode) {
 		case 'WALK':
@@ -91,7 +104,7 @@ export const getColor = (l: Colorable): [string, string] => {
 	return !l.routeColor || l.routeColor === '000000'
 		? [defaultColor, defaultTextColor]
 		: ['#' + l.routeColor, '#' + l.routeTextColor || '000000'];
-	//return ['#000000', '#000000'];
+	
 };
 
 export const routeBorderColor = (l: Colorable) => {
