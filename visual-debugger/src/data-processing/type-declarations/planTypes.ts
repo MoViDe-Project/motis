@@ -45,23 +45,7 @@ export class Itinerary {
     index: number = 0;
 }
 
-/**
- * Leg type used for parsing plan responses
- */
-// export class Leg {
-//     mode: string = "";
-//     from: Place = new Place();
-//     to: Place = new Place();
-//     duration: number = 0;
-//     startTime: string = "";
-//     endTime: string = "";
-//     scheduledStartTime: string = "";
-//     scheduledEndTime: string = "";
-//     realTime: boolean = true;
-//     legGeometry: EncodedPolyline = new EncodedPolyline();
-//     headsign: string = "";
-//     routeShortName: string = "";
-// }
+
 export class Leg {
     /**
      * Transport mode for this leg
