@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { getModeStyle, routeColor, type LegLike } from './modeStyle';
-	import { cn } from './utils';
+	import { getModeStyle, routeColor, type LegLike } from '../../modeStyle';
+	import { cn } from '../../utils';
 
 	const {
 		l,

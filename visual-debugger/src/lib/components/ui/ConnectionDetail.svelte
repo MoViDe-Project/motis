@@ -5,7 +5,7 @@
 	import { routeBorderColor, routeColor } from '$lib/modeStyle';
 	import { formatDurationSec, formatDistanceMeters } from '$lib/formatDuration';
 	import { Button } from '$lib/components/ui/button';
-	import Route from '$lib/Route.svelte';
+	import Route from '@/components/ui/Route.svelte';
 	import { getModeName } from '$lib/getModeName';
 	import { t } from '$lib/i18n/translation';
 

@@ -3,7 +3,7 @@
     import {currentDefaultItineraryStore} from "sveltestore";
     import {Separator} from "@/components/ui/separator";
     import LegEntry from "@/components/ui/subcomponents/LegEntry.svelte";
-    import ConnectionDetail from "@/ConnectionDetail.svelte";
+    import ConnectionDetail from "@/components/ui/ConnectionDetail.svelte";
 
     let itinerary: Itinerary
 
