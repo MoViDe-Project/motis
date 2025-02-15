@@ -1,6 +1,6 @@
-import { changePlan } from "@data/changeElements"
-import { Plan } from "@data/type-declarations/planTypes"
-import { activeQueryStore, currentDefaultPlanStore, currentPlanStore, defaultPlanDatasetStore, planDatasetStore } from "sveltestore"
+import { changeItinerary, changePlan } from "@data/changeElements"
+import { Itinerary, Plan } from "@data/type-declarations/planTypes"
+import { activeQueryStore, currentDefaultItineraryStore, currentDefaultPlanStore, currentItineraryStore, currentPlanStore, defaultPlanDatasetStore, planDatasetStore } from "sveltestore"
 import { test, expect, vi } from "vitest"
 
 // TODO: Mock stores properly(?)
@@ -9,6 +9,11 @@ import { test, expect, vi } from "vitest"
 // Static inputs
 const inputPlan: Plan = new Plan()
 const defaultPlan: Plan = new Plan()
+const inputItinerary: Itinerary = new Itinerary()
+const defaultItinerary: Itinerary = new Itinerary()
+
+inputPlan.itineraries = [ inputItinerary ] 
+defaultPlan.itineraries = [ defaultItinerary ] 
 
 test('changePlan: Happy path', () => {
     // Init inputs
@@ -54,13 +59,21 @@ test('changePlan: defaultPlanDatasetStore is empty', () => {
 })
 
 test('changeItinerary: Happy path', () => {
+    currentPlanStore.set(inputPlan)
+    currentDefaultPlanStore.set(defaultPlan)
+
+    let currentItinerary: Itinerary | undefined = undefined
+    let currentDefaultItinerary: Itinerary | undefined = undefined
+
+    currentItineraryStore.subscribe((d) => { currentItinerary = d})
+    currentDefaultItineraryStore.subscribe((d) => { currentDefaultItinerary = d })
+
+    changeItinerary(0)
+
+    expect(currentItinerary).toBe(inputItinerary)
+    expect(currentDefaultItinerary).toBe(defaultItinerary)
 })
 
 test('changeItinerary: Index out of bounds', () => {
-})
-
-test('changeItinerary: currentPlanStore is empty', () => {
-})
-
-test('changeItinerary: currentDefaultPlanStore is empty', () => {
+    expect(changeItinerary(-1)).toThrowError("Index out of bounds")
 })
