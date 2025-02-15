@@ -62,6 +62,9 @@ export class Leg {
     legGeometry: EncodedPolyline = new EncodedPolyline();
     headsign: string = "";
     routeShortName: string = "";
+    intermediateStops: Array<Place> = new Array<Place>();
+    source: string = "";
+    tripId: string = "";
 }
 
 /**

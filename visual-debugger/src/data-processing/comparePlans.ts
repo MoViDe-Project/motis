@@ -1,4 +1,4 @@
-import type {Plan} from "./type-declarations/planTypes.ts";
+import {type Plan} from "./type-declarations/planTypes.ts";
 import {
     currentDefaultPlanStore,
     currentPlanStore,
@@ -7,6 +7,7 @@ import {
 } from "sveltestore";
 import {cssClasses} from "./styling/cssClasses.ts";
 import {resetCssClassesForPlanEntries} from "./planParsing.ts";
+import {compareItineraries} from "@data/compareObjects.ts";
 
 /**
  * Compares the computed results of the queries with the uploaded default plan and sets colors of the matches/mismatches
@@ -54,16 +55,15 @@ export function comparePlans() {
             let currentDefaultItinerary = currentDefaultPlan.itineraries[itineraryIndex];
 
             // compare strings of itineraries and set colors(CSS-Classes) accordingly
-            if (JSON.stringify(currentItinerary) == JSON.stringify(currentDefaultItinerary)) {
+            if (compareItineraries(currentItinerary, currentDefaultItinerary)) {
                 // itineraries are equal, mark them as such
-                plans[planIndex].itineraries[itineraryIndex].cssClass = cssClasses.planEntryValid
-                defaultPlans[planIndex].itineraries[itineraryIndex].cssClass = cssClasses.planEntryValid
-
+                currentItinerary.cssClass = cssClasses.planEntryValid
+                currentDefaultItinerary.cssClass = cssClasses.planEntryValid
 
             } else {
                 // itineraries are not equal
-                plans[planIndex].itineraries[itineraryIndex].cssClass = cssClasses.planEntryInvalid
-                defaultPlans[planIndex].itineraries[itineraryIndex].cssClass = cssClasses.planEntryInvalid
+                currentItinerary.cssClass = cssClasses.planEntryInvalid
+                currentDefaultItinerary.cssClass = cssClasses.planEntryInvalid
             }
 
         }
