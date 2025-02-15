@@ -23,19 +23,26 @@
 </script>
 
 <div>
-    {#if itinerary == undefined}
+    {#if itinerary.duration == 0 && itinerary.legs.length == 0}
         <span> No itinerary currently selected</span>
     {:else}
         <div class="text-xl">
             <span class="">Itinerary-Index: {itinerary.index}</span>
         </div>
-        <Separator class="my-2"/>
-        {#each legs as leg}
-            <LegEntry leg={leg} />
+        {#if legs.length > 0}
+            
+            {#each legs as leg}
+                <Separator class="my-2"/>
+                <LegEntry leg={leg} />
+                
+            {/each}
             <Separator class="my-2"/>
-        {/each}
+        {/if}
         {#if itinerary.duration != 0}
-            <ConnectionDetail itinerary={itinerary}/>
+            <div class="py-2">
+                <ConnectionDetail itinerary={itinerary}/>
+            </div>
+            
         {/if}
     {/if}
 
