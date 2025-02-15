@@ -77,13 +77,19 @@ export async function computePlanForQuery(query: Query): Promise<Plan> {
  */
 export function downloadPlans(): void {
 
-    let plans: Plan[] | null = null;
+    let plans: Plan[]  = [];
     // put content of read file as string into storage
     planDatasetStore.subscribe(data => {
         plans = data
     })
-    if (plans == null) {
+    if (plans.length == 0) {
+        alert("No plans to download were found.");
         return
+    }
+
+    // set default (white) css classes for itineraries
+    for (let plan of plans) {
+        resetCssClassesForPlanEntries(plan)
     }
 
     // build HTML Element for file download
