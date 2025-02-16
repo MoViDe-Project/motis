@@ -43,6 +43,7 @@ export function comparePlans() {
         }
     }
 
+    // TEST: Mutation of cssClasses
     // iterate over all plans
     for (let planIndex = 0; planIndex < plans.length; planIndex++) {
 
