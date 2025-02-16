@@ -1,18 +1,19 @@
-import { vi , expect, test } from 'vitest'
-import { buildQueryDataset } from "@data/queryBuild";
+import { vi , expect, test, describe } from 'vitest'
+import { buildQueryDataset, computeQueryAttributes } from "@data/queryBuild";
+import axios from 'axios';
+import { build } from '$service-worker';
 
-test('buildQueryDataset: Happy path', () => {
+vi.mock('axios')
+
+describe('buildQueryDataset', () => {
+    test('Happy path', () => {
+    })
+
+    test('Empty query batch', () => {
+        expect(buildQueryDataset("")).toThrowError()
+    })
+
+    test('Invalid query batch', () => {
+        expect(buildQueryDataset("Invalid")).toThrow()
+    })
 })
-
-test('buildQueryDataset: Empty query batch', () => {
-    expect(buildQueryDataset("")).toThrowError()
-})
-
-test('buildQueryDataset: Invalid query batch', () => {
-})
-
-test('computeLocation: Happy path')
-
-test('computeLocation: Empty location')
-
-test('computeLocation: Invalid location')

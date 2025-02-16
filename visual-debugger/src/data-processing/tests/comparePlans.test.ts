@@ -1,4 +1,4 @@
-import { vi, test, expect } from "vitest"
+import { vi, test, expect, describe } from "vitest"
 import { comparePlans } from '@data/comparePlans'
 import { Itinerary, Plan } from "@data/type-declarations/planTypes"
 import { currentDefaultPlanStore, currentPlanStore, defaultPlanDatasetStore, planDatasetStore } from "sveltestore"
@@ -13,41 +13,43 @@ const defaultItinerary: Itinerary = new Itinerary()
 inputPlan.itineraries = [ inputItinerary ] 
 defaultPlan.itineraries = [ defaultItinerary ] 
 
-test('comparePlans: Happy path', () => {
-    planDatasetStore.set([inputPlan])
-    defaultPlanDatasetStore.set([defaultPlan])
+describe('comparePlans', () => {
+    test('Happy path', () => {
+        planDatasetStore.set([inputPlan])
+        defaultPlanDatasetStore.set([defaultPlan])
 
-    let currentPlan: Plan = new Plan()
-    let currentDefaultPlan: Plan = new Plan()
+        let currentPlan: Plan = new Plan()
+        let currentDefaultPlan: Plan = new Plan()
 
-    currentPlanStore.subscribe((d) => { currentPlan = d })
-    currentDefaultPlanStore.subscribe((d) => { currentDefaultPlan = d })
+        currentPlanStore.subscribe((d) => { currentPlan = d })
+        currentDefaultPlanStore.subscribe((d) => { currentDefaultPlan = d })
 
-    comparePlans()
+        comparePlans()
 
-    // Test store contents
-    expect(currentPlan).toBe(inputPlan)
-    expect(defaultPlan).toBe(defaultPlan)
+        // Test store contents
+        expect(currentPlan).toBe(inputPlan)
+        expect(defaultPlan).toBe(defaultPlan)
 
-    // Test CSS classes
-    expect(currentPlan.itineraries[0].cssClass).toBe(cssClasses.planEntryValid)
-    expect(currentDefaultPlan.itineraries[0].cssClass).toBe(cssClasses.planEntryValid)
-})
+        // Test CSS classes
+        expect(currentPlan.itineraries[0].cssClass).toBe(cssClasses.planEntryValid)
+        expect(currentDefaultPlan.itineraries[0].cssClass).toBe(cssClasses.planEntryValid)
+    })
 
-test('comparePlans: planDatasetStore is empty', () => {
-    // TODO: Include proper spy for function alert
+    test('planDatasetStore is empty', () => {
+        // TODO: Include proper spy for function alert
 
-    planDatasetStore.set([])
-    defaultPlanDatasetStore.set([defaultPlan])
-    
-    expect(comparePlans()).toThrowError()
-})
+        planDatasetStore.set([])
+        defaultPlanDatasetStore.set([defaultPlan])
+        
+        expect(comparePlans()).toThrowError()
+    })
 
-test('comparePlans: defaultPlanDatesetStore is empty', () => {
-    // TODO: Include proper spy for function alert
+    test('defaultPlanDatesetStore is empty', () => {
+        // TODO: Include proper spy for function alert
 
-    planDatasetStore.set([inputPlan])
-    defaultPlanDatasetStore.set([])
+        planDatasetStore.set([inputPlan])
+        defaultPlanDatasetStore.set([])
 
-    expect(comparePlans()).toThrowError()
+        expect(comparePlans()).toThrowError()
+    })
 })

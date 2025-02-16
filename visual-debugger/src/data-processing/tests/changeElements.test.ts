@@ -1,7 +1,7 @@
 import { changeItinerary, changePlan } from "@data/changeElements"
 import { Itinerary, Plan } from "@data/type-declarations/planTypes"
 import { activeQueryStore, currentDefaultItineraryStore, currentDefaultPlanStore, currentItineraryStore, currentPlanStore, defaultPlanDatasetStore, planDatasetStore } from "sveltestore"
-import { test, expect, vi } from "vitest"
+import { test, expect, vi, describe } from "vitest"
 
 // TODO: Mock stores properly(?)
 // vi.mock('sveltestore')
@@ -15,65 +15,69 @@ const defaultItinerary: Itinerary = new Itinerary()
 inputPlan.itineraries = [ inputItinerary ] 
 defaultPlan.itineraries = [ defaultItinerary ] 
 
-test('changePlan: Happy path', () => {
-    // Init inputs
-    const index: number = 1
-    planDatasetStore.set([inputPlan]);
-    defaultPlanDatasetStore.set([defaultPlan])
+describe('changePlan', () => {
+    test('Happy path', () => {
+        // Init inputs
+        const index: number = 1
+        planDatasetStore.set([inputPlan]);
+        defaultPlanDatasetStore.set([defaultPlan])
 
-    // Init changed variables
-    let activeQuery: number = -1 
-    let currentPlan: Plan | undefined = undefined
-    let currentDefaultPlan: Plan | undefined = undefined
+        // Init changed variables
+        let activeQuery: number = -1 
+        let currentPlan: Plan | undefined = undefined
+        let currentDefaultPlan: Plan | undefined = undefined
 
-    // Access stores
-    activeQueryStore.subscribe((d) => {activeQuery = d})
-    currentPlanStore.subscribe((d) => {currentPlan = d})
-    currentDefaultPlanStore.subscribe((d) => {currentDefaultPlan = d})
+        // Access stores
+        activeQueryStore.subscribe((d) => {activeQuery = d})
+        currentPlanStore.subscribe((d) => {currentPlan = d})
+        currentDefaultPlanStore.subscribe((d) => {currentDefaultPlan = d})
 
-    // Function call
-    changePlan(index)
+        // Function call
+        changePlan(index)
 
-    // Assertions
-    expect(activeQuery).toBe(1)
-    expect(currentPlan).toBe(inputPlan)
-    expect(currentDefaultPlan).toBe(defaultPlan)
+        // Assertions
+        expect(activeQuery).toBe(1)
+        expect(currentPlan).toBe(inputPlan)
+        expect(currentDefaultPlan).toBe(defaultPlan)
+    })
+
+    test('Index out of bounds', () => {
+        expect(changePlan(-1)).toThrowError("Index out of bounds")
+    })
+
+    test('planDatesetStore is empty', () => {
+        planDatasetStore.set([]);
+        defaultPlanDatasetStore.set([defaultPlan])
+
+        expect(changePlan(1)).toThrowError()
+    })
+
+    test('defaultPlanDatasetStore is empty', () => {
+        planDatasetStore.set([inputPlan]);
+        defaultPlanDatasetStore.set([])
+
+        expect(changePlan(1)).toThrowError()
+    })
 })
 
-test('changePlan: Index out of bounds', () => {
-    expect(changePlan(-1)).toThrowError("Index out of bounds")
-})
+describe('changeItinerary', () => {
+    test('Happy path', () => {
+        currentPlanStore.set(inputPlan)
+        currentDefaultPlanStore.set(defaultPlan)
 
-test('changePlan: planDatesetStore is empty', () => {
-    planDatasetStore.set([]);
-    defaultPlanDatasetStore.set([defaultPlan])
+        let currentItinerary: Itinerary | undefined = undefined
+        let currentDefaultItinerary: Itinerary | undefined = undefined
 
-    expect(changePlan(1)).toThrowError()
-})
+        currentItineraryStore.subscribe((d) => { currentItinerary = d})
+        currentDefaultItineraryStore.subscribe((d) => { currentDefaultItinerary = d })
 
-test('changePlan: defaultPlanDatasetStore is empty', () => {
-    planDatasetStore.set([inputPlan]);
-    defaultPlanDatasetStore.set([])
+        changeItinerary(0)
 
-    expect(changePlan(1)).toThrowError()
-})
+        expect(currentItinerary).toBe(inputItinerary)
+        expect(currentDefaultItinerary).toBe(defaultItinerary)
+    })
 
-test('changeItinerary: Happy path', () => {
-    currentPlanStore.set(inputPlan)
-    currentDefaultPlanStore.set(defaultPlan)
-
-    let currentItinerary: Itinerary | undefined = undefined
-    let currentDefaultItinerary: Itinerary | undefined = undefined
-
-    currentItineraryStore.subscribe((d) => { currentItinerary = d})
-    currentDefaultItineraryStore.subscribe((d) => { currentDefaultItinerary = d })
-
-    changeItinerary(0)
-
-    expect(currentItinerary).toBe(inputItinerary)
-    expect(currentDefaultItinerary).toBe(defaultItinerary)
-})
-
-test('changeItinerary: Index out of bounds', () => {
-    expect(changeItinerary(-1)).toThrowError("Index out of bounds")
+    test('Index out of bounds', () => {
+        expect(changeItinerary(-1)).toThrowError("Index out of bounds")
+    })
 })

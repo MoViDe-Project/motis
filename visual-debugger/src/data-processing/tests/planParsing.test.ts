@@ -1,23 +1,28 @@
-import { test, expect, vi } from "vitest";
+import { test, expect, vi, describe } from "vitest";
 import { computePlan, computePlanForQuery, downloadPlans } from "@data/planParsing";
 import axios from "axios"
-import { planDatasetStore } from "sveltestore";
+import { interpolatedQueryStore, planDatasetStore } from "sveltestore";
+import { Query } from "@data/type-declarations/queryTypes";
+import type { Plan } from "@data/type-declarations/planTypes";
 
 vi.mock('axios')
 
-test('computePlan: Happy path', () => {
+describe('computePlan', () => {
+    test('Happy path')
+
+    test('interpolatedQueryStore is empty')
 })
 
-test('computePlan: interpolatedQueryStore is empty', () => {
+describe('computePlanForQuery', () => {
+    test('Happy path')
+
+    test('Empty query')
+
+    test('Invalid query')
 })
 
-test('computePlanForQuery: Happy path')
+describe('downloadPlans', () => {
+    test('downloadPlans: Happy path')
 
-test('computePlanForQuery: Empty query')
-
-test('computePlanForQuery: Invalid query')
-
-test('downloadPlans: Happy path')
-
-test('downloadPlans: planDatasetStore is empty')
-
+    test('downloadPlans: planDatasetStore is empty')
+})
