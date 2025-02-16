@@ -6,6 +6,7 @@ import {
     planDatasetStore
 } from "sveltestore";
 import {Itinerary, type Plan} from "@data/type-declarations/planTypes.ts";
+import {buildShadowObjects, compareItineraries} from "@data/compareObjects.ts";
 
 // attributes for switching of current plan
 let plans: Plan[];
@@ -66,4 +67,6 @@ export function changeDefaultItinerary(itineraryIndex: number) {
     // load plan of the clicked query into svelte store
     currentDefaultItineraryStore.set(defaultItinerary)
 
+    let falseAttributes = compareItineraries(itinerary, defaultItinerary)
+    let shadow = buildShadowObjects(falseAttributes)
 }
