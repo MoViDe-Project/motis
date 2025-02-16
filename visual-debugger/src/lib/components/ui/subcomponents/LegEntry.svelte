@@ -9,33 +9,33 @@ export let leg:Leg;
 
     <div class="leading-9">
         <div>
-            <Label>Mode: {leg.mode}</Label>
+            <span>Mode: {leg.mode}</span>
         </div>
         <div>
-            <Label>Duration: {leg.duration}</Label>
+            <span>Duration: {leg.duration}</span>
         </div>
         <div>
-            <Label>Start time: {leg.startTime}</Label>
+            <span>Start time: {leg.startTime}</span>
         </div>
         <div>
-            <Label>End time: {leg.endTime}</Label>
+            <span>End time: {leg.endTime}</span>
         </div>
         <div>
-            <Label>Scheduled start time: {leg.scheduledStartTime}</Label>
+            <span>Scheduled start time: {leg.scheduledStartTime}</span>
         </div>
     </div>
     <div class="leading-9">
         <div>
-            <Label>Scheduled end time: {leg.scheduledEndTime}</Label>
+            <span>Scheduled end time: {leg.scheduledEndTime}</span>
         </div>
         <div>
-            <Label>Realtime: {leg.realTime}</Label>
+            <span>Realtime: {leg.realTime}</span>
         </div>
         <div>
-            <Label>Headsign: {leg.headsign}</Label>
+            <span>Headsign: {leg.headsign}</span>
         </div>
         <div>
-            <Label>Route short name: {leg.routeShortName}</Label>
+            <span>Route short name: {leg.routeShortName}</span>
         </div>
     </div>
 </div>
