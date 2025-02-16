@@ -32,8 +32,8 @@
         <!-- Logo & Dark Mode -->
         <div class="basis-1/4 flex flex-row flex-none h-full">
 
-            <div class="basis-1/2 flex-none h-full">
-                <img src="/logo_clipped.svg" alt="MoViDe logo" class="w-full h-full scale-75 hover:animate-rotate-fast">
+            <div class="basis-1/2 flex-none h-full p-7">
+                <img src="/logo_clipped.svg" alt="MoViDe logo" class="w-full h-full hover:animate-rotate-fast">
             </div>
 
             <div class="basis-1/2 content-center">

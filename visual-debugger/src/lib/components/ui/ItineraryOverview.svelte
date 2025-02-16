@@ -3,6 +3,7 @@
     import {currentItineraryStore} from "sveltestore";
     import {Separator} from "@/components/ui/separator";
     import LegEntry from "@/components/ui/subcomponents/LegEntry.svelte";
+    import ConnectionDetail from "@/components/ui/ConnectionDetail.svelte";
 
     let itinerary: Itinerary
 
@@ -22,17 +23,26 @@
 </script>
 
 <div>
-    {#if itinerary == undefined}
-        <label> No itinerary currently selected</label>
+    {#if itinerary.duration == 0 && itinerary.legs.length == 0}
+        <span> No itinerary currently selected</span>
     {:else}
         <div class="text-xl">
             <span class="">Itinerary-Index: {itinerary.index}</span>
         </div>
-        <Separator class="my-2"/>
-        {#each legs as leg}
-            <LegEntry leg={leg} />
+        {#if legs.length > 0}
+            
+            {#each legs as leg}
+                <Separator class="my-2"/>
+                <LegEntry leg={leg} />
+            {/each}
             <Separator class="my-2"/>
-        {/each}
+        {/if}
+        {#if itinerary.duration != 0}
+            <div class="py-2">
+                <ConnectionDetail itinerary={itinerary}/>
+            </div>
+            
+        {/if}
     {/if}
 
 </div>
