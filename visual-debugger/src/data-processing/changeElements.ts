@@ -15,22 +15,29 @@ let defaultPlans: Plan[];
  * Changes the currently displayed plan to the one given in the index
  */
 export function changePlan(queryIndex: number) {
+    // TEST: Input
     // get current plan data
     planDatasetStore.subscribe((data) => {
             plans = data
         }
     )
+
+    // TEST: Output
     // load plan of the clicked query into svelte store
     currentPlanStore.set(plans[queryIndex - 1])
 
+    // TEST: Input
     // get current plan data
     defaultPlanDatasetStore.subscribe((data) => {
             defaultPlans = data
         }
     )
+
+    // TEST: Output
     // load plan of the clicked query into svelte store
     currentDefaultPlanStore.set(defaultPlans[queryIndex - 1])
 
+    // TEST: Output
     // set the number of the new active query
      activeQueryStore.set(queryIndex)
 }
@@ -43,11 +50,13 @@ let defaultItinerary: Itinerary;
  * @param itineraryIndex the index of the itinerary to change to
  */
 export function changeItinerary(itineraryIndex: number) {
+    // TEST: Input
     // get current plan data
     currentPlanStore.subscribe((data) => {
             itinerary = data.itineraries[itineraryIndex]
         }
     )
+    // TEST: Output
     // load plan of the clicked query into svelte store
     currentItineraryStore.set(itinerary)
 
@@ -58,11 +67,14 @@ export function changeItinerary(itineraryIndex: number) {
  * @param itineraryIndex the index of the default itinerary to change to
  */
 export function changeDefaultItinerary(itineraryIndex: number) {
+
+    // TEST: Input
     // get current plan data
     currentDefaultPlanStore.subscribe((data) => {
             defaultItinerary = data.itineraries[itineraryIndex]
         }
     )
+    // TEST: Output
     // load plan of the clicked query into svelte store
     currentDefaultItineraryStore.set(defaultItinerary)
 
