@@ -1,11 +1,9 @@
 <script lang="ts">
     import {Button} from "@/components/ui/button";
-    import type {Itinerary} from "@data/type-declarations/planTypes.ts";
-    import {cssClasses} from "@data/styling/cssClasses.ts";
-    import {changeItinerary} from "@data/changeElements.ts";
-    import {changeItineraryInterface} from "@data/componentInterface.ts";
+    import {changeDefaultItineraryInterface, changeItineraryInterface} from "@data/componentInterface.ts";
 
-    export let itinerary: Itinerary;
+    // set to parent to "default" to change the currently displayed default itinerary
+    let {parent = 'current', itinerary} = $props();
 
 </script>
 
@@ -21,7 +19,9 @@
             Transfers: {itinerary.transfers}
         </div>
         <div>
-            <Button on:click={() => changeItineraryInterface(itinerary.index)} variant="outline" class="{itinerary.cssClass}">
+            <Button on:click={() => {parent==="current"?changeItineraryInterface(itinerary.index):changeDefaultItineraryInterface(itinerary.index)}}
+                    variant="outline"
+                    class="{itinerary.cssClass}">
                 Select
             </Button>
         </div>
