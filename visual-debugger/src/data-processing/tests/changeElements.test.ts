@@ -1,4 +1,4 @@
-import { changeItinerary, changePlan } from "@data/changeElements"
+import { changeDefaultItinerary, changeItinerary, changePlan } from "@data/changeElements"
 import { Itinerary, Plan } from "@data/type-declarations/planTypes"
 import { activeQueryStore, currentDefaultItineraryStore, currentDefaultPlanStore, currentItineraryStore, currentPlanStore, defaultPlanDatasetStore, planDatasetStore } from "sveltestore"
 import { test, expect, vi, describe } from "vitest"
@@ -63,21 +63,31 @@ describe('changePlan', () => {
 describe('changeItinerary', () => {
     test('Happy path', () => {
         currentPlanStore.set(inputPlan)
-        currentDefaultPlanStore.set(defaultPlan)
-
         let currentItinerary: Itinerary | undefined = undefined
-        let currentDefaultItinerary: Itinerary | undefined = undefined
-
         currentItineraryStore.subscribe((d) => { currentItinerary = d})
-        currentDefaultItineraryStore.subscribe((d) => { currentDefaultItinerary = d })
 
         changeItinerary(0)
 
         expect(currentItinerary).toBe(inputItinerary)
-        expect(currentDefaultItinerary).toBe(defaultItinerary)
     })
 
     test('Index out of bounds', () => {
         expect(changeItinerary(-1)).toThrowError("Index out of bounds")
+    })
+})
+
+describe('changeDefaultItinerary', () => {
+    test('Happy path', () => {
+        currentDefaultPlanStore.set(defaultPlan)
+        let currentDefaultItinerary: Itinerary | undefined = undefined
+        currentDefaultItineraryStore.subscribe((d) => { currentDefaultItinerary = d })
+
+        changeDefaultItinerary(0)
+
+        expect(currentDefaultItinerary).toBe(defaultItinerary)
+    })
+
+    test('Index out of bounds', () => {
+        expect(changeDefaultItinerary(-1)).toThrowError("Index out of bounds")
     })
 })
