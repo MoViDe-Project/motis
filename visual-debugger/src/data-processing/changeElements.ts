@@ -46,7 +46,8 @@ let itinerary: Itinerary;
 let defaultItinerary: Itinerary;
 
 /**
- * Changes the currently displayed plan to the one given in the index
+ * Changes the currently displayed itinerary to the one given in the current default plan at the given index
+ * @param itineraryIndex the index of the itinerary to change to
  */
 export function changeItinerary(itineraryIndex: number) {
     // TEST: Input
@@ -59,7 +60,13 @@ export function changeItinerary(itineraryIndex: number) {
     // load plan of the clicked query into svelte store
     currentItineraryStore.set(itinerary)
 
-    // TEST: Input
+}
+
+/**
+ * Changes the currently displayed default itinerary to the one given in the current default plan at the given index
+ * @param itineraryIndex the index of the default itinerary to change to
+ */
+export function changeDefaultItinerary(itineraryIndex: number) {
     // get current plan data
     currentDefaultPlanStore.subscribe((data) => {
             defaultItinerary = data.itineraries[itineraryIndex]

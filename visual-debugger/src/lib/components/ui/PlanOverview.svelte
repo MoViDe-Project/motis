@@ -24,7 +24,7 @@
 <!-- Scroll area for the plan entries. Has to be styled a bit more to look good. -->
 <ScrollArea class="rounded-md border h-full">
     {#each itineraries as itinerary}
-        <PlanEntry itinerary="{itinerary}"/>
+        <PlanEntry parent="current" itinerary="{itinerary}"/>
     {/each}
 </ScrollArea>
 
