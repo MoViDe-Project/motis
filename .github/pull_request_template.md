@@ -1,6 +1,6 @@
 <!-- List of changes as bullet points or free form text -->
 
-Closes <!-- ?? -->
+closes <!-- ?? -->
 
 ## Checklist
 
