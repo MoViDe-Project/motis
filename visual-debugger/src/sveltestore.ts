@@ -51,4 +51,4 @@ export const shadowItineraryStore = writable<ItineraryShadow>(new ItineraryShado
 /**
  * Storage for the shadow objects of the current itinerary
  */
-export const defaultShadowItineraryStore = writable<ItineraryShadow>(new ItineraryShadow(0))
+export const defaultShadowItineraryStore = writable<ItineraryShadow>(new ItineraryShadow(1))

@@ -91,12 +91,12 @@ export class LegShadow {
 }
 
 export class ItineraryShadow {
-    duration: boolean = false;
-    startTime: boolean = false;
-    endTime: boolean = false;
-    transfers: boolean = false;
+    duration: boolean = true;
+    startTime: boolean = true;
+    endTime: boolean = true;
+    transfers: boolean = true;
     legs: LegShadow[];
-    index: boolean = false;
+    index: boolean = true;
 
     constructor(numberOfLegs: number) {
         this.legs = []

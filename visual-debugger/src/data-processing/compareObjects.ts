@@ -80,7 +80,7 @@ function compareLegs(currentLeg: Leg, currentDefaultLeg: Leg): string[] {
                 // add the attribute name to the list if the parameters differ in value
                 if (!deepEqual(currentLeg[key], currentDefaultLeg[key])) {
                     mismatchedAttributes.push(key);
-                    return false
+                    return true
                 }
                 return true
             }

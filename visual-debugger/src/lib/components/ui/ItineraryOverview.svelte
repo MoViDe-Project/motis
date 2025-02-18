@@ -52,7 +52,7 @@
         {/if}
         {#if itinerary.duration != 0}
             <div class="py-2">
-                <ConnectionDetail itinerary={itinerary}/>
+                <ConnectionDetail itinerary={itinerary} shadowItinerary={shadowItinerary}/>
             </div>
             
         {/if}
