@@ -95,6 +95,13 @@ export class ItineraryShadow {
     startTime: boolean = false;
     endTime: boolean = false;
     transfers: boolean = false;
-    legs: LegShadow[] = new Array<LegShadow>();
+    legs: LegShadow[];
     index: boolean = false;
+
+    constructor(numberOfLegs: number) {
+        this.legs = []
+        for (let i = 0; i < numberOfLegs; i++) {
+            this.legs.push(new LegShadow());
+        }
+    }
 }

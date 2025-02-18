@@ -1,7 +1,17 @@
 import {Itinerary, Leg} from "@data/type-declarations/planTypes.ts";
 // @ts-ignore
 import deepEqual from "deep-equal";
-import {ItineraryShadow} from "@data/type-declarations/comparisonShadows.ts";
+import {ItineraryShadow, LegShadow} from "@data/type-declarations/comparisonShadows.ts";
+import {
+    currentDefaultItineraryStore,
+    currentDefaultPlanStore,
+    currentItineraryStore,
+    currentPlanStore, defaultShadowItineraryStore, shadowItineraryStore
+} from "sveltestore";
+
+let itinerary: Itinerary = new Itinerary();
+let defaultItinerary: Itinerary = new Itinerary();
+
 
 /**
  * compares the parameters and returns a string array of all attributes that are not equal
@@ -76,24 +86,82 @@ function compareLegs(currentLeg: Leg, currentDefaultLeg: Leg): string[] {
             }
         }
     });
-
+    console.log(mismatchedAttributes);
     return mismatchedAttributes
 }
 
 /**
  *
- * @param falseAttributes
  */
-export function buildShadowObjects(falseAttributes: string[][]) {
-    let shadow: ItineraryShadow = new ItineraryShadow()
-    let excludeKeys = ["legs"]
+export function buildShadowObjects() {
+
+    currentItineraryStore.subscribe((data) => {
+        itinerary = data
+    })
+
+    currentDefaultPlanStore.subscribe((data) => {
+        defaultItinerary = data.itineraries[itinerary.index]
+    })
+
+    let falseAttributes = compareItineraries(itinerary, defaultItinerary)
+
+    let shadow: ItineraryShadow = new ItineraryShadow(itinerary.legs.length)
 
     Object.entries(shadow).forEach(([key]) => {
-        if (!excludeKeys.includes(key as keyof ItineraryShadow)) {
+        if (!(key == "legs") && falseAttributes[0].includes(key)) {
             // @ts-ignore
-            shadow[key as keyof ItineraryShadow] = true;
+            shadow[key as keyof ItineraryShadow] = false;
+        }
+
+        // build leg shadow objects
+        if (key == "legs") {
+            for (let i = 1; i < shadow.legs.length; i++) {
+                shadow.legs[i] = buildLegShadowObject(shadow.legs[i], falseAttributes[i])
+            }
         }
     });
 
-    return shadow
+    shadowItineraryStore.set(shadow)
+}
+
+export function buildDefaultShadowObjects() {
+    currentDefaultItineraryStore.subscribe((data) => {
+        itinerary = data
+    })
+
+    currentPlanStore.subscribe((data) => {
+        defaultItinerary = data.itineraries[itinerary.index]
+    })
+
+    let falseAttributes = compareItineraries(itinerary, defaultItinerary)
+
+    let shadow: ItineraryShadow = new ItineraryShadow(itinerary.legs.length)
+
+    Object.entries(shadow).forEach(([key]) => {
+        if (!(key == "legs") && falseAttributes[0].includes(key)) {
+            // @ts-ignore
+            shadow[key as keyof ItineraryShadow] = false;
+        }
+
+        // build leg shadow objects
+        if (key == "legs") {
+
+            for (let i = 1; i < shadow.legs.length; i++) {
+                shadow.legs[i] = buildLegShadowObject(shadow.legs[i], falseAttributes[i])
+            }
+        }
+    });
+
+    defaultShadowItineraryStore.set(shadow)
+}
+
+function buildLegShadowObject(leg: LegShadow, falseAttributes: string[]) {
+    Object.entries(leg).forEach(([key]) => {
+
+        if (falseAttributes.includes(key)) {
+            leg[key as keyof LegShadow] = false
+        }
+
+    })
+    return leg
 }

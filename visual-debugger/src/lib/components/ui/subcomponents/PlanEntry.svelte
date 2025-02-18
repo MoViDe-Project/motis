@@ -1,9 +1,10 @@
 <script lang="ts">
     import {Button} from "@/components/ui/button";
     import {changeDefaultItineraryInterface, changeItineraryInterface} from "@data/componentInterface.ts";
+    import {buildDefaultShadowObjects, buildShadowObjects} from "@data/compareObjects.ts";
 
     // set to parent to "default" to change the currently displayed default itinerary
-    let {parent = 'current', itinerary} = $props();
+    let {parent = true, itinerary} = $props();
 
 </script>
 
@@ -19,7 +20,20 @@
             Transfers: {itinerary.transfers}
         </div>
         <div>
-            <Button on:click={() => {parent==="current"?changeItineraryInterface(itinerary.index):changeDefaultItineraryInterface(itinerary.index)}}
+            <Button on:click={() => {
+                        if(parent==true){
+                            // change currently displayed plan
+                            changeItineraryInterface(itinerary.index)
+                            buildShadowObjects()
+                        }else{
+                            //change currently displayed default
+                             changeDefaultItineraryInterface(itinerary.index)
+                             buildDefaultShadowObjects()
+                        }
+                    }
+               }
+
+
                     variant="outline"
                     class="{itinerary.cssClass}">
                 Select

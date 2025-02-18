@@ -1,11 +1,14 @@
 <script lang="ts">
     import {Itinerary, Leg} from "@data/type-declarations/planTypes.ts";
-    import {currentItineraryStore} from "sveltestore";
+    import {currentItineraryStore, shadowItineraryStore} from "sveltestore";
     import {Separator} from "@/components/ui/separator";
     import LegEntry from "@/components/ui/subcomponents/LegEntry.svelte";
     import ConnectionDetail from "@/components/ui/ConnectionDetail.svelte";
+    import {ItineraryShadow} from "@data/type-declarations/comparisonShadows.ts";
 
     let itinerary: Itinerary
+
+    let shadowItinerary: ItineraryShadow
 
     let legs: Leg[]
 
@@ -16,6 +19,16 @@
             } else {
                 itinerary = data
                 legs = data.legs
+            }
+        }
+    )
+
+    // let queries be up-to-date with the store
+    shadowItineraryStore.subscribe((data) => {
+            if (data == undefined) {
+                shadowItinerary = new ItineraryShadow(1)
+            } else {
+                shadowItinerary = data
             }
         }
     )
@@ -31,9 +44,9 @@
         </div>
         {#if legs.length > 0}
             
-            {#each legs as leg}
+            {#each legs as leg,index}
                 <Separator class="my-2"/>
-                <LegEntry leg={leg} />
+                <LegEntry leg={leg} shadowLeg={shadowItinerary.legs[index]} />
             {/each}
             <Separator class="my-2"/>
         {/if}
