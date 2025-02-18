@@ -1,6 +1,6 @@
 import {writable} from "svelte/store";
-import {Query} from "./data-processing/type-declarations/queryTypes.ts";
-import {Itinerary, Plan} from "./data-processing/type-declarations/planTypes.ts";
+import {Query} from "@data/type-declarations/queryTypes.ts";
+import {Itinerary, Plan} from "@data/type-declarations/planTypes.ts";
 import {ItineraryShadow} from "@data/type-declarations/comparisonShadows.ts";
 
 /**

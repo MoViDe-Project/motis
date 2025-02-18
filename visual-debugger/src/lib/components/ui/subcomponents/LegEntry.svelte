@@ -34,7 +34,8 @@
                      stroke="#a51d2d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
                      class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
             {/if}
-                Duration: {leg.duration}</span>
+                Duration: {leg.duration}
+            </span>
         </div>
         <div>
             <span>Start time: {leg.startTime}</span>

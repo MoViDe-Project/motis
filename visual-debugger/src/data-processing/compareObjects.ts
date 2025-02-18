@@ -86,7 +86,7 @@ function compareLegs(currentLeg: Leg, currentDefaultLeg: Leg): string[] {
             }
         }
     });
-    console.log(mismatchedAttributes);
+    //console.log(mismatchedAttributes);
     return mismatchedAttributes
 }
 
@@ -114,9 +114,9 @@ export function buildShadowObjects() {
         }
 
         // build leg shadow objects
-        if (key == "legs") {
-            for (let i = 1; i < shadow.legs.length; i++) {
-                shadow.legs[i] = buildLegShadowObject(shadow.legs[i], falseAttributes[i])
+        if (key == "legs"&&falseAttributes[0].includes("legs")) {
+            for (let i = 0; i < shadow.legs.length; i++) {
+                shadow.legs[i] = buildLegShadowObject(shadow.legs[i], falseAttributes[i+1])
             }
         }
     });
@@ -144,10 +144,9 @@ export function buildDefaultShadowObjects() {
         }
 
         // build leg shadow objects
-        if (key == "legs") {
-
-            for (let i = 1; i < shadow.legs.length; i++) {
-                shadow.legs[i] = buildLegShadowObject(shadow.legs[i], falseAttributes[i])
+        if (key == "legs"&&falseAttributes[0].includes("legs")) {
+            for (let i = 0; i < shadow.legs.length; i++) {
+                shadow.legs[i] = buildLegShadowObject(shadow.legs[i], falseAttributes[i+1])
             }
         }
     });
