@@ -18,3 +18,17 @@ export const formatDistanceMeters = (m: number): string => {
 		.trim();
 	return str;
 };
+
+export const formatDurationSecWithSeconds = (t: number): string => {
+    const hours = Math.floor(t / 3600);
+    const minutes = Math.floor((t - hours * 3600) / 60);
+    const seconds = (t - hours * 3600) % 60;
+    const str = [
+        hours !== 0 ? hours + ' h' : '',
+        minutes !== 0 || hours === 0 ? minutes + ' min' : '',
+        seconds !== 0 || hours !== 0 || minutes === 0 ? seconds + ' sec' : ''
+    ]
+        .join(' ')
+        .trim();
+    return str;
+};

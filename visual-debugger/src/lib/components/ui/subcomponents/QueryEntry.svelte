@@ -9,7 +9,7 @@
 
 <div>
     <Button on:click={() => changePlanInterface(query.index)}
-            variant={$activeQueryStore === query.index ? "ghost_active" : "ghost"}>
-        <span class="text-left w-full">{query.from} - {query.to}</span>
+            variant={$activeQueryStore === query.index ? "active" : "ghost_active"}>
+        <span class="text-left w-full"> Index: {query.index} - {query.from} - {query.to}</span>
     </Button>
 </div>

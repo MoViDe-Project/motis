@@ -14,9 +14,12 @@
 
 
 <div class="h-full">
-    <ScrollArea class="rounded-md border h-full">
+    <ScrollArea class="rounded-md border h-full p-2">
         {#each queries as query}
-            <QueryEntry query={query}/>
+            <div class="p-1">
+                <QueryEntry query={query}/>
+            </div>
+
         {/each}
     </ScrollArea>
 </div>

@@ -18,7 +18,7 @@
 
 <ScrollArea class="rounded-md border h-full">
     {#each itineraries as itinerary}
-        <PlanEntry parent="default" itinerary="{itinerary}"/>
+        <PlanEntry parent={false} itinerary="{itinerary}"/>
     {/each}
 </ScrollArea>
 
