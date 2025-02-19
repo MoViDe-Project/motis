@@ -2,6 +2,8 @@
     import {Button} from "@/components/ui/button";
     import {changeDefaultItineraryInterface, changeItineraryInterface} from "@data/componentInterface.ts";
     import {buildDefaultShadowObjects, buildShadowObjects} from "@data/compareObjects.ts";
+    import {formatDurationSec} from "@/formatDuration.js";
+    import {formatStringTime} from "@/toDateTime.js";
 
     // set to parent to "default" to change the currently displayed default itinerary
     let {parent = true, itinerary} = $props();
@@ -11,10 +13,10 @@
 <div class="border-4 rounded-md p-2 my-2 {itinerary.cssClass}">
     <div class="grid grid-cols-2 grid-rows-2 gap-1 w-full">
         <div class="">
-            StartTime: {itinerary.startTime}, EndTime: {itinerary.endTime}
+            Start Time: {formatStringTime(itinerary.startTime)}, End Time: {formatStringTime(itinerary.endTime)}
         </div>
         <div class="">
-            Duration: {itinerary.duration}
+            Duration: {formatDurationSec(itinerary.duration)}
         </div>
         <div class="">
             Transfers: {itinerary.transfers}
