@@ -2,7 +2,7 @@
     import {Button} from "@/components/ui/button";
     import {changeDefaultItineraryInterface, changeItineraryInterface} from "@data/componentInterface.ts";
     import {buildDefaultShadowObjects, buildShadowObjects} from "@data/compareObjects.ts";
-    import {formatDurationSec} from "@/formatDuration.js";
+    import {formatDurationSec, formatDurationSecWithSeconds} from "@/formatDuration.js";
     import {formatStringTime} from "@/toDateTime.js";
 
     // set to parent to "default" to change the currently displayed default itinerary
@@ -16,7 +16,7 @@
             Start Time: {formatStringTime(itinerary.startTime)}, End Time: {formatStringTime(itinerary.endTime)}
         </div>
         <div class="">
-            Duration: {formatDurationSec(itinerary.duration)}
+            Duration: {formatDurationSecWithSeconds(itinerary.duration)}
         </div>
         <div class="">
             Transfers: {itinerary.transfers}
