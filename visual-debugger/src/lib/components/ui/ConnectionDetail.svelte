@@ -59,8 +59,9 @@
     </div>
     {#if stopId}
         <div class="flex items-center">
+            <MatchIndicator attribute="{shadowItinerary}"/>
             <Button
-                    class="text-[length:inherit] leading-none justify-normal text-wrap text-left"
+                    class="text-[length:inherit] justify-normal text-wrap text-left"
                     variant="link"
                     onclick={() => {
 				onClickStop(name, stopId, new Date(timestamp));
@@ -154,7 +155,7 @@
                         {t.tripIntermediateStops(0)}
                     </div>
                 {:else}
-                    <details class="[&_svg]:open:-rotate-180 my-2">
+                    <details class="[&_svg]:open:-rotate-360 my-2">
                         <summary class="py-8 pl-1 md:pl-4 flex items-center text-muted-foreground">
                             <svg
                                     class="rotate-0 transform transition-all duration-300"
@@ -174,7 +175,7 @@
                                 ({formatDurationSec(l.duration)})
 							</span>
                         </summary>
-                        <div class="mb-1 grid gap-y-4 grid-cols-[max-content_max-content_auto] items-center">
+                        <div class="flex mb-1 grid gap-y-4 items-center">
                             {#each l.intermediateStops! as s}
                                 {@render stopTimes(s.arrival!, s.scheduledArrival!, l.realTime, s.name!, s.stopId)}
                             {/each}
