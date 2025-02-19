@@ -1,4 +1,6 @@
 import {
+    activeDefaultItineraryIndexStore,
+    activeItineraryIndexStore,
     activeQueryStore, currentDefaultItineraryStore,
     currentDefaultPlanStore, currentItineraryStore,
     currentPlanStore,
@@ -22,7 +24,7 @@ export function changePlan(queryIndex: number) {
         }
     )
     // load plan of the clicked query into svelte store
-    currentPlanStore.set(plans[queryIndex - 1])
+    currentPlanStore.set(plans[queryIndex])
 
     // get current plan data
     defaultPlanDatasetStore.subscribe((data) => {
@@ -30,7 +32,7 @@ export function changePlan(queryIndex: number) {
         }
     )
     // load plan of the clicked query into svelte store
-    currentDefaultPlanStore.set(defaultPlans[queryIndex - 1])
+    currentDefaultPlanStore.set(defaultPlans[queryIndex])
 
     // set the number of the new active query
      activeQueryStore.set(queryIndex)
@@ -51,7 +53,7 @@ export function changeItinerary(itineraryIndex: number) {
     )
     // load plan of the clicked query into svelte store
     currentItineraryStore.set(itinerary)
-
+    activeItineraryIndexStore.set(itineraryIndex)
 }
 
 /**
@@ -66,4 +68,5 @@ export function changeDefaultItinerary(itineraryIndex: number) {
     )
     // load plan of the clicked query into svelte store
     currentDefaultItineraryStore.set(defaultItinerary)
+    activeDefaultItineraryIndexStore.set(itineraryIndex)
 }

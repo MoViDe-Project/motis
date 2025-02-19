@@ -44,6 +44,16 @@ export const currentDefaultItineraryStore = writable<Itinerary>(new Itinerary())
 export const activeQueryStore = writable<number>(0)
 
 /**
+ * Storage for the number of the active plan
+ */
+export const activeItineraryIndexStore = writable<number>(0)
+
+/**
+ * Storage for the number of the active default plan
+ */
+export const activeDefaultItineraryIndexStore = writable<number>(0)
+
+/**
  * Storage for the shadow objects of the current itinerary
  */
 export const shadowItineraryStore = writable<ItineraryShadow>(new ItineraryShadow(1))
