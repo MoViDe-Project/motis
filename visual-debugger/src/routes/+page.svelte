@@ -81,70 +81,38 @@
         </div>
 
         <!-- Comparisons -->
-        <div class="basis-2/3 grid grid-rows-2 grid-cols-2 gap-2">
+        <div class="basis-2/3 grid grid-rows-12 grid-cols-2 gap-2">
 
             <!-- Itinerary Comparison -->
-            <div class="grid grid-rows-6 rounded-md">
+            <div class="grid grid-rows-11 row-span-10 rounded-md">
                 <div class="p-2 row-span-1 text-center">
                     <h1 class="text-xl">Default Plan overview</h1>
                 </div>
 
-                <div class="p-2 row-span-5">
+                <div class="p-2 row-span-10">
                     <DefaultPlanOverview/>
                 </div>
-
-
             </div>
 
-            <div class="grid grid-rows-6 rounded-md">
+            <div class="grid grid-rows-11 row-span-10 rounded-md">
                 <div class="p-2 row-span-1 text-center">
                     <h1 class="text-xl">Plan overview</h1>
                 </div>
 
-                <div class="p-2 row-span-5 h-full">
-
+                <div class="p-2 row-span-10 h-full">
                     <PlanOverview/>
-
                 </div>
-
             </div>
 
-
-            <!-- Stops Comparison -->
-            <div class="grid grid-rows-6 rounded-md">
-                <div class="p-2 row-span-1 text-center">
-                    <h1 class="text-xl">Default Itinerary overview</h1>
-                </div>
-
-                <div class="p-2 row-span-5">
-                    <ScrollArea class="rounded-md border h-full">
-                        <div class="p-4 border">
-                            <DefaultItineraryOverview/>
-                        </div>
-                    </ScrollArea>
-                </div>
-
+            <!-- Refereal to the itinerary comparison -->
+            <div class="row-span-2 col-span-2 text-center content-center border">
+                <a href="/itinerary-comp" class="hover:underline text-xl" target="_blank" rel="noopener noreferrer">Open new Itinerary comparison tab →</a>
             </div>
-
-            <div class="grid grid-rows-6 rounded-md">
-                <div class="p-2 row-span-1 text-center">
-                    <h1 class="text-xl">Itinerary overview</h1>
-                </div>
-
-                <div class="p-2 row-span-5">
-                    <ScrollArea class="rounded-md border h-full">
-                        <div class="p-4 border">
-                            <ItineraryOverview/>
-                        </div>
-                    </ScrollArea>
-                </div>
-
-            </div>
-
 
         </div>
 
     </div>
+   
     <!-- <div class="h-10 text-center content-center flex-none">
       <h1 class="text-3xl">Footer</h1>
     </div> -->
