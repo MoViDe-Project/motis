@@ -1,5 +1,4 @@
 <script>
-    import {ScrollArea} from "$lib/components/ui/scroll-area/index.js";
     import DefaultItineraryOverview from "@/components/ui/DefaultItineraryOverview.svelte";
     import ItineraryOverview from "@/components/ui/ItineraryOverview.svelte";
     import {currentItineraryStore} from "sveltestore";
