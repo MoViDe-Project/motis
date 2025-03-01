@@ -3,6 +3,28 @@ import {Query} from "@data/type-declarations/queryTypes.ts";
 import {Itinerary, Plan} from "@data/type-declarations/planTypes.ts";
 import {ItineraryShadow} from "@data/type-declarations/comparisonShadows.ts";
 
+
+/**
+ * Creates a Svelte writable store that persists its value to localStorage.
+ * The store will initialize with the value from localStorage if available,
+ * otherwise it will use the provided initial value.
+ * 
+ * @template T - The type of the value to be stored.
+ * @param {string} key - The key under which the value is stored in localStorage.
+ * @param {T} initialValue - The initial value to use if there is no value in localStorage.
+ * @returns {Writable<T>} A Svelte writable store that persists its value to localStorage.
+ * 
+ * @example
+ * ```typescript
+ * import { persistentStore } from './sveltestore';
+ * 
+ * const count = persistentStore<number>('count', 0);
+ * count.subscribe(value => {
+ *   console.log(value); // Logs the current value of the store
+ * });
+ * count.set(1); // Updates the store and persists the value to localStorage
+ * ```
+ */
 function persistentStore<T>(key: string, initialValue: T) {
     let storedValue: T = initialValue;
 
@@ -21,6 +43,12 @@ function persistentStore<T>(key: string, initialValue: T) {
 
     // Subscribe to changes only if in the browser
     if (typeof window !== "undefined") {
+        /*
+            This block subscribes to changes in the Svelte store. Whenever the store's value changes, 
+            the new value is serialized to a JSON string and saved to localStorage 
+            under the specified key. If an error occurs during this process (e.g., if localStorage is full), 
+            it logs the error to the console.
+        */
         store.subscribe((value) => {
             try {
                 localStorage.setItem(key, JSON.stringify(value));
@@ -30,13 +58,20 @@ function persistentStore<T>(key: string, initialValue: T) {
         });
 
         // Listen for updates from other tabs.
+        /*
+            This block sets up an event listener for the storage event on the window object. 
+            The storage event is triggered when localStorage is modified in another tab. 
+            If the event's key matches the specified key and there is a new value, the 
+            store is updated with the new value by parsing the JSON string. 
+            This ensures that changes to the store's value in one tab are reflected in other tabs.
+        */
         window.addEventListener("storage", (event) => {
             if (event.key === key && event.newValue) {
                 store.set(JSON.parse(event.newValue) as T);
             }
         });
     }
-
+    // Return the store
     return store;
 }
 
