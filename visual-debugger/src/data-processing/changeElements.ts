@@ -8,7 +8,7 @@ import {
     planDatasetStore
 } from "sveltestore";
 import {Itinerary, type Plan} from "@data/type-declarations/planTypes.ts";
-import {buildShadowObjects, compareItineraries} from "@data/compareObjects.ts";
+import {buildShadowOfItinerary, compareItineraries} from "@data/compareObjects.ts";
 
 // attributes for switching of current plan
 let plans: Plan[];

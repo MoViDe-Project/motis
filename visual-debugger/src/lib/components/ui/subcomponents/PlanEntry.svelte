@@ -1,7 +1,7 @@
 <script lang="ts">
     import {Button} from "@/components/ui/button";
     import {changeDefaultItineraryInterface, changeItineraryInterface} from "@data/componentInterface.ts";
-    import {buildDefaultShadowObjects, buildShadowObjects} from "@data/compareObjects.ts";
+    import {buildShadowOfDefaultItinerary, buildShadowOfItinerary} from "@data/compareObjects.ts";
     import {formatDurationSec, formatDurationSecWithSeconds} from "@/formatDuration.js";
     import {formatStringTime} from "@/toDateTime.js";
     import {activeItineraryIndexStore, activeDefaultItineraryIndexStore} from "sveltestore";
@@ -39,11 +39,11 @@
                         if(parent===true){
                             // change currently displayed plan
                             changeItineraryInterface(itinerary.index)
-                            buildShadowObjects()
+                            buildShadowOfItinerary()
                         }else{
                             //change currently displayed default
                              changeDefaultItineraryInterface(itinerary.index)
-                             buildDefaultShadowObjects()
+                             buildShadowOfDefaultItinerary()
                         }
                     }
                }

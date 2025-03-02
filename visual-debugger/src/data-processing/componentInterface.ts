@@ -1,6 +1,6 @@
 import {changeDefaultItinerary, changeItinerary, changePlan} from "@data/changeElements.ts";
 import {computePlan, downloadPlans} from "@data/planParsing.ts";
-import {buildShadowObjects} from "@data/compareObjects.ts";
+import {buildShadowOfItinerary} from "@data/compareObjects.ts";
 
 /**
  * This division between the svelte components and the functions they're calling is sole to simplify unit testing said functions

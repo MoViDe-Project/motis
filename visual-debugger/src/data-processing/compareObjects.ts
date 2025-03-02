@@ -91,10 +91,12 @@ function compareLegs(currentLeg: Leg, currentDefaultLeg: Leg): string[] {
 }
 
 /**
- *
+ * Builds the "ShadowObject" that stores the matched or mismatched information for the currently computed itinerary
+ * Essentially copies the itinerary objects and replaces all attributes with a boolean that says whether the given attribute is matched
  */
-export function buildShadowObjects() {
+export function buildShadowOfItinerary() {
 
+    // gets the itineraries from their stores
     currentItineraryStore.subscribe((data) => {
         itinerary = data
     })
@@ -103,11 +105,13 @@ export function buildShadowObjects() {
         defaultItinerary = data.itineraries[itinerary.index]
     })
 
+    // gather the mismatched attributes
     let falseAttributes = compareItineraries(itinerary, defaultItinerary)
 
     let shadow: ItineraryShadow = new ItineraryShadow(itinerary.legs.length)
 
     Object.entries(shadow).forEach(([key]) => {
+        // set all attributes except for "legs" to false if they are marked as mismatched
         if (!(key == "legs") && falseAttributes[0].includes(key)) {
             // @ts-ignore
             shadow[key as keyof ItineraryShadow] = false;
@@ -116,7 +120,7 @@ export function buildShadowObjects() {
         // build leg shadow objects
         if (key == "legs"&&falseAttributes[0].includes("legs")) {
             for (let i = 0; i < shadow.legs.length; i++) {
-                shadow.legs[i] = buildLegShadowObject(shadow.legs[i], falseAttributes[i+1])
+                shadow.legs[i] = setShadowLegAttributes(shadow.legs[i], falseAttributes[i+1])
             }
         }
     });
@@ -124,7 +128,13 @@ export function buildShadowObjects() {
     shadowItineraryStore.set(shadow)
 }
 
-export function buildDefaultShadowObjects() {
+/**
+ * Builds the "ShadowObject" that stores the matched or mismatched information for the currently computed itinerary
+ * Essentially copies the itinerary objects and replaces all attributes with a boolean that says whether the given attribute is matched
+ */
+export function buildShadowOfDefaultItinerary() {
+
+    // gets the itineraries from their stores
     currentDefaultItineraryStore.subscribe((data) => {
         itinerary = data
     })
@@ -138,6 +148,7 @@ export function buildDefaultShadowObjects() {
     let shadow: ItineraryShadow = new ItineraryShadow(itinerary.legs.length)
 
     Object.entries(shadow).forEach(([key]) => {
+        // set all attributes except for "legs" to false if they are marked as mismatched
         if (!(key == "legs") && falseAttributes[0].includes(key)) {
             // @ts-ignore
             shadow[key as keyof ItineraryShadow] = false;
@@ -146,7 +157,7 @@ export function buildDefaultShadowObjects() {
         // build leg shadow objects
         if (key == "legs"&&falseAttributes[0].includes("legs")) {
             for (let i = 0; i < shadow.legs.length; i++) {
-                shadow.legs[i] = buildLegShadowObject(shadow.legs[i], falseAttributes[i+1])
+                shadow.legs[i] = setShadowLegAttributes(shadow.legs[i], falseAttributes[i+1])
             }
         }
     });
@@ -154,7 +165,12 @@ export function buildDefaultShadowObjects() {
     defaultShadowItineraryStore.set(shadow)
 }
 
-function buildLegShadowObject(leg: LegShadow, falseAttributes: string[]) {
+/**
+ * Sets all parameters of leg listed in falseAttributes to false
+ * @param leg leg to set the attributes for
+ * @param falseAttributes attributes that should be set to false
+ */
+function setShadowLegAttributes(leg: LegShadow, falseAttributes: string[]) {
     Object.entries(leg).forEach(([key]) => {
 
         if (falseAttributes.includes(key)) {
