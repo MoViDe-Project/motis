@@ -55,7 +55,7 @@ export function comparePlans() {
             let currentDefaultItinerary = currentDefaultPlan.itineraries[itineraryIndex];
 
             // compare strings of itineraries and set colors(CSS-Classes) accordingly
-            if (compareItineraries(currentItinerary, currentDefaultItinerary)) {
+            if (compareItineraries(currentItinerary, currentDefaultItinerary)[0].length ==0) {
                 // itineraries are equal, mark them as such
                 currentItinerary.cssClass = cssClasses.planEntryValid
                 currentDefaultItinerary.cssClass = cssClasses.planEntryValid
