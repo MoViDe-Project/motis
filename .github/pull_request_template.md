@@ -1,6 +1,6 @@
 <!-- List of changes as bullet points or free form text -->
 
-Closes <!-- ?? -->
+closes <!-- ?? -->
 
 ## Checklist
 
@@ -13,7 +13,7 @@ Closes <!-- ?? -->
 #### Quality assurance:
 - Manual build and unit/component testing:
     - [ ] Linux
-    - [ ] MacOS
+    - [ ] macOS
     - [ ] Windows
 - Manual End-To-End testing:
     - [ ] Upload of query batch
@@ -21,6 +21,7 @@ Closes <!-- ?? -->
     - [ ] Download plan
     - [ ] Upload plan
     - [ ] Compare functionality
+    - [ ] Itinerary Overview 
 
 #### For `staging -> master`
 - [ ] Check for relevant open issues
