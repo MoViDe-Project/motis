@@ -1,21 +1,21 @@
 {
   "queries": [
     {
-      "index": 1,
+      "index": 0,
       "from": "Aachen HBF",
       "to": "Aachen West",
       "class": "Regional",
       "time": "2025-02-20T10:00:00Z"
     },
     {
-      "index": 2,
+      "index": 1,
       "from": "Aachen West",
       "to": "Aachen HBF",
       "class": "Regional",
       "time": "2025-02-20T10:00:00Z"
     },
     {
-      "index": 3,
+      "index": 2,
       "from": "Aachen Bushof",
       "to": "Aachen Schanz",
       "class": "Regional",

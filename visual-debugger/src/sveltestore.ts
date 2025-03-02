@@ -1,6 +1,7 @@
 import {writable} from "svelte/store";
-import {Query} from "./data-processing/type-declarations/queryTypes.ts";
-import {Itinerary, Plan} from "./data-processing/type-declarations/planTypes.ts";
+import {Query} from "@data/type-declarations/queryTypes.ts";
+import {Itinerary, Plan} from "@data/type-declarations/planTypes.ts";
+import {ItineraryShadow} from "@data/type-declarations/comparisonShadows.ts";
 
 /**
  * Storage for interpolated queries
@@ -41,3 +42,23 @@ export const currentDefaultItineraryStore = writable<Itinerary>(new Itinerary())
  * Storage for the number of the active query
  */
 export const activeQueryStore = writable<number>(0)
+
+/**
+ * Storage for the number of the active plan
+ */
+export const activeItineraryIndexStore = writable<number>(0)
+
+/**
+ * Storage for the number of the active default plan
+ */
+export const activeDefaultItineraryIndexStore = writable<number>(0)
+
+/**
+ * Storage for the shadow objects of the current itinerary
+ */
+export const shadowItineraryStore = writable<ItineraryShadow>(new ItineraryShadow(1))
+
+/**
+ * Storage for the shadow objects of the current itinerary
+ */
+export const defaultShadowItineraryStore = writable<ItineraryShadow>(new ItineraryShadow(1))
