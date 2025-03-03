@@ -45,7 +45,7 @@ export async function computePlan() {
 
     // index all itineraries as they are parsed
     for (let plan of plans) {
-        let itineraryIndex =0
+        let itineraryIndex = 0
         for (let itinerary of plan.itineraries) {
             itinerary.index = itineraryIndex
             itineraryIndex++

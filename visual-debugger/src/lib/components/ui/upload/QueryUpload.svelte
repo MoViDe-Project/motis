@@ -1,6 +1,7 @@
 <script lang="ts">
     import {computeQueryAttributes} from "@data/queryBuild.ts";
     import {Input} from "$lib/components/ui/input/index.js";
+    import { resetStores } from "sveltestore";
 
     let file: File | null = null;
 
@@ -9,6 +10,8 @@
      * @param event event that the file was uploaded
      */
     const putFileIntoStorage = (event: Event): void => {
+        resetStores();
+        //window.location.reload();
         const input = event.target as HTMLInputElement;
         file = input.files ? input.files[0] : null;
 
