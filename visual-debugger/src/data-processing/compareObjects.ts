@@ -26,29 +26,31 @@ export function compareItineraries(currentItinerary: Itinerary, currentDefaultIt
     let mismatchedAttributes: string[][] = [[]]
 
     // Compare the values of each key in both objects
-    keys1.every((key) => {
-
+    for (const key of keys1) {
         // recursively check the legs attribute and evaluate it for equality
-        if (key == "legs") {
-            let result = true;
-            for (let i = 0; i < currentItinerary.legs.length; i++) {
-                let falseAttributesOfLeg = compareLegs(currentItinerary.legs[i], currentDefaultItinerary.legs[i])
-                if (falseAttributesOfLeg.length != 0) {
-                    mismatchedAttributes.push(falseAttributesOfLeg)
-                    mismatchedAttributes[0].push("legs")
+        switch (key) {
+            case "legs": {
+                let minLegs = Math.min(currentItinerary.legs.length, currentDefaultItinerary.legs.length);
+                for (let i = 0; i < minLegs; i++) {
+                    let falseAttributesOfLeg = compareLegs(currentItinerary.legs[i], currentDefaultItinerary.legs[i])
+                    if (falseAttributesOfLeg.length != 0) {
+                        mismatchedAttributes.push(falseAttributesOfLeg)
+                        mismatchedAttributes[0].push("legs")
+                    }
                 }
-            }
-            return result;
-        }
+                break;
 
-        // evaluate all attributes except legs for equality
-        let result = true;
-        if (!deepEqual(currentItinerary[key], currentDefaultItinerary[key])) {
-            mismatchedAttributes[0].push(key);
-            result = false;
+            }
+            default: {
+                let result = true;
+                if (!deepEqual(currentItinerary[key], currentDefaultItinerary[key])) {
+                    mismatchedAttributes[0].push(key);
+                    result = false
+                }
+                break;
+            }
         }
-        return result;
-    });
+    }
 
     return mismatchedAttributes;
 }
@@ -108,7 +110,8 @@ export function buildShadowOfItinerary() {
     // gather the mismatched attributes
     let falseAttributes = compareItineraries(itinerary, defaultItinerary)
 
-    let shadow: ItineraryShadow = new ItineraryShadow(itinerary.legs.length)
+    let maxLegs = Math.max(defaultItinerary.legs.length, itinerary.legs.length)
+    let shadow: ItineraryShadow = new ItineraryShadow(maxLegs)
 
     Object.entries(shadow).forEach(([key]) => {
         // set all attributes except for "legs" to false if they are marked as mismatched
@@ -116,11 +119,13 @@ export function buildShadowOfItinerary() {
             // @ts-ignore
             shadow[key as keyof ItineraryShadow] = false;
         }
+        let minLegs = Math.min(itinerary.legs.length, defaultItinerary.legs.length)
+        setShadowLegFalse(shadow.legs.slice(minLegs, maxLegs))
 
         // build leg shadow objects
-        if (key == "legs"&&falseAttributes[0].includes("legs")) {
-            for (let i = 0; i < shadow.legs.length; i++) {
-                shadow.legs[i] = setShadowLegAttributes(shadow.legs[i], falseAttributes[i+1])
+        if (key == "legs" && falseAttributes[0].includes("legs")) {
+            for (let i = 0; i < minLegs; i++) {
+                shadow.legs[i] = setShadowLegAttributes(shadow.legs[i], falseAttributes[i + 1])
             }
         }
     });
@@ -144,8 +149,9 @@ export function buildShadowOfDefaultItinerary() {
     })
 
     let falseAttributes = compareItineraries(itinerary, defaultItinerary)
+    let maxLegs = Math.max(defaultItinerary.legs.length, itinerary.legs.length)
 
-    let shadow: ItineraryShadow = new ItineraryShadow(itinerary.legs.length)
+    let shadow: ItineraryShadow = new ItineraryShadow(maxLegs)
 
     Object.entries(shadow).forEach(([key]) => {
         // set all attributes except for "legs" to false if they are marked as mismatched
@@ -153,11 +159,13 @@ export function buildShadowOfDefaultItinerary() {
             // @ts-ignore
             shadow[key as keyof ItineraryShadow] = false;
         }
+        let minLegs = Math.min(itinerary.legs.length, defaultItinerary.legs.length)
+        setShadowLegFalse(shadow.legs.slice(minLegs, maxLegs))
 
         // build leg shadow objects
-        if (key == "legs"&&falseAttributes[0].includes("legs")) {
-            for (let i = 0; i < shadow.legs.length; i++) {
-                shadow.legs[i] = setShadowLegAttributes(shadow.legs[i], falseAttributes[i+1])
+        if (key == "legs" && falseAttributes[0].includes("legs")) {
+            for (let i = 0; i < minLegs; i++) {
+                shadow.legs[i] = setShadowLegAttributes(shadow.legs[i], falseAttributes[i + 1])
             }
         }
     });
@@ -179,4 +187,17 @@ function setShadowLegAttributes(leg: LegShadow, falseAttributes: string[]) {
 
     })
     return leg
+}
+
+/**
+ * sets all parameters of an array of shadowLegs false to ensure every leg has shadowLegs
+ * @param legs array of shadowLegs that has no matching counterpart of comparison shadow
+ */
+function setShadowLegFalse(legs: LegShadow[]): void {
+    legs.forEach(leg => {
+        Object.keys(leg).forEach((key) => {
+            (leg as any)[key] = false;
+
+        });
+    });
 }
