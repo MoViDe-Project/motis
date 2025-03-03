@@ -16,10 +16,12 @@ export function comparePlans() {
     let plans: Plan[] = [];
     let defaultPlans: Plan[] = [];
 
+    // TEST: Input
     planDatasetStore.subscribe(data => {
         plans = data
     })
 
+    // TEST: Input
     defaultPlanDatasetStore.subscribe(data => {
         defaultPlans = data
     })
@@ -42,6 +44,7 @@ export function comparePlans() {
         }
     }
 
+    // TEST: Mutation of cssClasses
     // iterate over all plans
     for (let planIndex = 0; planIndex < plans.length; planIndex++) {
 
@@ -68,6 +71,7 @@ export function comparePlans() {
 
         }
 
+        // TEST: Output
         // update the current stores to show the matches/mismatches
         currentPlanStore.set(plans[0])
         currentDefaultPlanStore.set(defaultPlans[0])

@@ -18,6 +18,7 @@ let queries: Query[]
  * Interaction function that is accessed by the frontend to get the plan for all queries
  */
 export async function computePlan() {
+    // TEST: Input
     //get read file content from storage
     interpolatedQueryStore.subscribe(file_data => {
         queries = file_data;
@@ -51,6 +52,7 @@ export async function computePlan() {
         }
     }
 
+    // TEST: Output
     // put computed plans into storage and set first plan as active
     planDatasetStore.set(plans)
     currentPlanStore.set(plans[0])
@@ -60,7 +62,7 @@ export async function computePlan() {
  * Calls the MOTIS API for a specific query and returns the plan for it
  * @param query the query to get the plan for
  */
-export async function computePlanForQuery(query: Query) {
+export async function computePlanForQuery(query: Query): Promise<Plan> {
     const response = await axios
         .get(
             //configuration for api call parameters
