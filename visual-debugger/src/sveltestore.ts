@@ -78,27 +78,27 @@ function persistentStore<T>(key: string, initialValue: T) {
 /**
  * Storage for interpolated queries
  */
-export const interpolatedQueryStore = persistentStore<Query[]>("interpolatedQueryStore", []);
+export const interpolatedQueryStore = writable<Query[]>([]);
 
 /**
  * Storage for current displayed plan
  */
-export const currentPlanStore = persistentStore<Plan>("currentPlanStore", new Plan());
+export const currentPlanStore = writable<Plan>(new Plan());
 
 /**
  * Storage for all currently computed plan data
  */
-export const planDatasetStore = persistentStore<Plan[]>("planDatasetStore", []);
+export const planDatasetStore = writable<Plan[]>([]);
 
 /**
  * Storage for the current default plan
  */
-export const currentDefaultPlanStore = persistentStore<Plan>("currentDefaultPlanStore", new Plan());
+export const currentDefaultPlanStore = writable<Plan>(new Plan());
 
 /**
  * Storage for all plans that are part of the default plan set
  */
-export const defaultPlanDatasetStore = persistentStore<Plan[]>("defaultPlanDatasetStore", []);
+export const defaultPlanDatasetStore = writable<Plan[]>([]);
 
 /**
  * Storage for the current itinerary
@@ -113,9 +113,7 @@ export const currentDefaultItineraryStore = persistentStore<Itinerary>("currentD
 /**
  * Storage for the number of the active query
  */
-export const activeQueryStore = persistentStore<number>("activeQueryStore", 0);
-
-export const activeQueryStore = writable<number>(0)
+export const activeQueryStore = writable<number>(0);
 
 /**
  * Storage for the number of the active plan
@@ -130,9 +128,9 @@ export const activeDefaultItineraryIndexStore = writable<number>(0)
 /**
  * Storage for the shadow objects of the current itinerary
  */
-export const shadowItineraryStore = writable<ItineraryShadow>(new ItineraryShadow(1))
+export const shadowItineraryStore = persistentStore<ItineraryShadow>("shadowItineraryStore",new ItineraryShadow(1))
 
 /**
  * Storage for the shadow objects of the current itinerary
  */
-export const defaultShadowItineraryStore = writable<ItineraryShadow>(new ItineraryShadow(1))
+export const defaultShadowItineraryStore = persistentStore<ItineraryShadow>("defaultShadowItineraryStore",new ItineraryShadow(1))
