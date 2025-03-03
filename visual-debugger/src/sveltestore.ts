@@ -76,6 +76,35 @@ function persistentStore<T>(key: string, initialValue: T) {
 }
 
 /**
+ * Resets all stores to their initial values and clears the corresponding localStorage entries.
+ */
+export function resetStores() {
+    // Reset persistent stores
+    currentItineraryStore.set(new Itinerary());
+    currentDefaultItineraryStore.set(new Itinerary());
+    shadowItineraryStore.set(new ItineraryShadow(1));
+    defaultShadowItineraryStore.set(new ItineraryShadow(1));
+
+    // Reset writable stores
+    interpolatedQueryStore.set([]);
+    currentPlanStore.set(new Plan());
+    planDatasetStore.set([]);
+    currentDefaultPlanStore.set(new Plan());
+    defaultPlanDatasetStore.set([]);
+    activeQueryStore.set(0);
+    activeItineraryIndexStore.set(0);
+    activeDefaultItineraryIndexStore.set(0);
+
+    // Optionally, remove the keys from localStorage if needed.
+    if (typeof window !== "undefined" && typeof localStorage !== "undefined") {
+        localStorage.removeItem("currentItineraryStore");
+        localStorage.removeItem("currentDefaultItineraryStore");
+        localStorage.removeItem("shadowItineraryStore");
+        localStorage.removeItem("defaultShadowItineraryStore");
+    }
+}
+
+/**
  * Storage for interpolated queries
  */
 export const interpolatedQueryStore = writable<Query[]>([]);
