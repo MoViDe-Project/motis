@@ -8,7 +8,7 @@
     import Route from '@/components/ui/Route.svelte';
     import {getModeName} from '$lib/getModeName';
     import {t} from '$lib/i18n/translation';
-    import type {ItineraryShadow} from "@data/type-declarations/comparisonShadows.ts";
+    import {type ItineraryShadow, LegShadow} from "@data/type-declarations/comparisonShadows.ts";
     import MatchIndicator from "@/components/ui/subcomponents/MatchIndicator.svelte";
 
     const {
@@ -38,10 +38,11 @@
     scheduledTimestamp: string,
     isRealtime: boolean,
     name: string,
+    shadowAttribute: boolean,
     stopId?: string
         )}
     <div class="flex items-center">
-        <MatchIndicator attribute="{shadowItinerary.startTime}"></MatchIndicator>
+        <MatchIndicator attribute={shadowAttribute}></MatchIndicator>
         <Time
                 variant="schedule"
                 class="font-semibold w-16"
@@ -59,7 +60,7 @@
     </div>
     {#if stopId}
         <div class="flex items-center">
-            <MatchIndicator attribute="{shadowItinerary}"/>
+            <MatchIndicator attribute={shadowAttribute}/>
             <Button
                     class="text-[length:inherit] justify-normal text-wrap text-left"
                     variant="link"
@@ -137,13 +138,14 @@
                         l.scheduledStartTime,
                         l.realTime,
                         l.from.name,
+                        shadowItinerary.legs[i].startTime,
                         l.from.stopId
                     )}
                 </div>
                 <div class="mt-2 flex items-center text-muted-foreground leading-none">
                     <div class="flex items-center">
                         <div class="flex items-center">
-                            <MatchIndicator attribute={shadowLeg.headsign}/>
+                            <MatchIndicator attribute={shadowItinerary.legs[i].headsign}/>
                             <ArrowRight class="stroke-muted-foreground h-4 w-4"/>
                             <span class="ml-1">{l.headsign}</span>
                         </div>
@@ -177,7 +179,7 @@
                         </summary>
                         <div class="flex mb-1 grid gap-y-4 items-center">
                             {#each l.intermediateStops! as s}
-                                {@render stopTimes(s.arrival!, s.scheduledArrival!, l.realTime, s.name!, s.stopId)}
+                                {@render stopTimes(s.arrival!, s.scheduledArrival!, l.realTime, s.name!, shadowItinerary.legs[i].endTime,s.stopId)} //TODO: change shadow to Intermediate stop arrival time boolean
                             {/each}
                         </div>
                     </details>
@@ -190,6 +192,7 @@
                             l.scheduledEndTime!,
                             l.realTime!,
                             l.to.name,
+                            shadowItinerary.legs[i].endTime,
                             l.to.stopId
                             )}
                     </div>
@@ -209,13 +212,14 @@
                         l.scheduledStartTime,
                         l.realTime,
                         l.from.name,
+                        shadowItinerary.legs[i].startTime,
                         l.from.stopId
                     )}
                 </div>
                 {@render streetLeg(l)}
                 {#if !isLast}
                     <div class="grid gap-y-6 grid-cols-[max-content_max-content_auto] items-center pb-4">
-                        {@render stopTimes(l.endTime, l.scheduledEndTime, l.realTime, l.to.name, l.to.stopId)}
+                        {@render stopTimes(l.endTime, l.scheduledEndTime, l.realTime, l.to.name, shadowItinerary.legs[i].endTime, l.to.stopId)}
                     </div>
                 {/if}
             </div>
@@ -234,6 +238,7 @@
                 lastLeg!.scheduledEndTime,
                 lastLeg!.realTime,
                 lastLeg!.to.name,
+                shadowItinerary.legs[shadowItinerary.legs.length - 1].endTime,
                 lastLeg!.to.stopId
                 )}
         </div>

@@ -104,11 +104,18 @@ export function buildShadowOfItinerary() {
     })
 
     currentDefaultPlanStore.subscribe((data) => {
-        defaultItinerary = data.itineraries[itinerary.index]
+        //if current default plan has fewer elements than itinerary.index, build dummy object
+        if(itinerary.index > data.itineraries.length) {
+            defaultItinerary = new Itinerary()
+        }else {
+            defaultItinerary = data.itineraries[itinerary.index]
+        }
     })
+
     let maxLegs = Math.max(defaultItinerary.legs.length, itinerary.legs.length)
     let shadow: ItineraryShadow = new ItineraryShadow(maxLegs)
 
+    //if itinerary has no counterpart, set all leg attributes to false
     if(itinerary.index > defaultItinerary.index) {
         setShadowLegFalse(shadow.legs)
         shadowItineraryStore.set(shadow)
@@ -118,8 +125,6 @@ export function buildShadowOfItinerary() {
     // gather the mismatched attributes
     let falseAttributes = compareItineraries(itinerary, defaultItinerary)
 
-
-
     Object.entries(shadow).forEach(([key]) => {
         // set all attributes except for "legs" to false if they are marked as mismatched
         if (!(key == "legs") && falseAttributes[0].includes(key)) {
@@ -127,7 +132,11 @@ export function buildShadowOfItinerary() {
             shadow[key as keyof ItineraryShadow] = false;
         }
         let minLegs = Math.min(itinerary.legs.length, defaultItinerary.legs.length)
-        setShadowLegFalse(shadow.legs.slice(minLegs, maxLegs))
+
+        // mark all excess legs as mismatched
+        if(minLegs != maxLegs){
+            setShadowLegFalse(shadow.legs.slice(minLegs, maxLegs))
+        }
 
         // build leg shadow objects
         if (key == "legs" && falseAttributes[0].includes("legs")) {
@@ -152,12 +161,20 @@ export function buildShadowOfDefaultItinerary() {
     })
 
     currentPlanStore.subscribe((data) => {
-        itinerary = data.itineraries[itinerary.index]
+        //if current plan has fewer elements than defaultItinerary.index, build dummy object
+        if(defaultItinerary.index>data.itineraries.length) {
+            itinerary = new Itinerary()
+        }
+        else {
+            itinerary = data.itineraries[defaultItinerary.index]
+        }
     })
 
-    let maxLegs = Math.max(defaultItinerary.legs.length, itinerary.legs.length)
 
+    let maxLegs = Math.max(defaultItinerary.legs.length, itinerary.legs.length)
     let shadow: ItineraryShadow = new ItineraryShadow(maxLegs)
+
+    //if defaultItinerary has no counterpart, set all leg attributes to false
     if(defaultItinerary.index > itinerary.index) {
         setShadowLegFalse(shadow.legs)
         defaultShadowItineraryStore.set(shadow)
@@ -174,7 +191,10 @@ export function buildShadowOfDefaultItinerary() {
             shadow[key as keyof ItineraryShadow] = false;
         }
         let minLegs = Math.min(itinerary.legs.length, defaultItinerary.legs.length)
-        setShadowLegFalse(shadow.legs.slice(minLegs, maxLegs))
+        //if leg count is different, set all attributes of excess legs to false
+        if(minLegs != maxLegs) {
+            setShadowLegFalse(shadow.legs.slice(minLegs, maxLegs))
+        }
 
         // build leg shadow objects
         if (key == "legs" && falseAttributes[0].includes("legs")) {
