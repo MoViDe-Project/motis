@@ -2,10 +2,13 @@
     import {Button} from "@/components/ui/button";
     import {changeDefaultItineraryInterface, changeItineraryInterface} from "@data/componentInterface.ts";
     import {buildShadowOfDefaultItinerary, buildShadowOfItinerary} from "@data/compareObjects.ts";
-    import {formatDurationSec, formatDurationSecWithSeconds} from "@/formatDuration.js";
+    import {formatDurationSecWithSeconds} from "@/formatDuration.js";
     import {formatStringTime} from "@/toDateTime.js";
     import {activeItineraryIndexStore, activeDefaultItineraryIndexStore} from "sveltestore";
     import {Separator} from "@/components/ui/separator";
+    import MatchIndicator from "@/components/ui/subcomponents/MatchIndicator.svelte";
+    import {ItineraryAttributesShadow} from "@data/type-declarations/comparisonShadows.ts";
+    import {evalItinerary} from "@data/comparePlans.ts";
 
     // set to parent to "default" to change the currently displayed default itinerary
     let {parent = true, itinerary} = $props();
@@ -17,7 +20,6 @@
     function changeSelectedDefaultPlan() {
         return $activeDefaultItineraryIndexStore === itinerary.index ? "active" : "ghost_border";
     }
-
 </script>
 
 <div class="border-4 rounded-md p-2 my-2 {itinerary.cssClass}">
@@ -25,13 +27,18 @@
         <span class="font-bold">Itinerary Index: {itinerary.index}</span>
         <Separator class="bg-black m-2"></Separator>
         <div class="grid grid-cols-2 grid-rows-2 gap-1 w-full">
-            <div class="">
-                Start Time: {formatStringTime(itinerary.startTime)}, End Time: {formatStringTime(itinerary.endTime)}
+            <div class="flex items-center">
+                <MatchIndicator attribute={evalItinerary(itinerary.index).startTime}/>
+                <span class="">
+                    Start Time: {formatStringTime(itinerary.startTime)}, End Time: {formatStringTime(itinerary.endTime)}
+                </span>
             </div>
             <div class="">
+                <MatchIndicator attribute={evalItinerary(itinerary.index).duration}/>
                 Duration: {formatDurationSecWithSeconds(itinerary.duration)}
             </div>
             <div class="">
+                <MatchIndicator attribute={evalItinerary(itinerary.index).transfers}/>
                 Transfers: {itinerary.transfers}
             </div>
             <div>
@@ -40,10 +47,12 @@
                             // change currently displayed plan
                             changeItineraryInterface(itinerary.index)
                             buildShadowOfItinerary()
+
                         }else{
                             //change currently displayed default
                              changeDefaultItineraryInterface(itinerary.index)
                              buildShadowOfDefaultItinerary()
+
                         }
                     }
                }
@@ -52,7 +61,6 @@
                     Select
                 </Button>
             </div>
-
         </div>
     </div>
 </div>
