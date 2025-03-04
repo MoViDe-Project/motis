@@ -106,12 +106,19 @@ export function buildShadowOfItinerary() {
     currentDefaultPlanStore.subscribe((data) => {
         defaultItinerary = data.itineraries[itinerary.index]
     })
+    let maxLegs = Math.max(defaultItinerary.legs.length, itinerary.legs.length)
+    let shadow: ItineraryShadow = new ItineraryShadow(maxLegs)
+
+    if(itinerary.index > defaultItinerary.index) {
+        setShadowLegFalse(shadow.legs)
+        shadowItineraryStore.set(shadow)
+        return
+    }
 
     // gather the mismatched attributes
     let falseAttributes = compareItineraries(itinerary, defaultItinerary)
 
-    let maxLegs = Math.max(defaultItinerary.legs.length, itinerary.legs.length)
-    let shadow: ItineraryShadow = new ItineraryShadow(maxLegs)
+
 
     Object.entries(shadow).forEach(([key]) => {
         // set all attributes except for "legs" to false if they are marked as mismatched
@@ -141,17 +148,24 @@ export function buildShadowOfDefaultItinerary() {
 
     // gets the itineraries from their stores
     currentDefaultItineraryStore.subscribe((data) => {
-        itinerary = data
+        defaultItinerary = data
     })
 
     currentPlanStore.subscribe((data) => {
-        defaultItinerary = data.itineraries[itinerary.index]
+        itinerary = data.itineraries[itinerary.index]
     })
 
-    let falseAttributes = compareItineraries(itinerary, defaultItinerary)
     let maxLegs = Math.max(defaultItinerary.legs.length, itinerary.legs.length)
 
     let shadow: ItineraryShadow = new ItineraryShadow(maxLegs)
+    if(defaultItinerary.index > itinerary.index) {
+        setShadowLegFalse(shadow.legs)
+        defaultShadowItineraryStore.set(shadow)
+        return
+    }
+
+    let falseAttributes = compareItineraries(itinerary, defaultItinerary)
+
 
     Object.entries(shadow).forEach(([key]) => {
         // set all attributes except for "legs" to false if they are marked as mismatched
