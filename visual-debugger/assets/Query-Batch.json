@@ -20,6 +20,76 @@
       "to": "Euskirchen, Bf",
       "class": "Regional",
       "time": "2025-02-20T10:00:00Z"
+    },
+    {
+      "index": 3,
+      "from": "Aachen Luisenhospital",
+      "to": "Euskirchen, Bf",
+      "class": "Regional",
+      "time": "2025-02-20T10:00:00Z"
+    },
+    {
+      "index": 4,
+      "from": "Aachen HBF",
+      "to": "Aachen West",
+      "class": "Regional",
+      "time": "2025-02-20T10:00:00Z"
+    },
+    {
+      "index": 5,
+      "from": "Aachen West",
+      "to": "Aachen HBF",
+      "class": "Regional",
+      "time": "2025-02-20T10:00:00Z"
+    },
+    {
+      "index": 6,
+      "from": "Aachen Luisenhospital",
+      "to": "Euskirchen, Bf",
+      "class": "Regional",
+      "time": "2025-02-20T10:00:00Z"
+    },
+    {
+      "index": 7,
+      "from": "Aachen HBF",
+      "to": "Aachen West",
+      "class": "Regional",
+      "time": "2025-02-20T10:00:00Z"
+    },
+    {
+      "index": 8,
+      "from": "Aachen West",
+      "to": "Aachen HBF",
+      "class": "Regional",
+      "time": "2025-02-20T10:00:00Z"
+    },
+    {
+      "index": 9,
+      "from": "Aachen Luisenhospital",
+      "to": "Euskirchen, Bf",
+      "class": "Regional",
+      "time": "2025-02-20T10:00:00Z"
+    },
+    {
+      "index": 10,
+      "from": "Aachen HBF",
+      "to": "Aachen West",
+      "class": "Regional",
+      "time": "2025-02-20T10:00:00Z"
+    },
+    {
+      "index": 11,
+      "from": "Aachen West",
+      "to": "Aachen HBF",
+      "class": "Regional",
+      "time": "2025-02-20T10:00:00Z"
+    },
+    {
+      "index": 12,
+      "from": "Aachen Luisenhospital",
+      "to": "Euskirchen, Bf",
+      "class": "Regional",
+      "time": "2025-02-20T10:00:00Z"
     }
   ]
 }
