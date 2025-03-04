@@ -25,9 +25,10 @@ export function comparePlans() {
     defaultPlanDatasetStore.subscribe(data => {
         defaultPlans = data
     })
+    let minLegs=Math.min(plans.length, defaultPlans.length)
 
     //reset css classes
-    for (let i = 0; i < plans.length; i++) {
+    for (let i = 0; i < minLegs; i++) {
         resetCssClassesForPlanEntries(plans[i]);
         resetCssClassesForPlanEntries(defaultPlans[i]);
     }
@@ -37,22 +38,23 @@ export function comparePlans() {
     if (plans.length != defaultPlans.length) {
         if (plans.length >= defaultPlans.length) {
             alert("Error: There are more queries in the batch than in the default plans.")
-            return
+
         } else {
             alert("Error: There are more queries in the default plan than in the batch.")
-            return
+
         }
     }
 
     // TEST: Mutation of cssClasses
     // iterate over all plans
-    for (let planIndex = 0; planIndex < plans.length; planIndex++) {
+    for (let planIndex = 0; planIndex < minLegs; planIndex++) {
 
         let currentPlan: Plan = plans[planIndex];
         let currentDefaultPlan: Plan = defaultPlans[planIndex];
 
+        let minItineraries = Math.min(currentPlan.itineraries.length, currentDefaultPlan.itineraries.length);
         // iterate over all itineraries of a plan
-        for (let itineraryIndex = 0; itineraryIndex < currentPlan.itineraries.length; itineraryIndex++) {
+        for (let itineraryIndex = 0; itineraryIndex < minItineraries; itineraryIndex++) {
 
             let currentItinerary = currentPlan.itineraries[itineraryIndex];
             let currentDefaultItinerary = currentDefaultPlan.itineraries[itineraryIndex];
