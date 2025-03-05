@@ -51,8 +51,18 @@ export function comparePlans() {
         let currentPlan: Plan = plans[planIndex];
         let currentDefaultPlan: Plan = defaultPlans[planIndex];
 
+        // check if a plan has fewer itineraries and set the other ones to missing
+        let numberOfItineraries = Math.min(currentPlan.itineraries.length,currentDefaultPlan.itineraries.length);
+
+        if(numberOfItineraries < currentPlan.itineraries.length) {
+            // current has more itineraries
+            for (let i = numberOfItineraries; i < currentPlan.itineraries.length; i++) {
+                currentPlan.itineraries[i].cssClass = cssClasses.planEntryMissing
+            }
+        }
+
         // iterate over all itineraries of a plan
-        for (let itineraryIndex = 0; itineraryIndex < currentPlan.itineraries.length; itineraryIndex++) {
+        for (let itineraryIndex = 0; itineraryIndex < numberOfItineraries; itineraryIndex++) {
 
             let currentItinerary = currentPlan.itineraries[itineraryIndex];
             let currentDefaultItinerary = currentDefaultPlan.itineraries[itineraryIndex];
