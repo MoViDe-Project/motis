@@ -6,5 +6,7 @@ export enum cssClasses{
 
     planEntryInvalid = 'border-red-600 bg-red-400',
 
-    planEntryDefault = "border-black-500 bg-white-200"
+    planEntryDefault = "border-black-500 bg-white-200",
+
+    planEntryMissing = "border-black-500 bg-yellow-400"
 }
