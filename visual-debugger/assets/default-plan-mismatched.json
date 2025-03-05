@@ -67,7 +67,7 @@
               "scheduledArrival": "2025-02-20T10:07:00Z",
               "vertexType": "TRANSIT"
             },
-            "duration": 300,
+            "duration": 30000,
             "startTime": "2025-02-20T10:02:00Z",
             "endTime": "2025-02-20T10:07:00Z",
             "scheduledStartTime": "2025-02-20T10:02:00Z",
@@ -2951,7 +2951,7 @@
         "duration": 240,
         "startTime": "2025-02-20T10:08:00Z",
         "endTime": "2025-02-20T10:12:00Z",
-        "transfers": 0,
+        "transfers": 1,
         "legs": [
           {
             "mode": "REGIONAL_RAIL",
@@ -2992,6 +2992,105 @@
             "legGeometry": {
               "points": "_|zpg]{sgxrBsN_cBbhAkk@ziB_eFrD{Y~k@wwAfw@_rBjf@knAfqCkqGboEcgIbbDg_GvgD_eFvzBwgD~jCw}CfqCcdCfJwGb[oPfqC_rBvzBwwA~eCg|@vmA{YvlDwj@fqCwGjmDjHz{Crb@~rD~nArwG~~C~xAbt@v`@zYnbAjk@jlGvgDbuBz|@bzBffArkCn}@n|Cz|@rpCn}@fqCrb@fkFffAb[?ve@vGbcKnZbaGwG~lG{OzbHct@~xAgYvzB_b@r~A{YnaD{|@~eCseAjlBsyAbBzm@fw@oPrrG{lCn{FglCn|CwzB~_Fw}CbbDocCzuFgyDreFs{E~_FshGbhA_rBj`CsxDniEcjJbuBwmFvmAwjE~xAseFvmA_eFvmAczGryA{rJnbAkaJ~k@w}Hb[wjEsD?rD?ja@knFzOglCzO__Djf@{bHb[{_GnPg|Eb[czLrDkqGsDcdCsIcdCkf@glHsq@cwF{aA{_GobAwjEgiBo`GooBwjEscBwgDo|CknFgvCosE{iBk{BksAsrBcmAwzBsxDcdHczBcwFsq@_rB_l@srBkk@wzBkf@k{Bsq@opDsDgY{bCcnRvcAnjG",
               "length": 106
+            }
+          },
+          {
+            "mode": "WALK",
+            "from": {
+              "name": "Aachen Hbf",
+              "stopId": "AVVGTFSMastenmitSPNV_000000607470",
+              "lat": 50.743024,
+              "lon": 6.602543,
+              "level": 0,
+              "arrival": "2025-02-20T18:35:00Z",
+              "departure": "2025-02-20T18:35:00Z",
+              "scheduledArrival": "2025-02-20T18:35:00Z",
+              "vertexType": "TRANSIT"
+            },
+            "to": {
+              "name": "Aachen Hbf",
+              "stopId": "AVVGTFSMastenmitSPNV_000000607470",
+              "lat": 50.743024,
+              "lon": 6.602543,
+              "level": 0,
+              "arrival": "2025-02-20T18:37:00Z",
+              "vertexType": "TRANSIT"
+            },
+            "duration": 120,
+            "startTime": "2025-02-20T18:35:00Z",
+            "endTime": "2025-02-20T18:37:00Z",
+            "scheduledStartTime": "1970-01-01T00:00:00Z",
+            "scheduledEndTime": "1970-01-01T00:00:00Z",
+            "realTime": false,
+            "legGeometry": {
+              "points": "",
+              "length": 0
+            }
+          },
+          {
+            "mode": "BUS",
+            "from": {
+              "name": "Aachen Hbf",
+              "stopId": "AVVGTFSMastenmitSPNV_000000607470",
+              "lat": 50.743024,
+              "lon": 6.602543,
+              "level": 0,
+              "departure": "2025-02-20T18:42:00Z",
+              "scheduledDeparture": "2025-02-20T18:42:00Z",
+              "vertexType": "TRANSIT"
+            },
+            "to": {
+              "name": "Euskirchen, Bf",
+              "stopId": "AVVGTFSMastenmitSPNV_000000308390",
+              "lat": 50.657759999999996,
+              "lon": 6.792193,
+              "level": 0,
+              "arrival": "2025-02-20T19:18:00Z",
+              "scheduledArrival": "2025-02-20T19:18:00Z",
+              "vertexType": "TRANSIT"
+            },
+            "duration": 2160,
+            "startTime": "2025-02-20T18:42:00Z",
+            "endTime": "2025-02-20T19:18:00Z",
+            "scheduledStartTime": "2025-02-20T18:42:00Z",
+            "scheduledEndTime": "2025-02-20T19:18:00Z",
+            "realTime": false,
+            "headsign": "Euskirchen, Bf",
+            "agencyName": "Rurtalbahn GmbH",
+            "agencyUrl": "https://www.rurtalbahn.de",
+            "agencyId": "106",
+            "tripId": "20250220_19:42_AVVGTFSMastenmitSPNV_450894220",
+            "routeShortName": "Bus RB28",
+            "source": "AVV_GTFS_Masten_mit_SPNV.zip/stop_times.txt:323944:323947",
+            "intermediateStops": [
+              {
+                "name": "Zülpich, Bahnhof",
+                "stopId": "AVVGTFSMastenmitSPNV_000000648590",
+                "lat": 50.69817400000001,
+                "lon": 6.662475999999999,
+                "level": 0,
+                "arrival": "2025-02-20T18:57:00Z",
+                "departure": "2025-02-20T18:57:00Z",
+                "scheduledArrival": "2025-02-20T18:57:00Z",
+                "scheduledDeparture": "2025-02-20T18:57:00Z",
+                "vertexType": "TRANSIT"
+              },
+              {
+                "name": "Nemmenich",
+                "stopId": "AVVGTFSMastenmitSPNV_000000654290",
+                "lat": 50.688051,
+                "lon": 6.681466,
+                "level": 0,
+                "arrival": "2025-02-20T19:02:00Z",
+                "departure": "2025-02-20T19:02:00Z",
+                "scheduledArrival": "2025-02-20T19:02:00Z",
+                "scheduledDeparture": "2025-02-20T19:02:00Z",
+                "vertexType": "TRANSIT"
+              }
+            ],
+            "legGeometry": {
+              "points": "_uazf]k|z||B_]sl@bQbVvhAkqBblNcgXblNgyXzio@winAfgdAs|pBbj^_{r@vucAkxoBnnOwcZv`O_lYnyj@obgAjoz@k}`Bv{l@oujAngs@wqtA~u^_ts@rpHoaNrcGcoJbzGkfJjjHk|IvpQoyQnbAg|@bpBoyBf_QkgQj_KsyKzqC_kCjuEg~Db}CkjCb_HoxEviHkfEf`IweEndEwfBboEk}AjhDccAreFstAncHsjAz{f@czGb|Fcy@j`Cw`@zvCc`@rkCoi@ryAw`@buBoi@vzBoi@rkC_{@j`C_{@vuBkdAv|F{qCffFg{Cv|F_gEndE_dDvbD{{CzqCwsCbxCwvDfaF{dG~mDgkFzlCccFftDk`H~xF{gMb}HsyPftDclIvgNoy[vcA{`DwcAz`DrvEwrKj}gA{rgCbbN{x[rcGwuL~aYo|p@bmgAcpiCgr@fgCvyTo_h@bxRwgq@br_@sknAfr@glC~nAc`E~nAoiEfi[kbcAnjQ_vm@~cN_jd@zdV{xy@vmPchi@vr_@ccqAn_^{ojAno[ojcAr~d@gc_BrqTc`w@f|c@g}wAbvIolZrIoZ~kEcbNz|^k}lAbyJo_c@zrE{`SnvKsmj@zdQcidAnpDonOn~y@svwEz}Q_xv@~~HocWv_MsdXbsa@ktz@nwHgfP~k@oPv}f@kbcAnmHsrVniE_lYve@c_WR_rB_g@ghTwy@skMgJgY_b^wn`C{kA{lHccKgeq@_kHgbf@ctEg_[cxCsxSojG{hc@wbDwmUswBcdMRwGsDwG?cQsDwG?wGsDoP?kH_DoPsDwG?cQsDwG?wGsDoP?wG_DcQsDwG?wGsDcQ?wGsDoP?kH_DoPsDwG?wGsDcQ?wGsDoP?kHsDwG_DoP?wGsDcQ?wGsDwG?oPsDkH_DoP?wGsDcQ?wGsDwG?cQ_DwGsDoP?wGsDkH?oPsDwG?cQ_DwG?oPsDwGsDkH?oPn{AflC",
+              "length": 177
             }
           }
         ],
