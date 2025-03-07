@@ -91,7 +91,7 @@ export function resetStores() {
     planDatasetStore.set([]);
     currentDefaultPlanStore.set(new Plan());
     defaultPlanDatasetStore.set([]);
-    activeQueryStore.set(0);
+    activeQueryIndexStore.set(0);
     activeItineraryIndexStore.set(0);
     activeDefaultItineraryIndexStore.set(0);
 
@@ -140,9 +140,9 @@ export const currentItineraryStore = persistentStore<Itinerary>("currentItinerar
 export const currentDefaultItineraryStore = persistentStore<Itinerary>("currentDefaultItineraryStore", new Itinerary());
 
 /**
- * Storage for the number of the active query
+ * Storage for the Index of the active query
  */
-export const activeQueryStore = writable<number>(0);
+export const activeQueryIndexStore = writable<number>(0);
 
 /**
  * Storage for the number of the active plan

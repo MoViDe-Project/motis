@@ -1,6 +1,5 @@
 <script lang="ts">
     import {Button} from "$lib/components/ui/button/index.js";
-    import {ScrollArea} from "$lib/components/ui/scroll-area/index.js";
     import QueryBatchOverview from "@/components/ui/QueryBatchOverview.svelte";
     import QueryUpload from "@/components/ui/upload/QueryUpload.svelte";
     import DefaultPlanUpload from "@/components/ui/upload/DefaultPlanUpload.svelte";
@@ -14,18 +13,21 @@
     import Moon from "lucide-svelte/icons/moon";
     import {toggleMode} from "mode-watcher";
     import {computePlansInterface, downloadPlanInterface} from "@data/componentInterface.ts";
-    import ItineraryOverview from "@/components/ui/ItineraryOverview.svelte";
-    import DefaultItineraryOverview from "@/components/ui/DefaultItineraryOverview.svelte";
-    import { Checkbox } from "$lib/components/ui/checkbox";
-    import { Label } from "$lib/components/ui/label";
+    import {Checkbox} from "$lib/components/ui/checkbox";
+    import {Label} from "$lib/components/ui/label";
 
-    import { writable } from 'svelte/store';
+    import {writable} from 'svelte/store';
+    import {
+        filterOutMatched,
+        filterOutMismatched, resetItinerariesWithFilterMatched,
+        resetItinerariesWithFilterMismatched,
+    } from "@data/filterItineraries.ts";
     // call the plan compare logic upon both upload of default plan and plan computation
     $: if (!($defaultPlanDatasetStore.length == 0) && !($planDatasetStore.length == 0)) {
         comparePlans()
     }
-    let filterMatched = writable(false);
-    let filterUnmatched = writable(false);
+    const showMatched = writable(true);
+    const showMismatched = writable(true);
 
 </script>
 <!-- Container and flex logic from https://tailwindcss.com/docs/container -->
@@ -54,8 +56,33 @@
             </div>
         </div>
 
+        <!-- Filters -->
+        <div class="h-32 text-center content-center flex-none ">
+            <div class="flex items-center space-x-2">
+                <Checkbox id="filter2" bind:checked={$showMismatched}
+                          on:click={() => $showMismatched?filterOutMatched():resetItinerariesWithFilterMismatched($showMatched)}/>
+                <Label
+                        for="filter2"
+                        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                    Show Matched
+                </Label>
+            </div>
+            <div class="flex items-center space-x-2">
+                <Checkbox id="filter" bind:checked={$showMatched}
+                          on:click={() => $showMatched?filterOutMismatched():resetItinerariesWithFilterMatched($showMismatched)}/>
+
+                <Label
+                        for="filter"
+                        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                >
+                    Show Mismatched
+                </Label>
+            </div>
+        </div>
+
         <!-- File handling -->
-        <div class="basis-3/4 flex flex-row flex-row-reverse gap-2 items-center">
+        <div class="basis-3/4 flex flex-row-reverse gap-2 items-center">
             <div class="flex flex-col gap-2">
                 <Button on:click={computePlansInterface}>Compute routing</Button>
                 <Button variant="default" on:click={downloadPlanInterface}>Download data as default plan</Button>
@@ -70,9 +97,8 @@
     </div>
 
     <!-- Main content -->
-    <div class="h-5/6 w-full my-4 flex flex-row flex">
+    <div class="h-5/6 w-full my-4 flex">
 
-        <!-- Query Batches: Grid layout scheint die einzige Option zu sein shadcn scroll box zu kontrollieren -->
         <div class="basis-1/3 grid grid-rows-12">
 
             <div class="p-2 row-span-1 content-end">
@@ -92,14 +118,7 @@
             <div class="grid grid-rows-11 row-span-10 rounded-md">
                 <div class="p-2 row-span-1 text-center">
                     <h1 class="text-xl">Default Plan overview</h1>
-                    
-                
-                      
-
                 </div>
-
-
-
                 <div class="p-2 row-span-10">
                     <DefaultPlanOverview/>
                 </div>
@@ -115,34 +134,14 @@
                 </div>
             </div>
 
-            <!-- Refereal to the itinerary comparison -->
+            <!-- Referral to the itinerary comparison -->
             <div class="row-span-2 col-span-2 text-center content-center border">
-                <a href="/itinerary-comp" class="hover:underline text-xl" target="_blank" rel="noopener noreferrer">Open new Itinerary comparison tab →</a>
+                <a href="/itinerary-comp" class="hover:underline text-xl" target="_blank" rel="noopener noreferrer">Open
+                    new Itinerary comparison tab →</a>
             </div>
 
         </div>
 
-    </div>
-   
-    <div class="h-32 text-center content-center flex-none">
-        <div class="flex items-center space-x-2">
-            <Checkbox id="filter" bind:checked={$filterMatched} /> <!-- So könnt mans z.B. verwenden :) -->
-            <Label
-              for="filter"
-              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Filter matched
-            </Label>
-        </div>
-        <div class="flex items-center space-x-2">
-            <Checkbox id="filter" bind:checked={$filterUnmatched} /> <!-- So könnt mans z.B. verwenden :) -->
-            <Label
-              for="filter"
-              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
-              Filter unmatched
-            </Label>
-        </div>
     </div>
 
 </div>

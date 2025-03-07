@@ -2,7 +2,7 @@
     import {Button} from "@/components/ui/button";
     import {changeDefaultItineraryInterface, changeItineraryInterface} from "@data/componentInterface.ts";
     import {buildShadowOfDefaultItinerary, buildShadowOfItinerary} from "@data/compareObjects.ts";
-    import {formatDurationSec, formatDurationSecWithSeconds} from "@/formatDuration.js";
+    import {formatDurationSecWithSeconds} from "@/formatDuration.js";
     import {formatStringTime} from "@/toDateTime.js";
     import {activeItineraryIndexStore, activeDefaultItineraryIndexStore} from "sveltestore";
     import {Separator} from "@/components/ui/separator";

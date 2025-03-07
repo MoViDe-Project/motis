@@ -1,14 +1,13 @@
 import {
     activeDefaultItineraryIndexStore,
     activeItineraryIndexStore,
-    activeQueryStore, currentDefaultItineraryStore,
+    activeQueryIndexStore, currentDefaultItineraryStore,
     currentDefaultPlanStore, currentItineraryStore,
     currentPlanStore,
     defaultPlanDatasetStore,
     planDatasetStore
 } from "sveltestore";
 import {Itinerary, type Plan} from "@data/type-declarations/planTypes.ts";
-import {buildShadowOfItinerary, compareItineraries} from "@data/compareObjects.ts";
 
 // attributes for switching of current plan
 let plans: Plan[];
@@ -42,7 +41,7 @@ export function changePlan(queryIndex: number) {
 
     // TEST: Output
     // set the number of the new active query
-     activeQueryStore.set(queryIndex)
+     activeQueryIndexStore.set(queryIndex)
 }
 
 let itinerary: Itinerary;
