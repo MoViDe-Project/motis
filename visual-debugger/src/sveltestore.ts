@@ -163,3 +163,7 @@ export const shadowItineraryStore = persistentStore<ItineraryShadow>("shadowItin
  * Storage for the shadow objects of the current itinerary
  */
 export const defaultShadowItineraryStore = persistentStore<ItineraryShadow>("defaultShadowItineraryStore",new ItineraryShadow(1))
+
+export const showMatchedStore = writable(true);
+
+export const showMismatchedStore = writable(true);

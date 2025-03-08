@@ -5,7 +5,7 @@ import {
     currentDefaultPlanStore, currentItineraryStore,
     currentPlanStore,
     defaultPlanDatasetStore,
-    planDatasetStore
+    planDatasetStore, showMatchedStore, showMismatchedStore
 } from "sveltestore";
 import {Itinerary, type Plan} from "@data/type-declarations/planTypes.ts";
 
@@ -80,4 +80,9 @@ export function changeDefaultItinerary(itineraryIndex: number) {
     // load plan of the clicked query into svelte store
     currentDefaultItineraryStore.set(defaultItinerary)
     activeDefaultItineraryIndexStore.set(itineraryIndex)
+}
+
+export function resetFilters() {
+    showMatchedStore.set(true)
+    showMismatchedStore.set(true)
 }

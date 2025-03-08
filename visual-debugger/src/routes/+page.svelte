@@ -5,7 +5,7 @@
     import DefaultPlanUpload from "@/components/ui/upload/DefaultPlanUpload.svelte";
     import PlanOverview from "@/components/ui/PlanOverview.svelte";
     import DefaultPlanOverview from "@/components/ui/DefaultPlanOverview.svelte";
-    import {defaultPlanDatasetStore, planDatasetStore} from "sveltestore";
+    import {defaultPlanDatasetStore, planDatasetStore, showMatchedStore,showMismatchedStore} from "sveltestore";
     import {comparePlans} from "@data/comparePlans.ts";
 
     // Dark Mode imports
@@ -26,8 +26,7 @@
     $: if (!($defaultPlanDatasetStore.length == 0) && !($planDatasetStore.length == 0)) {
         comparePlans()
     }
-    const showMatched = writable(true);
-    const showMismatched = writable(true);
+
 
 </script>
 <!-- Container and flex logic from https://tailwindcss.com/docs/container -->
@@ -56,7 +55,6 @@
             </div>
         </div>
 
-       
 
         <!-- File handling -->
         <div class="basis-3/4 flex flex-row-reverse gap-2 items-center">
@@ -90,34 +88,34 @@
 
         <!-- Comparisons -->
         <div class="basis-2/3 grid grid-rows-12 grid-cols-2 gap-2">
-            
+
             <!-- Filtering options -->
             <div class="col-span-2 row-span-1 flex justify-center items-center">
                 <div class="flex flex-row items-center gap-4">
                     Filter options:
                     <div class="flex items-center">
-                        <Checkbox id="filter2" bind:checked={$showMismatched}
-                            on:click={() => $showMismatched ? filterOutMatched() : resetItinerariesWithFilterMismatched($showMatched)} />
+                        <Checkbox id="filter2" bind:checked={$showMismatchedStore}
+                                  on:click={() => $showMismatchedStore ? filterOutMatched() : resetItinerariesWithFilterMismatched($showMatchedStore)}/>
                         <Label
-                            for="filter2"
-                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ml-2"
+                                for="filter2"
+                                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ml-2"
                         >
                             Show Matched
                         </Label>
                     </div>
                     <div class="flex items-center">
-                        <Checkbox id="filter" bind:checked={$showMatched}
-                            on:click={() => $showMatched ? filterOutMismatched() : resetItinerariesWithFilterMatched($showMismatched)} />
+                        <Checkbox id="filter" bind:checked={$showMatchedStore}
+                                  on:click={() => $showMatchedStore ? filterOutMismatched() : resetItinerariesWithFilterMatched($showMismatchedStore)}/>
                         <Label
-                            for="filter"
-                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ml-2"
+                                for="filter"
+                                class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ml-2"
                         >
                             Show Mismatched
                         </Label>
                     </div>
                 </div>
             </div>
-          
+
 
             <!-- Itinerary Comparison -->
             <div class="grid grid-rows-12 row-span-10 rounded-md">
