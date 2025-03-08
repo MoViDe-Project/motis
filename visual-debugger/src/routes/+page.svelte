@@ -40,7 +40,7 @@
         <div class="basis-1/4 flex flex-row flex-none h-full">
 
             <div class="basis-1/2 flex-none h-full p-7">
-                <img src="/logo_clipped.svg" alt="MoViDe logo" class="w-full h-full hover:animate-rotate-fast">
+                <img src="/logo_clipped.svg" alt="MoViDe logo" class="w-full h-full">
             </div>
 
             <div class="basis-1/2 content-center">
@@ -56,30 +56,7 @@
             </div>
         </div>
 
-        <!-- Filters -->
-        <div class="h-32 text-center content-center flex-none ">
-            <div class="flex items-center space-x-2">
-                <Checkbox id="filter2" bind:checked={$showMismatched}
-                          on:click={() => $showMismatched?filterOutMatched():resetItinerariesWithFilterMismatched($showMatched)}/>
-                <Label
-                        for="filter2"
-                        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                    Show Matched
-                </Label>
-            </div>
-            <div class="flex items-center space-x-2">
-                <Checkbox id="filter" bind:checked={$showMatched}
-                          on:click={() => $showMatched?filterOutMismatched():resetItinerariesWithFilterMatched($showMismatched)}/>
-
-                <Label
-                        for="filter"
-                        class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                >
-                    Show Mismatched
-                </Label>
-            </div>
-        </div>
+       
 
         <!-- File handling -->
         <div class="basis-3/4 flex flex-row-reverse gap-2 items-center">
@@ -113,29 +90,57 @@
 
         <!-- Comparisons -->
         <div class="basis-2/3 grid grid-rows-12 grid-cols-2 gap-2">
+            
+            <!-- Filtering options -->
+            <div class="col-span-2 row-span-1 flex justify-center items-center">
+                <div class="flex flex-row items-center gap-4">
+                    Filter options:
+                    <div class="flex items-center">
+                        <Checkbox id="filter2" bind:checked={$showMismatched}
+                            on:click={() => $showMismatched ? filterOutMatched() : resetItinerariesWithFilterMismatched($showMatched)} />
+                        <Label
+                            for="filter2"
+                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ml-2"
+                        >
+                            Show Matched
+                        </Label>
+                    </div>
+                    <div class="flex items-center">
+                        <Checkbox id="filter" bind:checked={$showMatched}
+                            on:click={() => $showMatched ? filterOutMismatched() : resetItinerariesWithFilterMatched($showMismatched)} />
+                        <Label
+                            for="filter"
+                            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ml-2"
+                        >
+                            Show Mismatched
+                        </Label>
+                    </div>
+                </div>
+            </div>
+          
 
             <!-- Itinerary Comparison -->
-            <div class="grid grid-rows-11 row-span-10 rounded-md">
+            <div class="grid grid-rows-12 row-span-10 rounded-md">
                 <div class="p-2 row-span-1 text-center">
                     <h1 class="text-xl">Default Plan overview</h1>
                 </div>
-                <div class="p-2 row-span-10">
+                <div class="p-2 row-span-11">
                     <DefaultPlanOverview/>
                 </div>
             </div>
 
-            <div class="grid grid-rows-11 row-span-10 rounded-md">
+            <div class="grid grid-rows-12 row-span-10 rounded-md">
                 <div class="p-2 row-span-1 text-center">
                     <h1 class="text-xl">Plan overview</h1>
                 </div>
 
-                <div class="p-2 row-span-10 h-full">
+                <div class="p-2 row-span-11 h-full">
                     <PlanOverview/>
                 </div>
             </div>
 
             <!-- Referral to the itinerary comparison -->
-            <div class="row-span-2 col-span-2 text-center content-center border">
+            <div class="row-span-1 col-span-2 text-center content-center border">
                 <a href="/itinerary-comp" class="hover:underline text-xl" target="_blank" rel="noopener noreferrer">Open
                     new Itinerary comparison tab →</a>
             </div>
