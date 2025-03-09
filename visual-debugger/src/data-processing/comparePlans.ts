@@ -60,6 +60,7 @@ export function comparePlans() {
             for (let i = numberOfItineraries; i < currentPlan.itineraries.length; i++) {
                 currentPlan.itineraries[i].cssClass = cssClasses.planEntryMissing
             }
+
         }else if(numberOfItineraries < currentDefaultPlan.itineraries.length){
             for (let i = numberOfItineraries; i < currentDefaultPlan.itineraries.length; i++) {
                 currentDefaultPlan.itineraries[i].cssClass = cssClasses.planEntryMissing
