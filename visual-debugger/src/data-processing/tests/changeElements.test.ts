@@ -1,6 +1,6 @@
 import { changeDefaultItinerary, changeItinerary, changePlan } from "@data/changeElements"
 import { Itinerary, Plan } from "@data/type-declarations/planTypes"
-import { activeQueryStore, currentDefaultItineraryStore, currentDefaultPlanStore, currentItineraryStore, currentPlanStore, defaultPlanDatasetStore, planDatasetStore } from "sveltestore"
+import { activeQueryIndexStore, currentDefaultItineraryStore, currentDefaultPlanStore, currentItineraryStore, currentPlanStore, defaultPlanDatasetStore, planDatasetStore } from "sveltestore"
 import { test, expect, vi, describe } from "vitest"
 
 // TODO: Mock stores properly(?)
@@ -28,7 +28,7 @@ describe('changePlan', () => {
         let currentDefaultPlan: Plan | undefined = undefined
 
         // Access stores
-        activeQueryStore.subscribe((d) => {activeQuery = d})
+        activeQueryIndexStore.subscribe((d) => {activeQuery = d})
         currentPlanStore.subscribe((d) => {currentPlan = d})
         currentDefaultPlanStore.subscribe((d) => {currentDefaultPlan = d})
 
