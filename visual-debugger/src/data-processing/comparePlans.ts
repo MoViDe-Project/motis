@@ -1,4 +1,4 @@
-import {type Plan} from "./type-declarations/planTypes.ts";
+import {Itinerary, type Plan} from "./type-declarations/planTypes.ts";
 import {
     currentDefaultPlanStore,
     currentPlanStore,
@@ -8,6 +8,7 @@ import {
 import {cssClasses} from "./styling/cssClasses.ts";
 import {resetCssClassesForPlanEntries} from "./planParsing.ts";
 import {compareItineraries} from "@data/compareObjects.ts";
+import {ItineraryAttributesShadow} from "@data/type-declarations/comparisonShadows.ts";
 
 /**
  * Compares the computed results of the queries with the uploaded default plan and sets colors of the matches/mismatches
@@ -74,7 +75,7 @@ export function comparePlans() {
             let currentDefaultItinerary = currentDefaultPlan.itineraries[itineraryIndex];
 
             // compare strings of itineraries and set colors(CSS-Classes) accordingly
-            if (compareItineraries(currentItinerary, currentDefaultItinerary)[0].length ==0) {
+            if (compareItineraries(currentItinerary, currentDefaultItinerary)[0].length == 0) {
                 // itineraries are equal, mark them as such
                 currentItinerary.cssClass = cssClasses.planEntryValid
                 currentDefaultItinerary.cssClass = cssClasses.planEntryValid
@@ -92,4 +93,33 @@ export function comparePlans() {
         currentPlanStore.set(plans[0])
         currentDefaultPlanStore.set(defaultPlans[0])
     }
+}
+
+export function evalItinerary(index: number): ItineraryAttributesShadow {
+    let itinerary = new Itinerary();
+    let defaultItinerary = new Itinerary();
+
+    currentPlanStore.subscribe(data => {
+        itinerary = data.itineraries[index]
+    })
+
+    currentDefaultPlanStore.subscribe(data => {
+        defaultItinerary = data.itineraries[index]
+    })
+
+    let shadow = new ItineraryAttributesShadow()
+
+    if (itinerary === undefined || defaultItinerary === undefined) {
+        shadow.startTime = false
+        shadow.endTime = false
+        shadow.duration = false
+        shadow.transfers = false
+    } else {
+        shadow.startTime = itinerary.startTime == defaultItinerary.startTime
+        shadow.endTime = itinerary.endTime == defaultItinerary.endTime
+        shadow.duration = itinerary.duration == defaultItinerary.duration
+        shadow.transfers = itinerary.transfers == defaultItinerary.transfers
+    }
+
+    return shadow
 }

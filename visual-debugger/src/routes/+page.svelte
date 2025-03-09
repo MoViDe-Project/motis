@@ -89,7 +89,7 @@
                     <h1 class="text-xl">Default Plan overview</h1>
                 </div>
 
-                <div class="p-2 row-span-10">
+                <div class="p-1 row-span-11">
                     <DefaultPlanOverview/>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                     <h1 class="text-xl">Plan overview</h1>
                 </div>
 
-                <div class="p-2 row-span-10 h-full">
+                <div class="p-1 row-span-11 h-full">
                     <PlanOverview/>
                 </div>
             </div>
