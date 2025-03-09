@@ -123,6 +123,7 @@
                     <h1 class="text-xl">Default Plan overview</h1>
                 </div>
                 <div class="p-2 row-span-11">
+
                     <DefaultPlanOverview/>
                 </div>
             </div>
@@ -133,6 +134,7 @@
                 </div>
 
                 <div class="p-2 row-span-11 h-full">
+
                     <PlanOverview/>
                 </div>
             </div>

@@ -105,3 +105,10 @@ export class ItineraryShadow {
         }
     }
 }
+
+export class ItineraryAttributesShadow{
+    duration: boolean = true;
+    startTime: boolean = true;
+    endTime: boolean = true;
+    transfers: boolean = true;
+}
