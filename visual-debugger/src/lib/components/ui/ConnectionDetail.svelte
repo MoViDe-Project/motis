@@ -179,7 +179,7 @@
                         </summary>
                         <div class="flex mb-1 grid gap-y-4 items-center">
                             {#each l.intermediateStops! as s}
-                                {@render stopTimes(s.arrival!, s.scheduledArrival!, l.realTime, s.name!, shadowItinerary.legs[i].endTime,s.stopId)} //TODO: change shadow to Intermediate stop arrival time boolean
+                                {@render stopTimes(s.arrival!, s.scheduledArrival!, l.realTime, s.name!, shadowItinerary.legs[i].intermediateStops,s.stopId)}
                             {/each}
                         </div>
                     </details>
