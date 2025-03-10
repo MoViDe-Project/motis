@@ -1,6 +1,6 @@
 import axios from "axios";
 import {interpolatedQueryStore} from "../sveltestore";
-import type {Location, Batch} from "./type-declarations/queryTypes.ts"
+import {type Location, type Batch, Query} from "./type-declarations/queryTypes.ts"
 
 /**
  * Base URL of the MOTIS API
@@ -14,24 +14,15 @@ const motisApiUrlBase = 'http://localhost:8080/api/v1/'
  */
 export async function buildQueryDataset(query_batch: string) {
     // parse query batch file into readable queries
-    let batch: Batch;
+    let queries: Query[] = new Array<Query>();
 
     try {
-        batch = JSON.parse(query_batch)
+        queries = JSON.parse(query_batch)
     } catch (e) {
         alert("An error occurred while parsing query data.");
         throw new Error(`Failed to parse query data: ${e}`)
     }
 
-    let queries = batch.queries
-
-    // call MOTIS API to search for the nearest stations to the start and end point of the query
-    for (const queryTrip of queries) {
-        queryTrip.fromStopID = await computeLocationId(queryTrip.from)
-        queryTrip.toStopID = await computeLocationId(queryTrip.to)
-    }
-
-    // update store with the new queries
     interpolatedQueryStore.set(queries);
 }
 

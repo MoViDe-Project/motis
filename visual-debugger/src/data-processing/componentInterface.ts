@@ -1,6 +1,5 @@
 import {changeDefaultItinerary, changeItinerary, changePlan} from "@data/changeElements.ts";
 import {computePlan, downloadPlans} from "@data/planParsing.ts";
-import {buildShadowOfItinerary} from "@data/compareObjects.ts";
 
 /**
  * This division between the svelte components and the functions they're calling is sole to simplify unit testing said functions
@@ -15,7 +14,7 @@ export function changePlanInterface(planIndex: number) {
 }
 
 /**
- * Interface method for getting the routing results for the queries from motis
+ * Interface method for getting the routing results for the queries from MOTIS
  */
 export function computePlansInterface() {
     computePlan()
@@ -37,7 +36,7 @@ export function changeItineraryInterface(itineraryIndex: number) {
 }
 
 /**
- * Interface method for getting the routing results for the queries from motis
+ * Interface method for getting the routing results for the queries from MOTIS
  */
 export function changeDefaultItineraryInterface(itineraryIndex: number) {
     changeDefaultItinerary(itineraryIndex)
