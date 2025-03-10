@@ -1,11 +1,5 @@
-import axios from "axios";
-import {interpolatedQueryStore} from "../sveltestore";
-import {type Location, type Batch, Query} from "./type-declarations/queryTypes.ts"
-
-/**
- * Base URL of the MOTIS API
- */
-const motisApiUrlBase = 'http://localhost:8080/api/v1/'
+import {interpolatedQueryStore} from "sveltestore";
+import {Query} from "./type-declarations/queryTypes.ts"
 
 /**
  * Reads the query batch and generates the nearest stops for the read query trips
@@ -24,31 +18,4 @@ export async function buildQueryDataset(query_batch: string) {
     }
 
     interpolatedQueryStore.set(queries);
-}
-
-/**
- * Calls the MOTIS API to find the most similar stop to the input and returns the id of it
- * @param locationName location the most similar stop id is needed of
- * @return the id of the most similar location to the input string
- */
-async function computeLocationId(locationName: string) {
-    const response = await axios
-        .get(
-            //configuration for api call parameters
-            `${motisApiUrlBase}geocode/?text=${locationName}`
-        )
-    let possible_stops_and_locations: Location[] = response.data
-    return possible_stops_and_locations[0].id
-}
-
-/**
- * Interaction method for printing queries to page
- */
-export function computeQueryAttributes(queryString:string) {
-    try {
-        // find next stops for all queries
-        buildQueryDataset(queryString)
-    } catch (err) {
-        console.log(err)
-    }
 }

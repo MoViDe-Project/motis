@@ -1,5 +1,6 @@
 import {changeDefaultItinerary, changeItinerary, changePlan} from "@data/changeElements.ts";
 import {computePlan, downloadPlans} from "@data/planParsing.ts";
+import {buildQueryDataset} from "@data/queryBuild.ts";
 
 /**
  * This division between the svelte components and the functions they're calling is sole to simplify unit testing said functions
@@ -40,4 +41,12 @@ export function changeItineraryInterface(itineraryIndex: number) {
  */
 export function changeDefaultItineraryInterface(itineraryIndex: number) {
     changeDefaultItinerary(itineraryIndex)
+}
+
+/**
+ * Interface method for parsing the Queries and placing them in the {@link interpolatedQueryStore}
+ * @param queryContents the content of the uploaded query file
+ */
+export function parseQueryInterface(queryContents: string) {
+    buildQueryDataset(queryContents)
 }

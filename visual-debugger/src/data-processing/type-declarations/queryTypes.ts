@@ -39,6 +39,7 @@ export class Stop {
     latitude: number = 0;
     longitude: number = 0;
     level: number = 0;
+    stopId: string = "";
 }
 
 /**
