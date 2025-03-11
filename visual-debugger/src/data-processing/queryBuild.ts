@@ -1,4 +1,6 @@
+import axios from "axios";
 import {interpolatedQueryStore} from "sveltestore";
+import {motis_URL} from "@config";
 import {Query} from "./type-declarations/queryTypes.ts"
 
 /**
