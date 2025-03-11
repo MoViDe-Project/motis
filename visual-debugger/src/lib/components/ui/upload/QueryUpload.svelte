@@ -1,7 +1,7 @@
 <script lang="ts">
-    import {computeQueryAttributes} from "@data/queryBuild.ts";
     import {Input} from "$lib/components/ui/input/index.js";
     import { resetStores } from "sveltestore";
+    import {parseQueryInterface} from "@data/componentInterface.ts";
 
     let file: File | null = null;
 
@@ -17,7 +17,7 @@
 
         // put content of read file as string into storage
         file?.text().then((file_content_string) => {
-                computeQueryAttributes(file_content_string);
+                parseQueryInterface(file_content_string);
             }
         )
     };

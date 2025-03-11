@@ -1,4 +1,4 @@
-import {writable} from "svelte/store";
+import {type Writable, writable} from "svelte/store";
 import {Query} from "@data/type-declarations/queryTypes.ts";
 import {Itinerary, Plan} from "@data/type-declarations/planTypes.ts";
 import {ItineraryShadow} from "@data/type-declarations/comparisonShadows.ts";
@@ -25,7 +25,7 @@ import {ItineraryShadow} from "@data/type-declarations/comparisonShadows.ts";
  * count.set(1); // Updates the store and persists the value to localStorage
  * ```
  */
-function persistentStore<T>(key: string, initialValue: T) {
+function persistentStore<T>(key: string, initialValue: T): Writable<T> {
     let storedValue: T = initialValue;
 
     // Check if we're running in the browser

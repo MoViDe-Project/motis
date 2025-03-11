@@ -1,5 +1,5 @@
 import { vi , expect, test, describe } from 'vitest'
-import { buildQueryDataset, computeQueryAttributes } from "@data/queryBuild";
+import { buildQueryDataset} from "@data/queryBuild";
 import axios from 'axios';
 import { interpolatedQueryStore } from 'sveltestore';
 import { Batch, Query } from '@data/type-declarations/queryTypes';
@@ -18,7 +18,7 @@ describe('buildQueryDataset', () => {
         // TODO: Function call
         // buildQueryDataset(test)
         
-        // TODO: Include Assertions about chnanged queries
+        // TODO: Include Assertions about changed queries
     })
 
     test('Empty query batch', () => {
