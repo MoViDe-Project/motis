@@ -79,7 +79,7 @@ export class LegShadow {
      * and the Place where the leg ends. For non-transit legs, null.
      *
      */
-    intermediateStops?: boolean = true
+    intermediateStops: boolean = true
     legGeometry: boolean = true
     /**
      * A series of turn by turn instructions
