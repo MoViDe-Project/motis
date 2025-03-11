@@ -1,4 +1,4 @@
-import {changeDefaultItinerary, changeItinerary, changePlan} from "@data/changeElements.ts";
+import {changeDefaultItinerary, changeItinerary, changePlan, resetFilters} from "@data/changeElements.ts";
 import {computePlan, downloadPlans} from "@data/planParsing.ts";
 import {buildQueryDataset} from "@data/queryBuild.ts";
 
@@ -12,6 +12,7 @@ import {buildQueryDataset} from "@data/queryBuild.ts";
  */
 export function changePlanInterface(planIndex: number) {
     changePlan(planIndex)
+    resetFilters()
 }
 
 /**

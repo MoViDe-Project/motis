@@ -2,7 +2,7 @@
     import {Button} from "@/components/ui/button";
     import type {Query} from "@data/type-declarations/queryTypes.ts";
     import {changePlanInterface} from "@data/componentInterface.ts";
-    import {activeQueryStore} from "sveltestore";
+    import {activeQueryIndexStore} from "sveltestore";
 
     export let query: Query
 </script>
