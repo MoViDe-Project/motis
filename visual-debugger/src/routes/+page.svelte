@@ -30,19 +30,20 @@
 
 </script>
 <!-- Container and flex logic from https://tailwindcss.com/docs/container -->
-<div class="h-screen w-screen my-4 flex flex-col flex-none">
+<div class="h-screen w-screen my-4 flex flex-col">
 
     <!-- Header -->
-    <div class="h-1/6 w-full flex flex-row gap-2 px-4">
+    <div class="md:h-1/6 w-full flex flex-col md:flex-row gap-2 px-4">
 
         <!-- Logo & Dark Mode -->
-        <div class="basis-1/4 flex flex-row flex-none h-full">
+        <div class="basis-full md:basis-1/2 flex flex-row md:place-content-start justify-center">
 
-            <div class="basis-1/2 flex-none h-full p-7">
-                <img src="/logo_clipped.svg" alt="MoViDe logo" class="w-full h-full">
+            <div class="h-32 md:h-full p-4 content-start">
+                <img src="/logo_clipped.svg" alt="MoViDe logo" class="h-full">
             </div>
-
-            <div class="basis-1/2 content-center">
+            
+            <div class="content-center">
+                
                 <Button on:click={toggleMode} variant="outline" size="icon">
                     <Sun
                             class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
@@ -57,7 +58,7 @@
 
 
         <!-- File handling -->
-        <div class="basis-3/4 flex flex-row-reverse gap-2 items-center">
+        <div class="basis-full md:basis-1/2 flex flex-row flex-row-reverse gap-2 items-center md:place-content-end justify-center">
             <div class="flex flex-col gap-2">
                 <Button on:click={computePlansInterface}>Compute routing</Button>
                 <Button variant="default" on:click={downloadPlanInterface}>Download data as default plan</Button>
@@ -72,9 +73,10 @@
     </div>
 
     <!-- Main content -->
-    <div class="h-5/6 w-full my-4 flex">
+    <div class="h-5/6 w-full my-2 md:flex md:flex-row">
 
-        <div class="basis-1/3 grid grid-rows-12">
+        <!-- Query Batches: Grid layout scheint die einzige Option zu sein shadcn scroll box zu kontrollieren -->
+        <div class="basis-full md:basis-1/3 grid grid-rows-12">
 
             <div class="p-2 row-span-1 content-end">
                 <h1 class="text-xl">Query Batch Overview</h1>
@@ -87,12 +89,12 @@
         </div>
 
         <!-- Comparisons -->
-        <div class="basis-2/3 grid grid-rows-12 grid-cols-2 gap-2">
+        <div class="basis-full h-5/6 md:h-full md:basis-2/3 grid grid-rows-12 grid-cols-2">
 
             <!-- Filtering options -->
             <div class="col-span-2 row-span-1 flex justify-center items-center">
                 <div class="flex flex-row items-center gap-4">
-                    Filter options:
+                    Plan Filter options:
                     <div class="flex items-center">
                         <Checkbox id="filter2" bind:checked={$showMismatchedStore}
                                   on:click={() => $showMismatchedStore ? filterOutMatched() : resetItinerariesWithFilterMismatched($showMatchedStore)}/>

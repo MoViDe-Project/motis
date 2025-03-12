@@ -1,4 +1,4 @@
-import {interpolatedQueryStore, planDatasetStore, currentPlanStore} from "sveltestore";
+import {currentPlanStore, interpolatedQueryStore, planDatasetStore} from "sveltestore";
 import type {Query} from "./type-declarations/queryTypes.ts";
 import type {Plan} from "./type-declarations/planTypes.ts"
 import axios from "axios";
@@ -66,10 +66,9 @@ export async function computePlanForQuery(query: Query): Promise<Plan> {
     const response = await axios
         .get(
             //configuration for api call parameters
-            `${motisApiUrlBase}plan/?fromPlace=${query.fromStopID}&toPlace=${query.toStopID}&time=${query.time}`
+            `${motisApiUrlBase}plan/?fromPlace=${query.from.stopId}&toPlace=${query.to.stopId}&time=${query.time}`
         )
-    let plan: Plan = response.data
-    return plan
+    return response.data
 }
 
 /**

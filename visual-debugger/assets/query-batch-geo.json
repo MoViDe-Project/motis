@@ -1,0 +1,56 @@
+[
+  {
+    "index": 0,
+    "from": {
+      "name": "Aachen HBF",
+      "latitude": 50.76769,
+      "longitude": 6.091071,
+      "level": 1,
+      "stopId" : "AVVGTFSMastenmitSPNV_000000100870"
+    },
+    "to": {
+      "name": "Aachen West",
+      "latitude": 50.7807171,
+      "longitude": 6.0696064,
+      "level": 0,
+      "stopId" : "AVVGTFSMastenmitSPNV_000000108670"
+    },
+    "time": "2025-02-20T10:00:00Z"
+  },
+  {
+    "index": 1,
+    "from": {
+      "name": "Aachen West",
+      "latitude": 50.7807171,
+      "longitude": 6.0696064,
+      "level": 0,
+      "stopId" : "AVVGTFSMastenmitSPNV_000000108670"
+    },
+    "to": {
+      "name": "Aachen HBF",
+      "latitude": 50.7677663,
+      "longitude": 6.0913818,
+      "level": 1,
+      "stopId" : "AVVGTFSMastenmitSPNV_000000100870"
+    },
+    "time": "2025-02-20T10:00:00Z"
+  },
+  {
+    "index": 2,
+    "from": {
+      "name": "Aachen Luisenhospital",
+      "latitude": 50.7676431,
+      "longitude": 6.076747,
+      "level": 0,
+      "stopId" : "AVVGTFSMastenmitSPNV_000000104501"
+    },
+    "to": {
+      "name": "Euskirchen, Bf",
+      "latitude": 50.6580814,
+      "longitude": 6.7914171,
+      "level": 0,
+      "stopId" : "AVVGTFSMastenmitSPNV_000000308390"
+    },
+    "time": "2025-02-20T10:00:00Z"
+  }
+]

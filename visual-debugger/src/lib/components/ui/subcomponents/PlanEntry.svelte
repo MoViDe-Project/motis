@@ -26,7 +26,7 @@
     <div class="m-1">
         <span class="font-bold">Itinerary Index: {itinerary.index}</span>
         <Separator class="bg-black m-2"></Separator>
-        <div class="grid grid-cols-6 grid-rows-2 gap-1 w-full">
+        <div class="grid grid-cols-6 grid-rows-2 gap-1 w-full text-sm lg:text-base">
             <div class="col-span-2 grid grid-cols-7 content-center">
                 <div class="col-span-1 content-center">
                     <MatchIndicator attribute={evalItinerary(itinerary.index).startTime}/>

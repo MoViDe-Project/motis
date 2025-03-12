@@ -29,12 +29,17 @@ export class Area {
  */
 export class Query {
     index: number = 0;
-    from: string = "";
-    fromStopID: string = "";
-    to: string = "";
-    toStopID: string = "";
-    class: string = "";
+    from: Stop = new Stop();
+    to: Stop = new Stop();
     time: string = "";
+}
+
+export class Stop {
+    name: string = "";
+    latitude: number = 0;
+    longitude: number = 0;
+    level: number = 0;
+    stopId: string = "";
 }
 
 /**
