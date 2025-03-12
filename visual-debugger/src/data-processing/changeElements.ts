@@ -28,7 +28,7 @@ export function changePlan(queryIndex: number) {
         }
     )
 
-    if (plans = []) {
+    if (plans.length == 0) {
       throw new Error("Plan store is empty")
     }
 
@@ -43,7 +43,7 @@ export function changePlan(queryIndex: number) {
         }
     )
 
-    if (plans = []) {
+    if (defaultPlans.length == 0) {
       throw new Error("Default plan store is empty")
     }
 
