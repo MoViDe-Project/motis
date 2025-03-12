@@ -3,7 +3,7 @@ import type {Query} from "./type-declarations/queryTypes.ts";
 import {type Plan} from "./type-declarations/planTypes.ts"
 import axios from "axios";
 import {cssClasses} from "./styling/cssClasses.ts";
-import {MoViDe_config} from "@/config.json"
+import {MoViDe_config} from "@/movide-config.json"
 
 /**
  * data of the interpolated queries

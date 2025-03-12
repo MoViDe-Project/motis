@@ -16,7 +16,7 @@ const config = {
 			"@/*":"./src/lib/*",
 			"sveltestore":"./src/sveltestore.ts",
 			"@data":"./src/data-processing/*",
-			"@config":"$lib/config.json"
+			"@config":"$lib/movide-config.json"
 		}
 	}
 };

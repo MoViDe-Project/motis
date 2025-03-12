@@ -275,7 +275,3 @@ export type Rental = {
     propulsionType?: RentalPropulsionType;
     returnConstraint?: RentalReturnConstraint;
 };
-
-export class Config{
-    motisURL: string = ""
-}
