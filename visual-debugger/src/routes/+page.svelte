@@ -5,7 +5,7 @@
     import DefaultPlanUpload from "@/components/ui/upload/DefaultPlanUpload.svelte";
     import PlanOverview from "@/components/ui/plan-overviews/PlanOverview.svelte";
     import DefaultPlanOverview from "@/components/ui/plan-overviews/DefaultPlanOverview.svelte";
-    import {defaultPlanDatasetStore, planDatasetStore, showMatchedStore, showMismatchedStore} from "sveltestore";
+    import {defaultPlanDatasetStore, planDatasetStore, showMatchedStore, showMismatchedStore, numberOfFailedItinerariesStore, currentDefaultPlanStore} from "sveltestore";
     import {comparePlans} from "@data/comparePlans.ts";
 
     // Dark Mode imports
@@ -66,7 +66,6 @@
                 <QueryUpload/>
                 <DefaultPlanUpload/>
             </div>
-
         </div>
 
     </div>
@@ -90,7 +89,7 @@
         <div class="basis-full h-5/6 md:h-full md:basis-2/3 grid grid-rows-12 grid-cols-2">
 
             <!-- Filtering options -->
-            <div class="col-span-2 row-span-1 flex justify-center items-center">
+            <div class="col-span-2 flex justify-center">
                 <div class="flex flex-row items-center gap-4">
                     Plan Filter options:
                     <div class="flex items-center">
@@ -115,11 +114,13 @@
                     </div>
                 </div>
             </div>
-
+            <div class="col-span-2 flex justify-center">
+                <span>Results for selected plan: {$numberOfFailedItinerariesStore} failed out of {$currentDefaultPlanStore.itineraries.length}</span>
+            </div>
 
             <!-- Itinerary Comparison -->
             <div class="grid grid-rows-12 row-span-10 rounded-md">
-                <div class="p-2 row-span-1 text-center">
+                <div class="p-2 text-center">
                     <h1 class="text-xl">Default Plan overview</h1>
                 </div>
                 <div class="p-2 row-span-11">

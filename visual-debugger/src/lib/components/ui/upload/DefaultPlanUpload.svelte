@@ -2,6 +2,7 @@
     import {currentDefaultPlanStore, defaultPlanDatasetStore} from "sveltestore";
     import type {Plan} from "@data/type-declarations/planTypes.ts";
     import {Input} from "$lib/components/ui/input/index.js";
+    import {Label} from "@/components/ui/label";
 
     let file: File | null = null;
 
@@ -24,6 +25,7 @@
     };
 </script>
 
-<div>
+<div class="flex items-center gap-2">
+    <Label class="whitespace-nowrap" htmlFor="email">Upload default plan</Label>
     <Input id="q-upload" type="file" on:change={putFileIntoStorage}/>
 </div>

@@ -1,8 +1,8 @@
-import {Itinerary, type Plan} from "./type-declarations/planTypes.ts";
+import {Itinerary, Plan} from "./type-declarations/planTypes.ts";
 import {
     currentDefaultPlanStore,
     currentPlanStore,
-    defaultPlanDatasetStore,
+    defaultPlanDatasetStore, numberOfFailedItinerariesStore,
     planDatasetStore
 } from "sveltestore";
 import {itineraryStates} from "./styling/cssClasses.ts";
@@ -26,7 +26,7 @@ export function comparePlans() {
     defaultPlanDatasetStore.subscribe(data => {
         defaultPlans = data
     })
-    let minLegs=Math.min(plans.length, defaultPlans.length)
+    let minLegs = Math.min(plans.length, defaultPlans.length)
 
     //reset css classes
     for (let i = 0; i < minLegs; i++) {
@@ -54,15 +54,15 @@ export function comparePlans() {
         let currentDefaultPlan: Plan = defaultPlans[planIndex];
 
         // check if a plan has fewer itineraries and set the other ones to missing
-        let numberOfItineraries = Math.min(currentPlan.itineraries.length,currentDefaultPlan.itineraries.length);
+        let numberOfItineraries = Math.min(currentPlan.itineraries.length, currentDefaultPlan.itineraries.length);
 
-        if(numberOfItineraries < currentPlan.itineraries.length) {
+        if (numberOfItineraries < currentPlan.itineraries.length) {
             // current has more itineraries
             for (let i = numberOfItineraries; i < currentPlan.itineraries.length; i++) {
                 currentPlan.itineraries[i].cssClass = itineraryStates.planEntryMissing
             }
 
-        }else if(numberOfItineraries < currentDefaultPlan.itineraries.length){
+        } else if (numberOfItineraries < currentDefaultPlan.itineraries.length) {
             for (let i = numberOfItineraries; i < currentDefaultPlan.itineraries.length; i++) {
                 currentDefaultPlan.itineraries[i].cssClass = itineraryStates.planEntryMissing
             }
@@ -92,6 +92,7 @@ export function comparePlans() {
         // update the current stores to show the matches/mismatches
         currentPlanStore.set(plans[0])
         currentDefaultPlanStore.set(defaultPlans[0])
+        countFailedItineraries()
     }
 }
 
@@ -122,4 +123,20 @@ export function evalItinerary(index: number): ItineraryAttributesShadow {
     }
 
     return shadow
+}
+
+export function countFailedItineraries() {
+
+    let failedItineraries = 0
+    let plan: Plan = new Plan()
+
+    currentDefaultPlanStore.subscribe(data => {
+        plan = data
+    })
+
+    plan.itineraries.forEach((itinerary) => {
+        if (itinerary.cssClass == itineraryStates.planEntryInvalid || itinerary.cssClass == itineraryStates.planEntryMissing) failedItineraries += 1
+    })
+
+    numberOfFailedItinerariesStore.set(failedItineraries)
 }

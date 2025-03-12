@@ -8,6 +8,7 @@ import {
     planDatasetStore, showMatchedStore, showMismatchedStore
 } from "sveltestore";
 import {Itinerary, type Plan} from "@data/type-declarations/planTypes.ts";
+import {countFailedItineraries} from "@data/comparePlans.ts";
 
 // attributes for switching of current plan
 let plans: Plan[];
@@ -54,6 +55,7 @@ export function changePlan(queryIndex: number) {
     // TEST: Output
     // set the number of the new active query
      activeQueryIndexStore.set(queryIndex)
+    countFailedItineraries()
 }
 
 let itinerary: Itinerary;

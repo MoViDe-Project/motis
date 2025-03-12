@@ -167,3 +167,5 @@ export const defaultShadowItineraryStore = persistentStore<ItineraryShadow>("def
 export const showMatchedStore = writable(true);
 
 export const showMismatchedStore = writable(true);
+
+export const numberOfFailedItinerariesStore = writable(0);

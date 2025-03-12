@@ -2,6 +2,7 @@
     import {Input} from "$lib/components/ui/input/index.js";
     import { resetStores } from "sveltestore";
     import {parseQueryInterface} from "@data/componentInterface.ts";
+    import {Label} from "@/components/ui/label";
 
     let file: File | null = null;
 
@@ -23,6 +24,7 @@
     };
 </script>
 
-<div>
+<div class="flex items-center gap-2">
+    <Label class="whitespace-nowrap" htmlFor="q-upload">Upload query batch</Label>
     <Input id="q-upload" type="file" on:change={putFileIntoStorage}/>
 </div>
