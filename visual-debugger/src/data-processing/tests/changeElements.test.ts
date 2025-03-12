@@ -19,7 +19,7 @@ describe('changePlan', () => {
     // URGENT TODO: Something is wrong with the construction of objects of type Plan
     test('Happy path', () => {
         // Init inputs
-        const index: number = 1
+        const index: number = 0
         planDatasetStore.set([inputPlan]);
         defaultPlanDatasetStore.set([defaultPlan])
 
@@ -37,7 +37,7 @@ describe('changePlan', () => {
         changePlan(index)
 
         // Assertions
-        expect(activeQuery).toBe(1)
+        expect(activeQuery).toBe(0)
         expect(currentPlan).toBe(inputPlan)
         expect(currentDefaultPlan).toBe(defaultPlan)
     })
