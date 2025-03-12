@@ -96,6 +96,10 @@ export function comparePlans() {
     }
 }
 
+/**
+ * Takes the itinerary of the current plan at the given index and returns a ItineraryAttributesShadow object that matches the attribute states of the itineraries
+ * @param index Index of the itinerary to evaluate
+ */
 export function evalItinerary(index: number): ItineraryAttributesShadow {
     let itinerary = new Itinerary();
     let defaultItinerary = new Itinerary();
@@ -125,6 +129,9 @@ export function evalItinerary(index: number): ItineraryAttributesShadow {
     return shadow
 }
 
+/**
+ * goes over the default plan store and returns the number of mismatched or missing queries
+ */
 export function countFailedItineraries() {
 
     let failedItineraries = 0

@@ -27,7 +27,6 @@ export function computePlansInterface() {
  */
 export function downloadPlanInterface() {
     downloadPlans()
-
 }
 
 /**

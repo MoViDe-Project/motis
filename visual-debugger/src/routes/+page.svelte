@@ -115,7 +115,7 @@
                 </div>
             </div>
             <div class="col-span-2 flex justify-center">
-                <span>Results for selected plan: {$numberOfFailedItinerariesStore} failed out of {$currentDefaultPlanStore.itineraries.length}</span>
+                <span>Results for selected plan: {$numberOfFailedItinerariesStore} failed out of {$currentDefaultPlanStore.itineraries.length} default itineraries</span>
             </div>
 
             <!-- Itinerary Comparison -->

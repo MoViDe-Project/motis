@@ -164,8 +164,17 @@ export const shadowItineraryStore = persistentStore<ItineraryShadow>("shadowItin
  */
 export const defaultShadowItineraryStore = persistentStore<ItineraryShadow>("defaultShadowItineraryStore",new ItineraryShadow(1))
 
+/**
+ * Storage for the status of the matched filter checkbox
+ */
 export const showMatchedStore = writable(true);
 
+/**
+ * Storage for the status of the mismatched filter checkbox
+ */
 export const showMismatchedStore = writable(true);
 
+/**
+ * Storage for the number of mismatched or missing queries from the current default plan
+ */
 export const numberOfFailedItinerariesStore = writable(0);

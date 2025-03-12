@@ -5,9 +5,6 @@ import axios from "axios";
 import {itineraryStates} from "./styling/cssClasses.ts";
 import {MoViDe_config} from "@/movide-config.json"
 
-/**
- * data of the interpolated queries
- */
 let queries: Query[]
 
 /**

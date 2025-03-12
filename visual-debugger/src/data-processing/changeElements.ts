@@ -103,6 +103,9 @@ export function changeDefaultItinerary(itineraryIndex: number) {
     activeDefaultItineraryIndexStore.set(itineraryIndex)
 }
 
+/**
+ * Resets the state of the filter checkboxes to true
+ */
 export function resetFilters() {
     showMatchedStore.set(true)
     showMismatchedStore.set(true)
