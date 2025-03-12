@@ -42,25 +42,22 @@ describe('changePlan', () => {
         expect(currentDefaultPlan).toBe(defaultPlan)
     })
 
-    /* TODO: All tests below fail, but errors are correctly thrown
-     * This is very much unexpected behaviour
-     */
     test('Index out of bounds', () => {
-        expect(changePlan(-1)).toThrowError()
+        expect(() => changePlan(-1)).toThrowError("Index out of bounds")
     })
 
     test('planDatesetStore is empty', () => {
         planDatasetStore.set([]);
         defaultPlanDatasetStore.set([defaultPlan])
 
-        expect(changePlan(1)).toThrowError()
+        expect(() => changePlan(1)).toThrowError("Plan store is empty")
     })
 
     test('defaultPlanDatasetStore is empty', () => {
         planDatasetStore.set([inputPlan]);
         defaultPlanDatasetStore.set([])
 
-        expect(changePlan(1)).toThrowError()
+        expect(() => changePlan(1)).toThrowError("Default plan store is empty")
     })
 })
 
@@ -75,9 +72,8 @@ describe('changeItinerary', () => {
         expect(currentItinerary).toBe(inputItinerary)
     })
 
-    // TODO: This test fails, but the error is correctly thrown
     test('Index out of bounds', () => {
-        expect(changeItinerary(-1)).toThrowError()
+        expect(() => changeItinerary(-1)).toThrowError("Index out of bounds")
     })
 })
 
@@ -92,8 +88,7 @@ describe('changeDefaultItinerary', () => {
         expect(currentDefaultItinerary).toBe(defaultItinerary)
     })
 
-    // TODO: This test fails, but the error is correctly thrown
     test('Index out of bounds', () => {
-        expect(changeDefaultItinerary(-1)).toThrowError()
+        expect(() => changeDefaultItinerary(-1)).toThrowError("Index out of bounds")
     })
 })
