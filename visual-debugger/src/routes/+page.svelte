@@ -3,9 +3,9 @@
     import QueryBatchOverview from "@/components/ui/QueryBatchOverview.svelte";
     import QueryUpload from "@/components/ui/upload/QueryUpload.svelte";
     import DefaultPlanUpload from "@/components/ui/upload/DefaultPlanUpload.svelte";
-    import PlanOverview from "@/components/ui/PlanOverview.svelte";
-    import DefaultPlanOverview from "@/components/ui/DefaultPlanOverview.svelte";
-    import {defaultPlanDatasetStore, planDatasetStore, showMatchedStore,showMismatchedStore} from "sveltestore";
+    import PlanOverview from "@/components/ui/plan-overviews/PlanOverview.svelte";
+    import DefaultPlanOverview from "@/components/ui/plan-overviews/DefaultPlanOverview.svelte";
+    import {defaultPlanDatasetStore, planDatasetStore, showMatchedStore, showMismatchedStore} from "sveltestore";
     import {comparePlans} from "@data/comparePlans.ts";
 
     // Dark Mode imports
@@ -16,7 +16,6 @@
     import {Checkbox} from "$lib/components/ui/checkbox";
     import {Label} from "$lib/components/ui/label";
 
-    import {writable} from 'svelte/store';
     import {
         filterOutMatched,
         filterOutMismatched, resetItinerariesWithFilterMatched,
@@ -41,9 +40,9 @@
             <div class="h-32 md:h-full p-4 content-start">
                 <img src="/logo_clipped.svg" alt="MoViDe logo" class="h-full">
             </div>
-            
+
             <div class="content-center">
-                
+
                 <Button on:click={toggleMode} variant="outline" size="icon">
                     <Sun
                             class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
@@ -58,7 +57,7 @@
 
 
         <!-- File handling -->
-        <div class="basis-full md:basis-1/2 flex flex-row flex-row-reverse gap-2 items-center md:place-content-end justify-center">
+        <div class="basis-full md:basis-1/2 flex flex-row-reverse gap-2 items-center md:place-content-end justify-center">
             <div class="flex flex-col gap-2">
                 <Button on:click={computePlansInterface}>Compute routing</Button>
                 <Button variant="default" on:click={downloadPlanInterface}>Download data as default plan</Button>
@@ -75,7 +74,6 @@
     <!-- Main content -->
     <div class="h-5/6 w-full my-2 md:flex md:flex-row">
 
-        <!-- Query Batches: Grid layout scheint die einzige Option zu sein shadcn scroll box zu kontrollieren -->
         <div class="basis-full md:basis-1/3 grid grid-rows-12">
 
             <div class="p-2 row-span-1 content-end">
@@ -136,7 +134,6 @@
                 </div>
 
                 <div class="p-2 row-span-11 h-full">
-
                     <PlanOverview/>
                 </div>
             </div>

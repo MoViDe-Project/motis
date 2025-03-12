@@ -1,6 +1,6 @@
 import {changeDefaultItinerary, changeItinerary, changePlan, resetFilters} from "@data/changeElements.ts";
 import {computePlan, downloadPlans} from "@data/planParsing.ts";
-import {buildQueryDataset} from "@data/queryBuild.ts";
+import {buildQueryDataset} from "@data/queryParsing.ts";
 
 /**
  * This division between the svelte components and the functions they're calling is sole to simplify unit testing said functions

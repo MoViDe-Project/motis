@@ -1,5 +1,5 @@
 import { vi , expect, test, describe } from 'vitest'
-import { buildQueryDataset} from "@data/queryBuild";
+import { buildQueryDataset} from "@data/queryParsing.ts";
 import axios from 'axios';
 import { interpolatedQueryStore } from 'sveltestore';
 import { Query } from '@data/type-declarations/queryTypes';

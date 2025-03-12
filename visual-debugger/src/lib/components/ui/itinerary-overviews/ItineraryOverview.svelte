@@ -1,7 +1,7 @@
 <script lang="ts">
     import {Itinerary} from "@data/type-declarations/planTypes.ts";
-    import {currentDefaultItineraryStore, defaultShadowItineraryStore} from "sveltestore";
-    import ConnectionDetail from "@/components/ui/ConnectionDetail.svelte";
+    import {currentItineraryStore, shadowItineraryStore} from "sveltestore";
+    import ConnectionDetail from "@/components/ui/subcomponents/ConnectionDetail.svelte";
     import {ItineraryShadow} from "@data/type-declarations/shadowTypes.ts";
 
     let itinerary: Itinerary
@@ -9,7 +9,7 @@
     let shadowItinerary: ItineraryShadow
 
     // let queries be up-to-date with the store
-    currentDefaultItineraryStore.subscribe((data) => {
+    currentItineraryStore.subscribe((data) => {
             if (data == undefined) {
                 itinerary = new Itinerary()
             } else {
@@ -19,7 +19,7 @@
     )
 
     // let queries be up-to-date with the store
-    defaultShadowItineraryStore.subscribe((data) => {
+    shadowItineraryStore.subscribe((data) => {
             if (data == undefined) {
                 shadowItinerary = new ItineraryShadow(1)
             } else {
@@ -44,5 +44,4 @@
 
         {/if}
     {/if}
-
 </div>

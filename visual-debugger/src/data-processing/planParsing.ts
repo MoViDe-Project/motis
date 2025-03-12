@@ -108,5 +108,3 @@ export function resetCssClassesForPlanEntries(plan: Plan) {
         itinerary.cssClass = itineraryStates.planEntryDefault
     }
 }
-
-
