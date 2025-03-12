@@ -79,7 +79,7 @@
     </div>
 
     <!-- Main content -->
-    <div class="h-5/6 w-full my-2 md:flex md:flex-row">
+    <div class="h-3/4 w-full my-2 md:flex md:flex-row">
 
         <div class="basis-full md:basis-1/3 grid grid-rows-12">
 
@@ -128,7 +128,7 @@
             </div>
 
             <!-- Itinerary Comparison -->
-            <div class="grid grid-rows-12 row-span-10 rounded-md">
+            <div class="grid grid-rows-10 row-span-10 rounded-md">
                 <div class="p-2 text-center">
                     <h1 class="text-xl">Default Plan overview</h1>
                 </div>
@@ -138,7 +138,7 @@
                 </div>
             </div>
 
-            <div class="grid grid-rows-12 row-span-10 rounded-md">
+            <div class="grid grid-rows-10 row-span-10 rounded-md">
                 <div class="p-2 row-span-1 text-center">
                     <h1 class="text-xl">Plan overview</h1>
                 </div>
