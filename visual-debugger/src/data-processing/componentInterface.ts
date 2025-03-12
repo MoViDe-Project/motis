@@ -68,14 +68,14 @@ export function parseQueryInterface(queryContents: string) {
 /**
  * Interface function for removing the matched itineraries from plan overview
  */
-export function filterOutMatchedInterface(){
+export function filterOutMatchedInterface() {
     filterOutMatched()
 }
 
 /**
  * Interface function for removing the mismatched itineraries from plan overview
  */
-export function filterOutMismatchedInterface(){
+export function filterOutMismatchedInterface() {
     filterOutMismatched()
 }
 
@@ -83,7 +83,7 @@ export function filterOutMismatchedInterface(){
  * Interface function for resetting the filters with ability to remove matched itineraries afterward
  * @param showMatched whether to remove matched itineraries
  */
-export function resetItinerariesWithFilterMatchedInterface(showMatched:boolean){
+export function resetItinerariesWithFilterMatchedInterface(showMatched: boolean) {
     resetItinerariesWithFilterMatched(showMatched)
 }
 
@@ -91,6 +91,6 @@ export function resetItinerariesWithFilterMatchedInterface(showMatched:boolean){
  * Interface function for resetting the filters with ability to remove mismatched itineraries afterward
  * @param showMismatched whether to remove mismatched itineraries
  */
-export function resetItinerariesWithFilterMismatchedInterface(showMismatched:boolean){
+export function resetItinerariesWithFilterMismatchedInterface(showMismatched: boolean) {
     resetItinerariesWithFilterMismatched(showMismatched)
 }

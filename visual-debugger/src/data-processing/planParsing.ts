@@ -18,7 +18,7 @@ export async function computePlan() {
     })
 
     // if store is empty abort data processing
-    if (queries == undefined||queries.length == 0) {
+    if (queries == undefined || queries.length == 0) {
         return
     }
 
@@ -69,7 +69,7 @@ export async function computePlanForQuery(query: Query): Promise<Plan> {
  */
 export function downloadPlans(): void {
 
-    let plans: Plan[]  = [];
+    let plans: Plan[] = [];
     // put content of read file as string into storage
     planDatasetStore.subscribe(data => {
         plans = data

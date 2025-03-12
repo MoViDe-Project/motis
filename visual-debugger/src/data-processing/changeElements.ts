@@ -19,7 +19,7 @@ let defaultPlans: Plan[];
  */
 export function changePlan(queryIndex: number) {
     if (queryIndex < 0) {
-      throw new Error("Index out of bounds")
+        throw new Error("Index out of bounds")
     }
 
     // TEST: Input
@@ -30,7 +30,7 @@ export function changePlan(queryIndex: number) {
     )
 
     if (plans.length == 0) {
-      throw new Error("Plan store is empty")
+        throw new Error("Plan store is empty")
     }
 
     // TEST: Output
@@ -45,7 +45,7 @@ export function changePlan(queryIndex: number) {
     )
 
     if (defaultPlans.length == 0) {
-      throw new Error("Default plan store is empty")
+        throw new Error("Default plan store is empty")
     }
 
     // TEST: Output
@@ -54,7 +54,7 @@ export function changePlan(queryIndex: number) {
 
     // TEST: Output
     // set the number of the new active query
-     activeQueryIndexStore.set(queryIndex)
+    activeQueryIndexStore.set(queryIndex)
     countFailedItineraries()
 }
 
@@ -67,7 +67,7 @@ let defaultItinerary: Itinerary;
  */
 export function changeItinerary(itineraryIndex: number) {
     if (itineraryIndex < 0) {
-      throw new Error("Index out of bounds")
+        throw new Error("Index out of bounds")
     }
 
     // TEST: Input
@@ -88,7 +88,7 @@ export function changeItinerary(itineraryIndex: number) {
  */
 export function changeDefaultItinerary(itineraryIndex: number) {
     if (itineraryIndex < 0) {
-      throw new Error("Index out of bounds")
+        throw new Error("Index out of bounds")
     }
 
     // TEST: Input

@@ -1,6 +1,6 @@
 <script lang="ts">
     import {Input} from "$lib/components/ui/input/index.js";
-    import { resetStores } from "sveltestore";
+    import {resetStores} from "sveltestore";
     import {parseQueryInterface} from "@data/componentInterface.ts";
     import {Label} from "@/components/ui/label";
 

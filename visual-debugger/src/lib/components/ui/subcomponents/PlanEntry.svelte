@@ -33,7 +33,7 @@
                 </div>
                 <div class="col-span-6">
                     Start Time: {formatStringTime(itinerary.startTime)}
-                </div>    
+                </div>
             </div>
 
             <div class="col-span-2 grid grid-cols-7 content-center">
@@ -42,7 +42,7 @@
                 </div>
                 <div class="col-span-6">
                     End Time: {formatStringTime(itinerary.endTime)}
-                </div>    
+                </div>
             </div>
 
             <div class="col-span-2 grid grid-cols-7 content-center">
@@ -53,17 +53,17 @@
                     Transfers: {itinerary.transfers}
                 </div>
             </div>
-            
+
             <div class="col-span-3 grid grid-cols-11 content-center">
                 <div class="col-span-1">
                     <MatchIndicator attribute={evalItinerary(itinerary.index).duration}/>
                 </div>
                 <div class="col-span-10">
                     Duration: {formatDurationSecWithSeconds(itinerary.duration)}
-                </div>    
+                </div>
             </div>
 
-           
+
             <div class="col-span-3 content-center">
                 <Button class="w-full" on:click={() => {
                         if(parent===true){

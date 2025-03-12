@@ -1,7 +1,7 @@
 /**
  * Enum that holds all css classes for dynamic UI elements
  */
-export enum itineraryStates{
+export enum itineraryStates {
     planEntryValid = 'border-green-600 bg-green-400',
 
     planEntryInvalid = 'border-black-500 bg-yellow-400',

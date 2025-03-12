@@ -1,9 +1,9 @@
-import { test, expect, vi, describe, expectTypeOf, assert } from "vitest";
-import { computePlan, computePlanForQuery, downloadPlans } from "@data/planParsing";
+import {test, expect, vi, describe, expectTypeOf, assert} from "vitest";
+import {computePlan, computePlanForQuery, downloadPlans} from "@data/planParsing";
 import axios from "axios"
-import { currentPlanStore, interpolatedQueryStore, planDatasetStore } from "sveltestore";
-import { Query } from "@data/type-declarations/queryTypes";
-import { Plan } from "@data/type-declarations/planTypes";
+import {currentPlanStore, interpolatedQueryStore, planDatasetStore} from "sveltestore";
+import {Query} from "@data/type-declarations/queryTypes";
+import {Plan} from "@data/type-declarations/planTypes";
 
 vi.mock('axios')
 const dummy = new Plan()
@@ -16,7 +16,9 @@ describe('computePlan', () => {
      */
     test.todo('Happy path', () => {
         let interpolatedQueries = []
-        interpolatedQueryStore.subscribe((x) => { interpolatedQueries = x })
+        interpolatedQueryStore.subscribe((x) => {
+            interpolatedQueries = x
+        })
     })
 
     test('interpolatedQueryStore is empty', () => {
@@ -30,8 +32,12 @@ describe('computePlan', () => {
         // Set store data 
         let planDataset: Plan[] = []
         let currentPlan: Plan = new Plan()
-        planDatasetStore.subscribe((x) => { planDataset = x })
-        currentPlanStore.subscribe((x) => { currentPlan = x })
+        planDatasetStore.subscribe((x) => {
+            planDataset = x
+        })
+        currentPlanStore.subscribe((x) => {
+            currentPlan = x
+        })
 
         // Call function
         computePlan()
@@ -49,7 +55,8 @@ describe('computePlanForQuery', () => {
      *
      * CURRENTLY: Manual testing covers this case
      */
-    test.todo('Happy path', () => { })
+    test.todo('Happy path', () => {
+    })
 
     test('Invalid query', async () => {
         let x: Query = new Query()
