@@ -59,12 +59,12 @@ export function comparePlans() {
         if (numberOfItineraries < currentPlan.itineraries.length) {
             // current has more itineraries
             for (let i = numberOfItineraries; i < currentPlan.itineraries.length; i++) {
-                currentPlan.itineraries[i].cssClass = itineraryStates.planEntryMissing
+                currentPlan.itineraries[i].state = itineraryStates.planEntryMissing
             }
 
         } else if (numberOfItineraries < currentDefaultPlan.itineraries.length) {
             for (let i = numberOfItineraries; i < currentDefaultPlan.itineraries.length; i++) {
-                currentDefaultPlan.itineraries[i].cssClass = itineraryStates.planEntryMissing
+                currentDefaultPlan.itineraries[i].state = itineraryStates.planEntryMissing
             }
         }
 
@@ -77,13 +77,13 @@ export function comparePlans() {
             // compare strings of itineraries and set colors(CSS-Classes) accordingly
             if (compareItineraries(currentItinerary, currentDefaultItinerary)[0].length == 0) {
                 // itineraries are equal, mark them as such
-                currentItinerary.cssClass = itineraryStates.planEntryValid
-                currentDefaultItinerary.cssClass = itineraryStates.planEntryValid
+                currentItinerary.state = itineraryStates.planEntryValid
+                currentDefaultItinerary.state = itineraryStates.planEntryValid
 
             } else {
                 // itineraries are not equal
-                currentItinerary.cssClass = itineraryStates.planEntryInvalid
-                currentDefaultItinerary.cssClass = itineraryStates.planEntryInvalid
+                currentItinerary.state = itineraryStates.planEntryInvalid
+                currentDefaultItinerary.state = itineraryStates.planEntryInvalid
             }
 
         }
@@ -135,7 +135,7 @@ export function countFailedItineraries() {
     })
 
     plan.itineraries.forEach((itinerary) => {
-        if (itinerary.cssClass == itineraryStates.planEntryInvalid || itinerary.cssClass == itineraryStates.planEntryMissing) failedItineraries += 1
+        if (itinerary.state == itineraryStates.planEntryInvalid || itinerary.state == itineraryStates.planEntryMissing) failedItineraries += 1
     })
 
     numberOfFailedItinerariesStore.set(failedItineraries)

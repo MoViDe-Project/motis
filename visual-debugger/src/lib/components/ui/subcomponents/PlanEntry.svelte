@@ -22,7 +22,7 @@
     }
 </script>
 
-<div class="border-4 rounded-md p-2 my-2 {itinerary.cssClass}">
+<div class="border-4 rounded-md p-2 my-2 {itinerary.state}">
     <div class="m-1">
         <span class="font-bold">Itinerary Index: {itinerary.index}</span>
         <Separator class="bg-black m-2"></Separator>

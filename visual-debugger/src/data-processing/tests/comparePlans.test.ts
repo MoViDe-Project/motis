@@ -31,8 +31,8 @@ describe('comparePlans', () => {
         expect(defaultPlan).toBe(defaultPlan)
 
         // Test CSS classes
-        expect(currentPlan.itineraries[0].cssClass).toBe(itineraryStates.planEntryValid)
-        expect(currentDefaultPlan.itineraries[0].cssClass).toBe(itineraryStates.planEntryValid)
+        expect(currentPlan.itineraries[0].state).toBe(itineraryStates.planEntryValid)
+        expect(currentDefaultPlan.itineraries[0].state).toBe(itineraryStates.planEntryValid)
     })
 
     /* The following two test are skipped due to technical limits and lack of docs

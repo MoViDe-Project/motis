@@ -105,6 +105,6 @@ export function resetCssClassesForPlanEntries(plan: Plan) {
     let itineraries = plan.itineraries
 
     for (let itinerary of itineraries) {
-        itinerary.cssClass = itineraryStates.planEntryDefault
+        itinerary.state = itineraryStates.planEntryDefault
     }
 }
