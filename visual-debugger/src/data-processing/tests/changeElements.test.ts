@@ -16,9 +16,10 @@ inputPlan.itineraries = [ inputItinerary ]
 defaultPlan.itineraries = [ defaultItinerary ] 
 
 describe('changePlan', () => {
+    // URGENT TODO: Something is wrong with the construction of objects of type Plan
     test('Happy path', () => {
         // Init inputs
-        const index: number = 1
+        const index: number = 0
         planDatasetStore.set([inputPlan]);
         defaultPlanDatasetStore.set([defaultPlan])
 
@@ -36,27 +37,27 @@ describe('changePlan', () => {
         changePlan(index)
 
         // Assertions
-        expect(activeQuery).toBe(1)
+        expect(activeQuery).toBe(0)
         expect(currentPlan).toBe(inputPlan)
         expect(currentDefaultPlan).toBe(defaultPlan)
     })
 
     test('Index out of bounds', () => {
-        expect(changePlan(-1)).toThrowError("Index out of bounds")
+        expect(() => changePlan(-1)).toThrowError("Index out of bounds")
     })
 
     test('planDatesetStore is empty', () => {
         planDatasetStore.set([]);
         defaultPlanDatasetStore.set([defaultPlan])
 
-        expect(changePlan(1)).toThrowError()
+        expect(() => changePlan(1)).toThrowError("Plan store is empty")
     })
 
     test('defaultPlanDatasetStore is empty', () => {
         planDatasetStore.set([inputPlan]);
         defaultPlanDatasetStore.set([])
 
-        expect(changePlan(1)).toThrowError()
+        expect(() => changePlan(1)).toThrowError("Default plan store is empty")
     })
 })
 
@@ -72,7 +73,7 @@ describe('changeItinerary', () => {
     })
 
     test('Index out of bounds', () => {
-        expect(changeItinerary(-1)).toThrowError("Index out of bounds")
+        expect(() => changeItinerary(-1)).toThrowError("Index out of bounds")
     })
 })
 
@@ -88,6 +89,6 @@ describe('changeDefaultItinerary', () => {
     })
 
     test('Index out of bounds', () => {
-        expect(changeDefaultItinerary(-1)).toThrowError("Index out of bounds")
+        expect(() => changeDefaultItinerary(-1)).toThrowError("Index out of bounds")
     })
 })
