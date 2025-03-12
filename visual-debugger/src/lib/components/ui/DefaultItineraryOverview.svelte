@@ -2,7 +2,7 @@
     import {Itinerary} from "@data/type-declarations/planTypes.ts";
     import {currentDefaultItineraryStore, defaultShadowItineraryStore} from "sveltestore";
     import ConnectionDetail from "@/components/ui/ConnectionDetail.svelte";
-    import {ItineraryShadow} from "@data/type-declarations/comparisonShadows.ts";
+    import {ItineraryShadow} from "@data/type-declarations/shadowTypes.ts";
 
     let itinerary: Itinerary
 

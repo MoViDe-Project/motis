@@ -1,7 +1,7 @@
 import {type Writable, writable} from "svelte/store";
 import {Query} from "@data/type-declarations/queryTypes.ts";
 import {Itinerary, Plan} from "@data/type-declarations/planTypes.ts";
-import {ItineraryShadow} from "@data/type-declarations/comparisonShadows.ts";
+import {ItineraryShadow} from "@data/type-declarations/shadowTypes.ts";
 
 
 /**

@@ -8,7 +8,7 @@
     import Route from '@/components/ui/Route.svelte';
     import {getModeName} from '$lib/getModeName';
     import {t} from '$lib/i18n/translation';
-    import {type ItineraryShadow, LegShadow} from "@data/type-declarations/comparisonShadows.ts";
+    import {type ItineraryShadow, LegShadow} from "@data/type-declarations/shadowTypes.ts";
     import MatchIndicator from "@/components/ui/subcomponents/MatchIndicator.svelte";
 
     const {

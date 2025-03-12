@@ -1,7 +1,7 @@
 import {Itinerary, Leg} from "@data/type-declarations/planTypes.ts";
 // @ts-ignore
 import deepEqual from "deep-equal";
-import {ItineraryShadow, LegShadow} from "@data/type-declarations/comparisonShadows.ts";
+import {ItineraryShadow, LegShadow} from "@data/type-declarations/shadowTypes.ts";
 import {
     currentDefaultItineraryStore,
     currentDefaultPlanStore,

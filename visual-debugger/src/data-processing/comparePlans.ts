@@ -5,10 +5,10 @@ import {
     defaultPlanDatasetStore,
     planDatasetStore
 } from "sveltestore";
-import {cssClasses} from "./styling/cssClasses.ts";
+import {itineraryStates} from "./styling/cssClasses.ts";
 import {resetCssClassesForPlanEntries} from "./planParsing.ts";
 import {compareItineraries} from "@data/compareObjects.ts";
-import {ItineraryAttributesShadow} from "@data/type-declarations/comparisonShadows.ts";
+import {ItineraryAttributesShadow} from "@data/type-declarations/shadowTypes.ts";
 
 /**
  * Compares the computed results of the queries with the uploaded default plan and sets colors of the matches/mismatches
@@ -59,12 +59,12 @@ export function comparePlans() {
         if(numberOfItineraries < currentPlan.itineraries.length) {
             // current has more itineraries
             for (let i = numberOfItineraries; i < currentPlan.itineraries.length; i++) {
-                currentPlan.itineraries[i].cssClass = cssClasses.planEntryMissing
+                currentPlan.itineraries[i].cssClass = itineraryStates.planEntryMissing
             }
 
         }else if(numberOfItineraries < currentDefaultPlan.itineraries.length){
             for (let i = numberOfItineraries; i < currentDefaultPlan.itineraries.length; i++) {
-                currentDefaultPlan.itineraries[i].cssClass = cssClasses.planEntryMissing
+                currentDefaultPlan.itineraries[i].cssClass = itineraryStates.planEntryMissing
             }
         }
 
@@ -77,13 +77,13 @@ export function comparePlans() {
             // compare strings of itineraries and set colors(CSS-Classes) accordingly
             if (compareItineraries(currentItinerary, currentDefaultItinerary)[0].length == 0) {
                 // itineraries are equal, mark them as such
-                currentItinerary.cssClass = cssClasses.planEntryValid
-                currentDefaultItinerary.cssClass = cssClasses.planEntryValid
+                currentItinerary.cssClass = itineraryStates.planEntryValid
+                currentDefaultItinerary.cssClass = itineraryStates.planEntryValid
 
             } else {
                 // itineraries are not equal
-                currentItinerary.cssClass = cssClasses.planEntryInvalid
-                currentDefaultItinerary.cssClass = cssClasses.planEntryInvalid
+                currentItinerary.cssClass = itineraryStates.planEntryInvalid
+                currentDefaultItinerary.cssClass = itineraryStates.planEntryInvalid
             }
 
         }

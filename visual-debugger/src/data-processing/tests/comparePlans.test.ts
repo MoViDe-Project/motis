@@ -2,7 +2,7 @@ import { vi, test, expect, describe } from "vitest"
 import { comparePlans } from '@data/comparePlans'
 import { Itinerary, Plan } from "@data/type-declarations/planTypes"
 import { currentDefaultPlanStore, currentPlanStore, defaultPlanDatasetStore, planDatasetStore } from "sveltestore"
-import { cssClasses } from "@data/styling/cssClasses"
+import { itineraryStates } from "@data/styling/cssClasses"
 
 // Static inputs
 const inputPlan: Plan = new Plan()
@@ -31,8 +31,8 @@ describe('comparePlans', () => {
         expect(defaultPlan).toBe(defaultPlan)
 
         // Test CSS classes
-        expect(currentPlan.itineraries[0].cssClass).toBe(cssClasses.planEntryValid)
-        expect(currentDefaultPlan.itineraries[0].cssClass).toBe(cssClasses.planEntryValid)
+        expect(currentPlan.itineraries[0].cssClass).toBe(itineraryStates.planEntryValid)
+        expect(currentDefaultPlan.itineraries[0].cssClass).toBe(itineraryStates.planEntryValid)
     })
 
     /* The following two test are skipped due to technical limits and lack of docs

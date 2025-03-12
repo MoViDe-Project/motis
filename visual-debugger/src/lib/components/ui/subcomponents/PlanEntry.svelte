@@ -7,7 +7,7 @@
     import {activeItineraryIndexStore, activeDefaultItineraryIndexStore} from "sveltestore";
     import {Separator} from "@/components/ui/separator";
     import MatchIndicator from "@/components/ui/subcomponents/MatchIndicator.svelte";
-    import {ItineraryAttributesShadow} from "@data/type-declarations/comparisonShadows.ts";
+    import {ItineraryAttributesShadow} from "@data/type-declarations/shadowTypes.ts";
     import {evalItinerary} from "@data/comparePlans.ts";
 
     // set to parent to "default" to change the currently displayed default itinerary

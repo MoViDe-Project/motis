@@ -2,7 +2,7 @@ import {currentPlanStore, interpolatedQueryStore, planDatasetStore} from "svelte
 import type {Query} from "./type-declarations/queryTypes.ts";
 import {type Plan} from "./type-declarations/planTypes.ts"
 import axios from "axios";
-import {cssClasses} from "./styling/cssClasses.ts";
+import {itineraryStates} from "./styling/cssClasses.ts";
 import {MoViDe_config} from "@/movide-config.json"
 
 /**
@@ -105,7 +105,7 @@ export function resetCssClassesForPlanEntries(plan: Plan) {
     let itineraries = plan.itineraries
 
     for (let itinerary of itineraries) {
-        itinerary.cssClass = cssClasses.planEntryDefault
+        itinerary.cssClass = itineraryStates.planEntryDefault
     }
 }
 

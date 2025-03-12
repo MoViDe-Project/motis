@@ -1,10 +1,10 @@
 import {Plan} from "@data/type-declarations/planTypes.ts";
 import {activeQueryIndexStore, currentDefaultPlanStore, currentPlanStore} from "sveltestore";
-import {cssClasses} from "@data/styling/cssClasses.ts";
+import {itineraryStates} from "@data/styling/cssClasses.ts";
 import {changePlan} from "@data/changeElements.ts";
 
 /**
- * Prevents the matched itineraries from showing up in the plan overview 
+ * Prevents the matched itineraries from showing up in the plan overview
  */
 export function filterOutMatched() {
     let plan = new Plan()
@@ -23,11 +23,11 @@ export function filterOutMatched() {
 
     // filter the matched queries from the plans
     clonedPlan.itineraries = plan.itineraries.filter(
-        data => data.cssClass !== cssClasses.planEntryValid
+        data => data.cssClass !== itineraryStates.planEntryValid
     )
 
     clonedDefaultPlan.itineraries = defaultPlan.itineraries.filter(
-        data => data.cssClass !== cssClasses.planEntryValid
+        data => data.cssClass !== itineraryStates.planEntryValid
     )
 
     // set the new plans as current
@@ -56,11 +56,11 @@ export function filterOutMismatched() {
 
     // filter the mismatched queries from the plans
     clonedPlan.itineraries = plan.itineraries.filter(
-        data => data.cssClass === cssClasses.planEntryValid
+        data => data.cssClass === itineraryStates.planEntryValid
     )
 
     clonedDefaultPlan.itineraries = defaultPlan.itineraries.filter(
-        data => data.cssClass === cssClasses.planEntryValid
+        data => data.cssClass === itineraryStates.planEntryValid
     )
 
     // set the new plans as current

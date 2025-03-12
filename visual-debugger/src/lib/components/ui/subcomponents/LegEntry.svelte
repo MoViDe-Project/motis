@@ -1,7 +1,7 @@
 <script lang="ts">
 
     import type {Leg} from "@data/type-declarations/planTypes.js";
-    import type {LegShadow} from "@data/type-declarations/comparisonShadows.ts";
+    import type {LegShadow} from "@data/type-declarations/shadowTypes.ts";
     import MatchIndicator from "@/components/ui/subcomponents/MatchIndicator.svelte";
     import {formatStringTime, formatTime} from "@/toDateTime.js";
     import {json} from "@sveltejs/kit";
