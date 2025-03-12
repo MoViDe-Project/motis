@@ -18,8 +18,8 @@ export function changePlanInterface(planIndex: number) {
 /**
  * Interface method for getting the routing results for the queries from MOTIS
  */
-export function computePlansInterface() {
-    computePlan()
+export function computePlansInterface(motisURL:string) {
+    computePlan(motisURL)
 }
 
 /**

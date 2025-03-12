@@ -7,6 +7,7 @@
     import DefaultPlanOverview from "@/components/ui/DefaultPlanOverview.svelte";
     import {defaultPlanDatasetStore, planDatasetStore, showMatchedStore,showMismatchedStore} from "sveltestore";
     import {comparePlans} from "@data/comparePlans.ts";
+    import {MoViDe_config} from "@/config.json"
 
     // Dark Mode imports
     import Sun from "lucide-svelte/icons/sun";
@@ -60,7 +61,7 @@
         <!-- File handling -->
         <div class="basis-full md:basis-1/2 flex flex-row flex-row-reverse gap-2 items-center md:place-content-end justify-center">
             <div class="flex flex-col gap-2">
-                <Button on:click={computePlansInterface}>Compute routing</Button>
+                <Button on:click={() =>computePlansInterface(MoViDe_config.motisURL)}>Compute routing</Button>
                 <Button variant="default" on:click={downloadPlanInterface}>Download data as default plan</Button>
             </div>
             <div class="flex flex-col gap-2">
