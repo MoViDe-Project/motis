@@ -5,25 +5,33 @@
     import DefaultPlanUpload from "@/components/ui/upload/DefaultPlanUpload.svelte";
     import PlanOverview from "@/components/ui/plan-overviews/PlanOverview.svelte";
     import DefaultPlanOverview from "@/components/ui/plan-overviews/DefaultPlanOverview.svelte";
-    import {defaultPlanDatasetStore, planDatasetStore, showMatchedStore, showMismatchedStore, numberOfFailedItinerariesStore, currentDefaultPlanStore} from "sveltestore";
-    import {comparePlans} from "@data/comparePlans.ts";
+    import {
+        defaultPlanDatasetStore,
+        planDatasetStore,
+        showMatchedStore,
+        showMismatchedStore,
+        numberOfFailedItinerariesStore,
+        currentDefaultPlanStore
+    } from "sveltestore";
 
     // Dark Mode imports
     import Sun from "lucide-svelte/icons/sun";
     import Moon from "lucide-svelte/icons/moon";
     import {toggleMode} from "mode-watcher";
-    import {computePlansInterface, downloadPlanInterface} from "@data/componentInterface.ts";
+    import {
+        comparePlansInterface,
+        computePlansInterface,
+        downloadPlanInterface,
+        filterOutMatchedInterface, filterOutMismatchedInterface,
+        resetItinerariesWithFilterMatchedInterface,
+        resetItinerariesWithFilterMismatchedInterface
+    } from "@data/componentInterface.ts";
     import {Checkbox} from "$lib/components/ui/checkbox";
     import {Label} from "$lib/components/ui/label";
 
-    import {
-        filterOutMatched,
-        filterOutMismatched, resetItinerariesWithFilterMatched,
-        resetItinerariesWithFilterMismatched,
-    } from "@data/filterItineraries.ts";
     // call the plan compare logic upon both upload of default plan and plan computation
     $: if (!($defaultPlanDatasetStore.length == 0) && !($planDatasetStore.length == 0)) {
-        comparePlans()
+        comparePlansInterface()
     }
 
 
@@ -94,7 +102,7 @@
                     Plan Filter options:
                     <div class="flex items-center">
                         <Checkbox id="filter2" bind:checked={$showMismatchedStore}
-                                  on:click={() => $showMismatchedStore ? filterOutMatched() : resetItinerariesWithFilterMismatched($showMatchedStore)}/>
+                                  on:click={() => $showMismatchedStore ? filterOutMatchedInterface() : resetItinerariesWithFilterMismatchedInterface($showMatchedStore)}/>
                         <Label
                                 for="filter2"
                                 class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ml-2"
@@ -104,7 +112,7 @@
                     </div>
                     <div class="flex items-center">
                         <Checkbox id="filter" bind:checked={$showMatchedStore}
-                                  on:click={() => $showMatchedStore ? filterOutMismatched() : resetItinerariesWithFilterMatched($showMismatchedStore)}/>
+                                  on:click={() => $showMatchedStore ? filterOutMismatchedInterface() : resetItinerariesWithFilterMatchedInterface($showMismatchedStore)}/>
                         <Label
                                 for="filter"
                                 class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ml-2"
@@ -115,7 +123,8 @@
                 </div>
             </div>
             <div class="col-span-2 flex justify-center">
-                <span>Results for selected plan: {$numberOfFailedItinerariesStore} failed out of {$currentDefaultPlanStore.itineraries.length} default itineraries</span>
+                <span>Results for selected plan: {$numberOfFailedItinerariesStore}
+                    failed out of {$currentDefaultPlanStore.itineraries.length} default itineraries</span>
             </div>
 
             <!-- Itinerary Comparison -->

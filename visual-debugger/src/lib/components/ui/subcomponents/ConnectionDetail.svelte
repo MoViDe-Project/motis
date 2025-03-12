@@ -5,7 +5,7 @@
     import {routeBorderColor, routeColor} from '@/motis-helpers/modeStyle.ts';
     import {formatDurationSec, formatDistanceMeters} from '@/motis-helpers/formatDuration.ts';
     import {Button} from '@/components/ui/button';
-    import Route from '@/components/ui/Route.svelte';
+    import Route from '@/components/ui/subcomponents/Route.svelte';
     import {getModeName} from '@/motis-helpers/getModeName.ts';
     import {t} from '@/motis-helpers/i18n/translation.ts';
     import {type ItineraryShadow, LegShadow} from "@data/type-declarations/shadowTypes.ts";
