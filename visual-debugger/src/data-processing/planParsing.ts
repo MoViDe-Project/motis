@@ -1,13 +1,9 @@
 import {currentPlanStore, interpolatedQueryStore, planDatasetStore} from "sveltestore";
 import type {Query} from "./type-declarations/queryTypes.ts";
-import type {Plan} from "./type-declarations/planTypes.ts"
+import {type Plan} from "./type-declarations/planTypes.ts"
 import axios from "axios";
 import {cssClasses} from "./styling/cssClasses.ts";
-
-/**
- * Base URL of the MOTIS API
- */
-const motisApiUrlBase = 'http://localhost:8080/api/v1/'
+import {MoViDe_config} from "@/movide-config.json"
 
 /**
  * data of the interpolated queries
@@ -66,7 +62,7 @@ export async function computePlanForQuery(query: Query): Promise<Plan> {
     const response = await axios
         .get(
             //configuration for api call parameters
-            `${motisApiUrlBase}plan/?fromPlace=${query.from.stopId}&toPlace=${query.to.stopId}&time=${query.time}`
+            `${MoViDe_config.motisURL}api/v1/plan/?fromPlace=${query.from.stopId}&toPlace=${query.to.stopId}&time=${query.time}`
         )
     return response.data
 }
