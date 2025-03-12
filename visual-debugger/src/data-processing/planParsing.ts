@@ -25,7 +25,7 @@ export async function computePlan() {
     })
 
     // if store is empty abort data processing
-    if (queries == undefined) {
+    if (queries == undefined||queries.length == 0) {
         return
     }
 
