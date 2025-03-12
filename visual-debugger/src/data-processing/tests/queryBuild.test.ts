@@ -4,7 +4,7 @@ import axios from 'axios';
 import { interpolatedQueryStore } from 'sveltestore';
 import { Batch, Query } from '@data/type-declarations/queryTypes';
 
-import queryJson from '../../../assets/Query-Batch.json';
+// import queryJson from '../../../assets/Query-Batch.json';
 
 vi.mock('axios')
 
