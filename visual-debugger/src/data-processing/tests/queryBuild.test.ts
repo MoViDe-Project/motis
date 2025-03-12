@@ -31,6 +31,7 @@ describe('buildQueryDataset', () => {
     /* The following two test are skipped due to technical limits and lack of docs
      * To be concrete: Mocking alert is non-trivial as it would require an instantiated object Window
      * This does not exist in unit testing, only in browsers
+     * A similiar case is found in ./comparePlans.test.ts
      *
      * CURRENTLY: The manual testing routine covers those cases as a part of UX testing
      */
