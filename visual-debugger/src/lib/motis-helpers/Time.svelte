@@ -21,8 +21,8 @@
 	- If variant is 'realtime-show-always' or (variant is 'realtime' and isRealtime is true), the real-time is displayed with conditional styling based on delay.
 -->
 <script lang="ts">
-	import { formatTime } from './toDateTime';
-	import { cn } from './utils';
+	import { formatTime } from './toDateTime.ts';
+	import { cn } from './utils.ts';
 
 	let {
 		class: className,

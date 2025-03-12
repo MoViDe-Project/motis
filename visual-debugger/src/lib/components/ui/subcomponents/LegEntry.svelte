@@ -3,9 +3,9 @@
     import type {Leg} from "@data/type-declarations/planTypes.js";
     import type {LegShadow} from "@data/type-declarations/shadowTypes.ts";
     import MatchIndicator from "@/components/ui/subcomponents/MatchIndicator.svelte";
-    import {formatStringTime, formatTime} from "@/toDateTime.js";
+    import {formatStringTime, formatTime} from "@/motis-helpers/toDateTime.js";
     import {json} from "@sveltejs/kit";
-    import {formatDurationSec} from "@/formatDuration.js";
+    import {formatDurationSec} from "@/motis-helpers/formatDuration.js";
 
     export let leg: Leg;
     export let shadowLeg: LegShadow

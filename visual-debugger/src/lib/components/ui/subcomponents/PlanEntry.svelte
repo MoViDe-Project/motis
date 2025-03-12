@@ -2,8 +2,8 @@
     import {Button} from "@/components/ui/button";
     import {changeDefaultItineraryInterface, changeItineraryInterface} from "@data/componentInterface.ts";
     import {buildShadowOfDefaultItinerary, buildShadowOfItinerary} from "@data/compareObjects.ts";
-    import {formatDurationSecWithSeconds} from "@/formatDuration.js";
-    import {formatStringTime} from "@/toDateTime.js";
+    import {formatDurationSecWithSeconds} from "@/motis-helpers/formatDuration.js";
+    import {formatStringTime} from "@/motis-helpers/toDateTime.js";
     import {activeItineraryIndexStore, activeDefaultItineraryIndexStore} from "sveltestore";
     import {Separator} from "@/components/ui/separator";
     import MatchIndicator from "@/components/ui/subcomponents/MatchIndicator.svelte";
