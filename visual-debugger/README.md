@@ -29,3 +29,7 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy MoViDe, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+
+## How to Use
+
+To learn how to use **MoViDe** refer to the: [How to Use Guide](./HowToUse.md)
