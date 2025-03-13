@@ -1,6 +1,13 @@
 import {changeDefaultItinerary, changeItinerary, changePlan, resetFilters} from "@data/changeElements.ts";
 import {computePlan, downloadPlans} from "@data/planParsing.ts";
-import {buildQueryDataset} from "@data/queryBuild.ts";
+import {buildQueryDataset} from "@data/queryParsing.ts";
+import {comparePlans} from "@data/comparePlans.ts";
+import {
+    filterOutMatched,
+    filterOutMismatched,
+    resetItinerariesWithFilterMatched,
+    resetItinerariesWithFilterMismatched
+} from "@data/filterItineraries.ts";
 
 /**
  * This division between the svelte components and the functions they're calling is sole to simplify unit testing said functions
@@ -23,11 +30,17 @@ export function computePlansInterface() {
 }
 
 /**
+ * Interface method for comparing the plans and displaying their differences
+ */
+export function comparePlansInterface() {
+    comparePlans()
+}
+
+/**
  * Interface method for downloading the computed plans for later use
  */
 export function downloadPlanInterface() {
     downloadPlans()
-
 }
 
 /**
@@ -50,4 +63,34 @@ export function changeDefaultItineraryInterface(itineraryIndex: number) {
  */
 export function parseQueryInterface(queryContents: string) {
     buildQueryDataset(queryContents)
+}
+
+/**
+ * Interface function for removing the matched itineraries from plan overview
+ */
+export function filterOutMatchedInterface() {
+    filterOutMatched()
+}
+
+/**
+ * Interface function for removing the mismatched itineraries from plan overview
+ */
+export function filterOutMismatchedInterface() {
+    filterOutMismatched()
+}
+
+/**
+ * Interface function for resetting the filters with ability to remove matched itineraries afterward
+ * @param showMatched whether to remove matched itineraries
+ */
+export function resetItinerariesWithFilterMatchedInterface(showMatched: boolean) {
+    resetItinerariesWithFilterMatched(showMatched)
+}
+
+/**
+ * Interface function for resetting the filters with ability to remove mismatched itineraries afterward
+ * @param showMismatched whether to remove mismatched itineraries
+ */
+export function resetItinerariesWithFilterMismatchedInterface(showMismatched: boolean) {
+    resetItinerariesWithFilterMismatched(showMismatched)
 }

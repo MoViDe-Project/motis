@@ -2,12 +2,9 @@ import {currentPlanStore, interpolatedQueryStore, planDatasetStore} from "svelte
 import type {Query} from "./type-declarations/queryTypes.ts";
 import {type Plan} from "./type-declarations/planTypes.ts"
 import axios from "axios";
-import {cssClasses} from "./styling/cssClasses.ts";
+import {itineraryStates} from "./styling/cssClasses.ts";
 import {MoViDe_config} from "@/movide-config.json"
 
-/**
- * data of the interpolated queries
- */
 let queries: Query[]
 
 /**
@@ -21,7 +18,7 @@ export async function computePlan() {
     })
 
     // if store is empty abort data processing
-    if (queries == undefined||queries.length == 0) {
+    if (queries == undefined || queries.length == 0) {
         return
     }
 
@@ -72,7 +69,7 @@ export async function computePlanForQuery(query: Query): Promise<Plan> {
  */
 export function downloadPlans(): void {
 
-    let plans: Plan[]  = [];
+    let plans: Plan[] = [];
     // put content of read file as string into storage
     planDatasetStore.subscribe(data => {
         plans = data
@@ -105,8 +102,6 @@ export function resetCssClassesForPlanEntries(plan: Plan) {
     let itineraries = plan.itineraries
 
     for (let itinerary of itineraries) {
-        itinerary.cssClass = cssClasses.planEntryDefault
+        itinerary.state = itineraryStates.planEntryDefault
     }
 }
-
-

@@ -1,14 +1,14 @@
 <script lang="ts">
     import ArrowRight from 'lucide-svelte/icons/arrow-right';
-    import type {Itinerary, Leg} from '@data/type-declarations/planTypes';
-    import Time from '$lib/Time.svelte';
-    import {routeBorderColor, routeColor} from '$lib/modeStyle';
-    import {formatDurationSec, formatDistanceMeters} from '$lib/formatDuration';
-    import {Button} from '$lib/components/ui/button';
-    import Route from '@/components/ui/Route.svelte';
-    import {getModeName} from '$lib/getModeName';
-    import {t} from '$lib/i18n/translation';
-    import {type ItineraryShadow, LegShadow} from "@data/type-declarations/comparisonShadows.ts";
+    import type {Itinerary, Leg} from '@data/type-declarations/planTypes.ts';
+    import Time from '@/motis-helpers/Time.svelte';
+    import {routeBorderColor, routeColor} from '@/motis-helpers/modeStyle.ts';
+    import {formatDurationSec, formatDistanceMeters} from '@/motis-helpers/formatDuration.ts';
+    import {Button} from '@/components/ui/button';
+    import Route from '@/components/ui/subcomponents/Route.svelte';
+    import {getModeName} from '@/motis-helpers/getModeName.ts';
+    import {t} from '@/motis-helpers/i18n/translation.ts';
+    import {type ItineraryShadow, LegShadow} from "@data/type-declarations/shadowTypes.ts";
     import MatchIndicator from "@/components/ui/subcomponents/MatchIndicator.svelte";
 
     const {

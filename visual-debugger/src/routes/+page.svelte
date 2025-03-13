@@ -3,28 +3,35 @@
     import QueryBatchOverview from "@/components/ui/QueryBatchOverview.svelte";
     import QueryUpload from "@/components/ui/upload/QueryUpload.svelte";
     import DefaultPlanUpload from "@/components/ui/upload/DefaultPlanUpload.svelte";
-    import PlanOverview from "@/components/ui/PlanOverview.svelte";
-    import DefaultPlanOverview from "@/components/ui/DefaultPlanOverview.svelte";
-    import {defaultPlanDatasetStore, planDatasetStore, showMatchedStore,showMismatchedStore} from "sveltestore";
-    import {comparePlans} from "@data/comparePlans.ts";
+    import PlanOverview from "@/components/ui/plan-overviews/PlanOverview.svelte";
+    import DefaultPlanOverview from "@/components/ui/plan-overviews/DefaultPlanOverview.svelte";
+    import {
+        defaultPlanDatasetStore,
+        planDatasetStore,
+        showMatchedStore,
+        showMismatchedStore,
+        numberOfFailedItinerariesStore,
+        currentDefaultPlanStore
+    } from "sveltestore";
 
     // Dark Mode imports
     import Sun from "lucide-svelte/icons/sun";
     import Moon from "lucide-svelte/icons/moon";
     import {toggleMode} from "mode-watcher";
-    import {computePlansInterface, downloadPlanInterface} from "@data/componentInterface.ts";
+    import {
+        comparePlansInterface,
+        computePlansInterface,
+        downloadPlanInterface,
+        filterOutMatchedInterface, filterOutMismatchedInterface,
+        resetItinerariesWithFilterMatchedInterface,
+        resetItinerariesWithFilterMismatchedInterface
+    } from "@data/componentInterface.ts";
     import {Checkbox} from "$lib/components/ui/checkbox";
     import {Label} from "$lib/components/ui/label";
 
-    import {writable} from 'svelte/store';
-    import {
-        filterOutMatched,
-        filterOutMismatched, resetItinerariesWithFilterMatched,
-        resetItinerariesWithFilterMismatched,
-    } from "@data/filterItineraries.ts";
     // call the plan compare logic upon both upload of default plan and plan computation
     $: if (!($defaultPlanDatasetStore.length == 0) && !($planDatasetStore.length == 0)) {
-        comparePlans()
+        comparePlansInterface()
     }
 
 
@@ -41,9 +48,9 @@
             <div class="h-32 md:h-full p-4 content-start">
                 <img src="/logo_clipped.svg" alt="MoViDe logo" class="h-full">
             </div>
-            
+
             <div class="content-center">
-                
+
                 <Button on:click={toggleMode} variant="outline" size="icon">
                     <Sun
                             class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
@@ -58,7 +65,7 @@
 
 
         <!-- File handling -->
-        <div class="basis-full md:basis-1/2 flex flex-row flex-row-reverse gap-2 items-center md:place-content-end justify-center">
+        <div class="basis-full md:basis-1/2 flex flex-row-reverse gap-2 items-center md:place-content-end justify-center">
             <div class="flex flex-col gap-2">
                 <Button on:click={computePlansInterface}>Compute routing</Button>
                 <Button variant="default" on:click={downloadPlanInterface}>Download data as default plan</Button>
@@ -67,15 +74,13 @@
                 <QueryUpload/>
                 <DefaultPlanUpload/>
             </div>
-
         </div>
 
     </div>
 
     <!-- Main content -->
-    <div class="h-5/6 w-full my-2 md:flex md:flex-row">
+    <div class="h-3/4 w-full my-2 md:flex md:flex-row">
 
-        <!-- Query Batches: Grid layout scheint die einzige Option zu sein shadcn scroll box zu kontrollieren -->
         <div class="basis-full md:basis-1/3 grid grid-rows-12">
 
             <div class="p-2 row-span-1 content-end">
@@ -92,12 +97,12 @@
         <div class="basis-full h-5/6 md:h-full md:basis-2/3 grid grid-rows-12 grid-cols-2">
 
             <!-- Filtering options -->
-            <div class="col-span-2 row-span-1 flex justify-center items-center">
+            <div class="col-span-2 flex justify-center">
                 <div class="flex flex-row items-center gap-4">
                     Plan Filter options:
                     <div class="flex items-center">
                         <Checkbox id="filter2" bind:checked={$showMismatchedStore}
-                                  on:click={() => $showMismatchedStore ? filterOutMatched() : resetItinerariesWithFilterMismatched($showMatchedStore)}/>
+                                  on:click={() => $showMismatchedStore ? filterOutMatchedInterface() : resetItinerariesWithFilterMismatchedInterface($showMatchedStore)}/>
                         <Label
                                 for="filter2"
                                 class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ml-2"
@@ -107,7 +112,7 @@
                     </div>
                     <div class="flex items-center">
                         <Checkbox id="filter" bind:checked={$showMatchedStore}
-                                  on:click={() => $showMatchedStore ? filterOutMismatched() : resetItinerariesWithFilterMatched($showMismatchedStore)}/>
+                                  on:click={() => $showMatchedStore ? filterOutMismatchedInterface() : resetItinerariesWithFilterMatchedInterface($showMismatchedStore)}/>
                         <Label
                                 for="filter"
                                 class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 ml-2"
@@ -117,11 +122,14 @@
                     </div>
                 </div>
             </div>
-
+            <div class="col-span-2 flex justify-center">
+                <span>Results for selected plan: {$numberOfFailedItinerariesStore}
+                    failed out of {$currentDefaultPlanStore.itineraries.length} default itineraries</span>
+            </div>
 
             <!-- Itinerary Comparison -->
-            <div class="grid grid-rows-12 row-span-10 rounded-md">
-                <div class="p-2 row-span-1 text-center">
+            <div class="grid grid-rows-10 row-span-10 rounded-md">
+                <div class="p-2 text-center">
                     <h1 class="text-xl">Default Plan overview</h1>
                 </div>
                 <div class="p-2 row-span-11">
@@ -130,13 +138,12 @@
                 </div>
             </div>
 
-            <div class="grid grid-rows-12 row-span-10 rounded-md">
+            <div class="grid grid-rows-10 row-span-10 rounded-md">
                 <div class="p-2 row-span-1 text-center">
                     <h1 class="text-xl">Plan overview</h1>
                 </div>
 
                 <div class="p-2 row-span-11 h-full">
-
                     <PlanOverview/>
                 </div>
             </div>

@@ -1,7 +1,15 @@
-import { changeDefaultItinerary, changeItinerary, changePlan } from "@data/changeElements"
-import { Itinerary, Plan } from "@data/type-declarations/planTypes"
-import { activeQueryIndexStore, currentDefaultItineraryStore, currentDefaultPlanStore, currentItineraryStore, currentPlanStore, defaultPlanDatasetStore, planDatasetStore } from "sveltestore"
-import { test, expect, vi, describe } from "vitest"
+import {changeDefaultItinerary, changeItinerary, changePlan} from "@data/changeElements"
+import {Itinerary, Plan} from "@data/type-declarations/planTypes"
+import {
+    activeQueryIndexStore,
+    currentDefaultItineraryStore,
+    currentDefaultPlanStore,
+    currentItineraryStore,
+    currentPlanStore,
+    defaultPlanDatasetStore,
+    planDatasetStore
+} from "sveltestore"
+import {test, expect, vi, describe} from "vitest"
 
 // TODO: Mock stores properly(?)
 // vi.mock('sveltestore')
@@ -12,8 +20,8 @@ const defaultPlan: Plan = new Plan()
 const inputItinerary: Itinerary = new Itinerary()
 const defaultItinerary: Itinerary = new Itinerary()
 
-inputPlan.itineraries = [ inputItinerary ] 
-defaultPlan.itineraries = [ defaultItinerary ] 
+inputPlan.itineraries = [inputItinerary]
+defaultPlan.itineraries = [defaultItinerary]
 
 describe('changePlan', () => {
     // URGENT TODO: Something is wrong with the construction of objects of type Plan
@@ -24,14 +32,20 @@ describe('changePlan', () => {
         defaultPlanDatasetStore.set([defaultPlan])
 
         // Init changed variables
-        let activeQuery: number = -1 
+        let activeQuery: number = -1
         let currentPlan: Plan | undefined = undefined
         let currentDefaultPlan: Plan | undefined = undefined
 
         // Access stores
-        activeQueryIndexStore.subscribe((d) => {activeQuery = d})
-        currentPlanStore.subscribe((d) => {currentPlan = d})
-        currentDefaultPlanStore.subscribe((d) => {currentDefaultPlan = d})
+        activeQueryIndexStore.subscribe((d) => {
+            activeQuery = d
+        })
+        currentPlanStore.subscribe((d) => {
+            currentPlan = d
+        })
+        currentDefaultPlanStore.subscribe((d) => {
+            currentDefaultPlan = d
+        })
 
         // Function call
         changePlan(index)
@@ -65,7 +79,9 @@ describe('changeItinerary', () => {
     test('Happy path', () => {
         currentPlanStore.set(inputPlan)
         let currentItinerary: Itinerary | undefined = undefined
-        currentItineraryStore.subscribe((d) => { currentItinerary = d})
+        currentItineraryStore.subscribe((d) => {
+            currentItinerary = d
+        })
 
         changeItinerary(0)
 
@@ -81,7 +97,9 @@ describe('changeDefaultItinerary', () => {
     test('Happy path', () => {
         currentDefaultPlanStore.set(defaultPlan)
         let currentDefaultItinerary: Itinerary | undefined = undefined
-        currentDefaultItineraryStore.subscribe((d) => { currentDefaultItinerary = d })
+        currentDefaultItineraryStore.subscribe((d) => {
+            currentDefaultItinerary = d
+        })
 
         changeDefaultItinerary(0)
 

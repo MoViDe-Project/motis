@@ -1,7 +1,7 @@
 import {Itinerary, Leg} from "@data/type-declarations/planTypes.ts";
 // @ts-ignore
 import deepEqual from "deep-equal";
-import {ItineraryShadow, LegShadow} from "@data/type-declarations/comparisonShadows.ts";
+import {ItineraryShadow, LegShadow} from "@data/type-declarations/shadowTypes.ts";
 import {
     currentDefaultItineraryStore,
     currentDefaultPlanStore,
@@ -105,9 +105,9 @@ export function buildShadowOfItinerary() {
 
     currentDefaultPlanStore.subscribe((data) => {
         //if current default plan has fewer elements than itinerary.index, build dummy object
-        if(itinerary.index > data.itineraries.length) {
+        if (itinerary.index > data.itineraries.length) {
             defaultItinerary = new Itinerary()
-        }else {
+        } else {
             defaultItinerary = data.itineraries[itinerary.index]
         }
     })
@@ -116,7 +116,7 @@ export function buildShadowOfItinerary() {
     let shadow: ItineraryShadow = new ItineraryShadow(maxLegs)
 
     //if itinerary has no counterpart, set all leg attributes to false
-    if(itinerary.index > defaultItinerary.index) {
+    if (itinerary.index > defaultItinerary.index) {
         setShadowLegFalse(shadow.legs)
         shadowItineraryStore.set(shadow)
         return
@@ -134,7 +134,7 @@ export function buildShadowOfItinerary() {
         let minLegs = Math.min(itinerary.legs.length, defaultItinerary.legs.length)
 
         // mark all excess legs as mismatched
-        if(minLegs != maxLegs){
+        if (minLegs != maxLegs) {
             setShadowLegFalse(shadow.legs.slice(minLegs, maxLegs))
         }
 
@@ -162,10 +162,9 @@ export function buildShadowOfDefaultItinerary() {
 
     currentPlanStore.subscribe((data) => {
         //if current plan has fewer elements than defaultItinerary.index, build dummy object
-        if(defaultItinerary.index>data.itineraries.length) {
+        if (defaultItinerary.index > data.itineraries.length) {
             itinerary = new Itinerary()
-        }
-        else {
+        } else {
             itinerary = data.itineraries[defaultItinerary.index]
         }
     })
@@ -175,7 +174,7 @@ export function buildShadowOfDefaultItinerary() {
     let shadow: ItineraryShadow = new ItineraryShadow(maxLegs)
 
     //if defaultItinerary has no counterpart, set all leg attributes to false
-    if(defaultItinerary.index > itinerary.index) {
+    if (defaultItinerary.index > itinerary.index) {
         setShadowLegFalse(shadow.legs)
         defaultShadowItineraryStore.set(shadow)
         return
@@ -192,7 +191,7 @@ export function buildShadowOfDefaultItinerary() {
         }
         let minLegs = Math.min(itinerary.legs.length, defaultItinerary.legs.length)
         //if leg count is different, set all attributes of excess legs to false
-        if(minLegs != maxLegs) {
+        if (minLegs != maxLegs) {
             setShadowLegFalse(shadow.legs.slice(minLegs, maxLegs))
         }
 

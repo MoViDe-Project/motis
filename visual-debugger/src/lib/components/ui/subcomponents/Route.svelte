@@ -1,7 +1,7 @@
 <script lang="ts">
-    import {getModeStyle, routeColor, type LegLike} from '@/modeStyle.ts';
-    import {cn} from '@/utils.ts';
-    import type {LegShadow} from "@data/type-declarations/comparisonShadows.ts";
+    import {getModeStyle, routeColor, type LegLike} from '@/motis-helpers/modeStyle.ts';
+    import {cn} from '@/motis-helpers/utils.ts';
+    import type {LegShadow} from "@data/type-declarations/shadowTypes.ts";
     import MatchIndicator from "@/components/ui/subcomponents/MatchIndicator.svelte";
 
     const {

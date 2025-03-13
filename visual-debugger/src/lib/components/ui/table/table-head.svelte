@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { HTMLThAttributes } from "svelte/elements";
-	import { cn } from "$lib/utils.js";
+	import { cn } from "@/motis-helpers/utils.js";
 
 	type $$Props = HTMLThAttributes;
 

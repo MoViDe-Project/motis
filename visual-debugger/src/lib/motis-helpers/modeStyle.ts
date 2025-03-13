@@ -1,4 +1,4 @@
-import type { Mode, Rental } from '@data/type-declarations/planTypes';
+import type { Mode, Rental } from '@data/type-declarations/planTypes.ts';
 
 export type Colorable = {
 	routeColor?: string;

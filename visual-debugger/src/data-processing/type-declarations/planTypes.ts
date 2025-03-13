@@ -1,4 +1,4 @@
-import {cssClasses} from "@data/styling/cssClasses.ts";
+import {itineraryStates} from "@data/styling/cssClasses.ts";
 
 /**
  *  Plan type used for parsing plan responses
@@ -41,7 +41,7 @@ export class Itinerary {
     endTime: string = "";
     transfers: number = 0;
     legs: Leg[] = new Array<Leg>();
-    cssClass: string = cssClasses.planEntryDefault;
+    state: string = itineraryStates.planEntryDefault;
     index: number = 0;
 }
 
@@ -129,7 +129,7 @@ export class Leg {
      */
     steps?: Array<StepInstruction>;
     rental?: Rental;
-};
+}
 
 export type Mode =
     'WALK'
@@ -229,7 +229,7 @@ export type StepInstruction = {
     exit: string;
     /**
      * Not implemented!
-     * Indicates whether or not a street changes direction at an intersection.
+     * Indicates whether a street changes direction at an intersection.
      *
      */
     stayOn: boolean;

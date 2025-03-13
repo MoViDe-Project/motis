@@ -1,10 +1,10 @@
 import {Plan} from "@data/type-declarations/planTypes.ts";
 import {activeQueryIndexStore, currentDefaultPlanStore, currentPlanStore} from "sveltestore";
-import {cssClasses} from "@data/styling/cssClasses.ts";
+import {itineraryStates} from "./styling/cssClasses.ts";
 import {changePlan} from "@data/changeElements.ts";
 
 /**
- * Prevents the matched itineraries from showing up in the plan overview 
+ * Prevents the matched itineraries from showing up in the plan overview
  */
 export function filterOutMatched() {
     let plan = new Plan()
@@ -23,11 +23,11 @@ export function filterOutMatched() {
 
     // filter the matched queries from the plans
     clonedPlan.itineraries = plan.itineraries.filter(
-        data => data.cssClass !== cssClasses.planEntryValid
+        data => data.state !== itineraryStates.planEntryValid
     )
 
     clonedDefaultPlan.itineraries = defaultPlan.itineraries.filter(
-        data => data.cssClass !== cssClasses.planEntryValid
+        data => data.state !== itineraryStates.planEntryValid
     )
 
     // set the new plans as current
@@ -56,11 +56,11 @@ export function filterOutMismatched() {
 
     // filter the mismatched queries from the plans
     clonedPlan.itineraries = plan.itineraries.filter(
-        data => data.cssClass === cssClasses.planEntryValid
+        data => data.state === itineraryStates.planEntryValid
     )
 
     clonedDefaultPlan.itineraries = defaultPlan.itineraries.filter(
-        data => data.cssClass === cssClasses.planEntryValid
+        data => data.state === itineraryStates.planEntryValid
     )
 
     // set the new plans as current
@@ -74,7 +74,7 @@ export function filterOutMismatched() {
  * Basically only shows the matched itineraries if parameter true, otherwise shows all itineraries
  * @param showMismatched states whether the mismatched itineraries should be filtered out
  */
-export function resetItinerariesWithFilterMismatched(showMismatched:boolean) {
+export function resetItinerariesWithFilterMismatched(showMismatched: boolean) {
     let planIndex = 0
 
     activeQueryIndexStore.subscribe(data => {
@@ -85,7 +85,7 @@ export function resetItinerariesWithFilterMismatched(showMismatched:boolean) {
     changePlan(planIndex)
 
     // filter mismatched itineraries back out
-    if(!showMismatched){
+    if (!showMismatched) {
         filterOutMismatched()
     }
 }
@@ -95,7 +95,7 @@ export function resetItinerariesWithFilterMismatched(showMismatched:boolean) {
  * Basically only shows the mismatched itineraries if parameter true, otherwise shows all itineraries
  * @param showMatched states whether the matched itineraries should be filtered out
  */
-export function resetItinerariesWithFilterMatched(showMatched:boolean) {
+export function resetItinerariesWithFilterMatched(showMatched: boolean) {
     let planIndex = 0
 
     activeQueryIndexStore.subscribe(data => {
@@ -106,7 +106,7 @@ export function resetItinerariesWithFilterMatched(showMatched:boolean) {
     changePlan(planIndex)
 
     // filter matched itineraries back out
-    if(!showMatched){
+    if (!showMatched) {
         filterOutMatched()
     }
 }
