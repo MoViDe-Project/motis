@@ -25,6 +25,6 @@
 </script>
 
 <div class="flex items-center gap-2">
-    <Label class="whitespace-nowrap" >Upload query batch</Label>
+    <Label class="whitespace-nowrap" >Upload query batches</Label>
     <Input id="q-upload" type="file" on:change={putFileIntoStorage}/>
 </div>
