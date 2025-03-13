@@ -68,7 +68,7 @@
         <div class="basis-full md:basis-1/2 flex flex-row-reverse gap-2 items-center md:place-content-end justify-center">
             <div class="flex flex-col gap-2">
                 <Button on:click={computePlansInterface}>Compute routing</Button>
-                <Button variant="default" on:click={downloadPlanInterface}>Download data as default plan</Button>
+                <Button variant="default" on:click={downloadPlanInterface}>Download data as reference plan</Button>
             </div>
             <div class="flex flex-col gap-2">
                 <QueryUpload/>
@@ -124,13 +124,13 @@
             </div>
             <div class="col-span-2 flex justify-center">
                 <span>Results for selected plan: {$numberOfFailedItinerariesStore}
-                    failed out of {$currentDefaultPlanStore.itineraries.length} default itineraries</span>
+                    failed out of {$currentDefaultPlanStore.itineraries.length} reference itineraries</span>
             </div>
 
             <!-- Itinerary Comparison -->
             <div class="grid grid-rows-10 row-span-10 rounded-md">
                 <div class="p-2 text-center">
-                    <h1 class="text-xl">Default Plan overview</h1>
+                    <h1 class="text-xl">Reference plan overview</h1>
                 </div>
                 <div class="p-2 row-span-11">
 
@@ -140,7 +140,7 @@
 
             <div class="grid grid-rows-10 row-span-10 rounded-md">
                 <div class="p-2 row-span-1 text-center">
-                    <h1 class="text-xl">Plan overview</h1>
+                    <h1 class="text-xl">Compare plan overview</h1>
                 </div>
 
                 <div class="p-2 row-span-11 h-full">
