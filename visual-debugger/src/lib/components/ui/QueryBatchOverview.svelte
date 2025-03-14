@@ -19,7 +19,6 @@
             <div class="p-1">
                 <QueryEntry query={query}/>
             </div>
-
         {/each}
     </ScrollArea>
 </div>

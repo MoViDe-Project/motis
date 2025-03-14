@@ -1,8 +1,8 @@
 <script lang="ts">
     import {currentPlanStore} from "sveltestore";
     import type {Itinerary} from "@data/type-declarations/planTypes.ts";
-    import PlanEntry from "$lib/components/ui/subcomponents/PlanEntry.svelte";
-    import {ScrollArea} from "$lib/components/ui/scroll-area/index.js";
+    import PlanEntry from "@/components/ui/subcomponents/PlanEntry.svelte";
+    import {ScrollArea} from "@/components/ui/scroll-area";
 
     let itineraries: Itinerary[]
 

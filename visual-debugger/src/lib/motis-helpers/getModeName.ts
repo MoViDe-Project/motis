@@ -1,6 +1,6 @@
-import type { Leg } from '@data/type-declarations/planTypes';
+import type { Leg } from '@data/type-declarations/planTypes.ts';
 
-import { t } from './i18n/translation';
+import { t } from '@/motis-helpers/i18n/translation.ts';
 
 
 export const getModeName = (l: Leg) => {

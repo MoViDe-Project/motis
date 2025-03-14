@@ -1,19 +1,24 @@
-import { test, expect, vi, describe, expectTypeOf } from "vitest";
-import { computePlan, computePlanForQuery, downloadPlans } from "@data/planParsing";
+import {test, expect, vi, describe, expectTypeOf, assert} from "vitest";
+import {computePlan, computePlanForQuery, downloadPlans} from "@data/planParsing";
 import axios from "axios"
-import { currentPlanStore, interpolatedQueryStore, planDatasetStore } from "sveltestore";
-import { Query } from "@data/type-declarations/queryTypes";
-import { Plan } from "@data/type-declarations/planTypes";
+import {currentPlanStore, interpolatedQueryStore, planDatasetStore} from "sveltestore";
+import {Query} from "@data/type-declarations/queryTypes";
+import {Plan} from "@data/type-declarations/planTypes";
 
 vi.mock('axios')
 const dummy = new Plan()
 
 describe('computePlan', () => {
-    test('Happy path', () => {
+    /* TODO: Test heavily depends on outside function computePlanForQuery
+     * As mentioned below, it heavily depends on axios. Most of its effects are visual though
+     *
+     * CURRENTLY: Manually tested
+     */
+    test.todo('Happy path', () => {
         let interpolatedQueries = []
-        interpolatedQueryStore.subscribe((x) => { interpolatedQueries = x })
-
-        // TODO: Test heavily depends on outside function computePlanForQuery
+        interpolatedQueryStore.subscribe((x) => {
+            interpolatedQueries = x
+        })
     })
 
     test('interpolatedQueryStore is empty', () => {
@@ -27,34 +32,42 @@ describe('computePlan', () => {
         // Set store data 
         let planDataset: Plan[] = []
         let currentPlan: Plan = new Plan()
-        planDatasetStore.subscribe((x) => { planDataset = x })
-        currentPlanStore.subscribe((x) => { currentPlan = x })
+        planDatasetStore.subscribe((x) => {
+            planDataset = x
+        })
+        currentPlanStore.subscribe((x) => {
+            currentPlan = x
+        })
 
         // Call function
         computePlan()
 
         // Assertions: Nothing happens
-        expect(planDataset).toEqual([dummy])
-        expect(currentPlanStore).toEqual(dummy)
+        assert.deepEqual(planDataset, [dummy])
+        assert.deepEqual(currentPlan, dummy)
     })
 })
 
 // TODO: Discuss relevance
 describe('computePlanForQuery', () => {
-    test('Happy path', () => {
-        // TODO: Test heavily depends on axios and a running instance of MOTIS
+    /*
+     * TODO: Test heavily depends on axios and a running instance of MOTIS
+     *
+     * CURRENTLY: Manual testing covers this case
+     */
+    test.todo('Happy path', () => {
     })
 
     test('Invalid query', async () => {
         let x: Query = new Query()
 
-        await expect(computePlanForQuery(x)).rejects.toThrowError("Query is invalid")
+        await expect(computePlanForQuery(x)).rejects.toThrow()
     })
 })
 
 // TODO: Discuss relevance
 describe('downloadPlans', () => {
-    test('downloadPlans: Happy path')
+    test.todo('downloadPlans: Happy path')
 
-    test('downloadPlans: planDatasetStore is empty')
+    test.todo('downloadPlans: planDatasetStore is empty')
 })

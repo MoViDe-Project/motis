@@ -1,4 +1,4 @@
-import {cssClasses} from "@data/styling/cssClasses.ts";
+import {itineraryStates} from "@data/styling/cssClasses.ts";
 
 /**
  *  Plan type used for parsing plan responses
@@ -41,7 +41,7 @@ export class Itinerary {
     endTime: string = "";
     transfers: number = 0;
     legs: Leg[] = new Array<Leg>();
-    cssClass: string = cssClasses.planEntryDefault;
+    state: string = itineraryStates.planEntryDefault;
     index: number = 0;
 }
 
@@ -129,17 +129,66 @@ export class Leg {
      */
     steps?: Array<StepInstruction>;
     rental?: Rental;
-};
+}
 
-export type Mode = 'WALK' | 'BIKE' | 'RENTAL' | 'CAR' | 'CAR_PARKING' | 'TRANSIT' | 'TRAM' | 'SUBWAY' | 'FERRY' | 'AIRPLANE' | 'METRO' | 'BUS' | 'COACH' | 'RAIL' | 'HIGHSPEED_RAIL' | 'LONG_DISTANCE' | 'NIGHT_RAIL' | 'REGIONAL_FAST_RAIL' | 'REGIONAL_RAIL' | 'OTHER';
+export type Mode =
+    'WALK'
+    | 'BIKE'
+    | 'RENTAL'
+    | 'CAR'
+    | 'CAR_PARKING'
+    | 'TRANSIT'
+    | 'TRAM'
+    | 'SUBWAY'
+    | 'FERRY'
+    | 'AIRPLANE'
+    | 'METRO'
+    | 'BUS'
+    | 'COACH'
+    | 'RAIL'
+    | 'HIGHSPEED_RAIL'
+    | 'LONG_DISTANCE'
+    | 'NIGHT_RAIL'
+    | 'REGIONAL_FAST_RAIL'
+    | 'REGIONAL_RAIL'
+    | 'OTHER';
 
-export type RentalFormFactor = 'BICYCLE' | 'CARGO_BICYCLE' | 'CAR' | 'MOPED' | 'SCOOTER_STANDING' | 'SCOOTER_SEATED' | 'OTHER';
+export type RentalFormFactor =
+    'BICYCLE'
+    | 'CARGO_BICYCLE'
+    | 'CAR'
+    | 'MOPED'
+    | 'SCOOTER_STANDING'
+    | 'SCOOTER_SEATED'
+    | 'OTHER';
 
-export type RentalPropulsionType = 'HUMAN' | 'ELECTRIC_ASSIST' | 'ELECTRIC' | 'COMBUSTION' | 'COMBUSTION_DIESEL' | 'HYBRID' | 'PLUG_IN_HYBRID' | 'HYDROGEN_FUEL_CELL';
+export type RentalPropulsionType =
+    'HUMAN'
+    | 'ELECTRIC_ASSIST'
+    | 'ELECTRIC'
+    | 'COMBUSTION'
+    | 'COMBUSTION_DIESEL'
+    | 'HYBRID'
+    | 'PLUG_IN_HYBRID'
+    | 'HYDROGEN_FUEL_CELL';
 
 export type RentalReturnConstraint = 'NONE' | 'ANY_STATION' | 'ROUNDTRIP_STATION';
 
-export type Direction = 'DEPART' | 'HARD_LEFT' | 'LEFT' | 'SLIGHTLY_LEFT' | 'CONTINUE' | 'SLIGHTLY_RIGHT' | 'RIGHT' | 'HARD_RIGHT' | 'CIRCLE_CLOCKWISE' | 'CIRCLE_COUNTERCLOCKWISE' | 'STAIRS' | 'ELEVATOR' | 'UTURN_LEFT' | 'UTURN_RIGHT';
+export type Direction =
+    'DEPART'
+    | 'HARD_LEFT'
+    | 'LEFT'
+    | 'SLIGHTLY_LEFT'
+    | 'CONTINUE'
+    | 'SLIGHTLY_RIGHT'
+    | 'RIGHT'
+    | 'HARD_RIGHT'
+    | 'CIRCLE_CLOCKWISE'
+    | 'CIRCLE_COUNTERCLOCKWISE'
+    | 'STAIRS'
+    | 'ELEVATOR'
+    | 'UTURN_LEFT'
+    | 'UTURN_RIGHT';
 
 /**
  * EncodedPolyline type used for parsing plan responses
@@ -180,7 +229,7 @@ export type StepInstruction = {
     exit: string;
     /**
      * Not implemented!
-     * Indicates whether or not a street changes direction at an intersection.
+     * Indicates whether a street changes direction at an intersection.
      *
      */
     stayOn: boolean;

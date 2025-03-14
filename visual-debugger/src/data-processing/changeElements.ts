@@ -1,14 +1,14 @@
 import {
     activeDefaultItineraryIndexStore,
     activeItineraryIndexStore,
-    activeQueryStore, currentDefaultItineraryStore,
+    activeQueryIndexStore, currentDefaultItineraryStore,
     currentDefaultPlanStore, currentItineraryStore,
     currentPlanStore,
     defaultPlanDatasetStore,
-    planDatasetStore
+    planDatasetStore, showMatchedStore, showMismatchedStore
 } from "sveltestore";
 import {Itinerary, type Plan} from "@data/type-declarations/planTypes.ts";
-import {buildShadowOfItinerary, compareItineraries} from "@data/compareObjects.ts";
+import {countFailedItineraries} from "@data/comparePlans.ts";
 
 // attributes for switching of current plan
 let plans: Plan[];
@@ -18,12 +18,20 @@ let defaultPlans: Plan[];
  * Changes the currently displayed plan to the one given in the index
  */
 export function changePlan(queryIndex: number) {
+    if (queryIndex < 0) {
+        throw new Error("Index out of bounds")
+    }
+
     // TEST: Input
     // get current plan data
     planDatasetStore.subscribe((data) => {
             plans = data
         }
     )
+
+    if (plans.length == 0) {
+        throw new Error("Plan store is empty")
+    }
 
     // TEST: Output
     // load plan of the clicked query into svelte store
@@ -36,13 +44,18 @@ export function changePlan(queryIndex: number) {
         }
     )
 
+    if (defaultPlans.length == 0) {
+        throw new Error("Default plan store is empty")
+    }
+
     // TEST: Output
     // load plan of the clicked query into svelte store
     currentDefaultPlanStore.set(defaultPlans[queryIndex])
 
     // TEST: Output
     // set the number of the new active query
-     activeQueryStore.set(queryIndex)
+    activeQueryIndexStore.set(queryIndex)
+    countFailedItineraries()
 }
 
 let itinerary: Itinerary;
@@ -53,6 +66,10 @@ let defaultItinerary: Itinerary;
  * @param itineraryIndex the index of the itinerary to change to
  */
 export function changeItinerary(itineraryIndex: number) {
+    if (itineraryIndex < 0) {
+        throw new Error("Index out of bounds")
+    }
+
     // TEST: Input
     // get current plan data
     currentPlanStore.subscribe((data) => {
@@ -70,6 +87,9 @@ export function changeItinerary(itineraryIndex: number) {
  * @param itineraryIndex the index of the default itinerary to change to
  */
 export function changeDefaultItinerary(itineraryIndex: number) {
+    if (itineraryIndex < 0) {
+        throw new Error("Index out of bounds")
+    }
 
     // TEST: Input
     // get current plan data
@@ -81,4 +101,12 @@ export function changeDefaultItinerary(itineraryIndex: number) {
     // load plan of the clicked query into svelte store
     currentDefaultItineraryStore.set(defaultItinerary)
     activeDefaultItineraryIndexStore.set(itineraryIndex)
+}
+
+/**
+ * Resets the state of the filter checkboxes to true
+ */
+export function resetFilters() {
+    showMatchedStore.set(true)
+    showMismatchedStore.set(true)
 }

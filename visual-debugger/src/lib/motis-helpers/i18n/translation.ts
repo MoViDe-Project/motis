@@ -1,4 +1,4 @@
-import en from './en';
+import en from './en.ts';
 
 export type Translations = {
 	journeyDetails: string;

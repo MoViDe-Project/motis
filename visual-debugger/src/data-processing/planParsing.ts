@@ -1,17 +1,10 @@
-import {interpolatedQueryStore, planDatasetStore, currentPlanStore} from "sveltestore";
+import {currentPlanStore, interpolatedQueryStore, planDatasetStore} from "sveltestore";
 import type {Query} from "./type-declarations/queryTypes.ts";
-import type {Plan} from "./type-declarations/planTypes.ts"
+import {type Plan} from "./type-declarations/planTypes.ts"
 import axios from "axios";
-import {cssClasses} from "./styling/cssClasses.ts";
+import {itineraryStates} from "./styling/cssClasses.ts";
+import {MoViDe_config} from "@/movide-config.json"
 
-/**
- * Base URL of the MOTIS API
- */
-const motisApiUrlBase = 'http://localhost:8080/api/v1/'
-
-/**
- * data of the interpolated queries
- */
 let queries: Query[]
 
 /**
@@ -25,7 +18,7 @@ export async function computePlan() {
     })
 
     // if store is empty abort data processing
-    if (queries == undefined) {
+    if (queries == undefined || queries.length == 0) {
         return
     }
 
@@ -45,7 +38,7 @@ export async function computePlan() {
 
     // index all itineraries as they are parsed
     for (let plan of plans) {
-        let itineraryIndex =0
+        let itineraryIndex = 0
         for (let itinerary of plan.itineraries) {
             itinerary.index = itineraryIndex
             itineraryIndex++
@@ -66,10 +59,9 @@ export async function computePlanForQuery(query: Query): Promise<Plan> {
     const response = await axios
         .get(
             //configuration for api call parameters
-            `${motisApiUrlBase}plan/?fromPlace=${query.fromStopID}&toPlace=${query.toStopID}&time=${query.time}`
+            `${MoViDe_config.motisURL}api/v1/plan/?fromPlace=${query.from.stopId}&toPlace=${query.to.stopId}&time=${query.time}`
         )
-    let plan: Plan = response.data
-    return plan
+    return response.data
 }
 
 /**
@@ -77,7 +69,7 @@ export async function computePlanForQuery(query: Query): Promise<Plan> {
  */
 export function downloadPlans(): void {
 
-    let plans: Plan[]  = [];
+    let plans: Plan[] = [];
     // put content of read file as string into storage
     planDatasetStore.subscribe(data => {
         plans = data
@@ -110,8 +102,6 @@ export function resetCssClassesForPlanEntries(plan: Plan) {
     let itineraries = plan.itineraries
 
     for (let itinerary of itineraries) {
-        itinerary.cssClass = cssClasses.planEntryDefault
+        itinerary.state = itineraryStates.planEntryDefault
     }
 }
-
-

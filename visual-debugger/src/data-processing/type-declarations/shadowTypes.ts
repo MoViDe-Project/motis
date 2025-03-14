@@ -1,6 +1,3 @@
-import {cssClasses} from "@data/styling/cssClasses.ts";
-import {Leg} from "@data/type-declarations/planTypes.ts";
-
 /**
  * The shadow objects in this class are used to track whether the attributes of the displayed itineraries are equal
  */
@@ -79,7 +76,7 @@ export class LegShadow {
      * and the Place where the leg ends. For non-transit legs, null.
      *
      */
-    intermediateStops?: boolean = true
+    intermediateStops: boolean = true
     legGeometry: boolean = true
     /**
      * A series of turn by turn instructions
@@ -104,4 +101,11 @@ export class ItineraryShadow {
             this.legs.push(new LegShadow());
         }
     }
+}
+
+export class ItineraryAttributesShadow {
+    duration: boolean = true;
+    startTime: boolean = true;
+    endTime: boolean = true;
+    transfers: boolean = true;
 }

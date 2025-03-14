@@ -29,3 +29,13 @@ npm run build
 You can preview the production build with `npm run preview`.
 
 > To deploy MoViDe, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+
+## Configuring
+
+> The settings of MoViDe can be adjusted in the _movide-config.json_ file, which is located at /src/lib/movide-config.json
+
+This includes the URL at which the MOTIS instance is running on
+
+## How to Use
+
+To learn how to use **MoViDe** refer to the: [How to Use Guide](./HowToUse.md)

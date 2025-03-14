@@ -1,4 +1,4 @@
-import type { Translations } from './translation';
+import type { Translations } from './translation.ts';
 
 const translations: Translations = {
 	journeyDetails: 'Journey Details',
